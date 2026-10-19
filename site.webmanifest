@@ -1,0 +1,16 @@
+{
+  "name": "Sýkorkina misia",
+  "short_name": "Sýkorkina misia",
+  "description": "Hra na precvičovanie slovenského pravopisu: 9 kôl, 27 otázok.",
+  "lang": "sk",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#eff6ff",
+  "theme_color": "#3B82F6",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Misia9.sk – sýkorka</title>
+  <rect width="64" height="64" rx="14" fill="#3B82F6"/>
+  <g transform="translate(2 8) scale(0.6)">
+    <path d="M24 46 L2 38 L4 46 L1 54 L24 54 Z" fill="#1e3a5f"/>
+    <ellipse cx="46" cy="47" rx="27" ry="20" fill="#7d9a3c"/>
+    <ellipse cx="55" cy="54" rx="20" ry="15" fill="#facc15"/>
+    <path d="M62 40 Q59 54 54 67" stroke="#1f1f1f" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M48 64 L46 76 M42 76 L50 76 M58 64 L58 76 M54 76 L62 76" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M26 42 Q42 28 60 40 Q50 58 28 53 Z" fill="#9cc3dd"/>
+    <path d="M32 46 Q44 40 54 44" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="70" cy="30" r="16" fill="#1f1f1f"/>
+    <ellipse cx="72" cy="35" rx="9" ry="7" fill="#ffffff"/>
+    <circle cx="76" cy="25" r="2.8" fill="#fff"/>
+    <circle cx="76.5" cy="25" r="1.6" fill="#000"/>
+    <path d="M85 27 L96 30.5 L85 33 Z" fill="#FBBF24"/>
+  </g>
+</svg>

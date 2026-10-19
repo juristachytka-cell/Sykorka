@@ -3,75 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Základ: Rozšírený titulok a popis pre vyhľadávače -->
-    <title>Misia9.sk | Zábavné precvičovanie slovenčiny a pravopisu so sýkorkou</title>
-    <meta name="description" content="Interaktívna edukačná hra so sýkorkou na precvičovanie pravopisu a gramatiky slovenského jazyka. Zlepši si vedomosti rýchlo a zábavne.">
-    <meta name="keywords" content="Misia9, slovenčina, pravopis, gramatika, Testovanie 9, sýkorka, hra, vzdelávanie, online test">
-    
-    <!-- Inštrukcie pre vyhľadávacie roboty (indexácia povolená) -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Misia9.sk">
-    
-    <!-- Kanonická URL (zabraňuje penalizácii za duplicitný obsah s www a bez www) -->
-    <link rel="canonical" href="https://misia9.sk/">
 
-    <!-- Open Graph (Zabezpečí pekný náhľad pri zdieľaní na Facebooku, WhatsAppe atď.) -->
-    <meta property="og:title" content="Misia9.sk - Hravá slovenčina so Sýkorkou">
-    <meta property="og:description" content="Nájdi chybu vo vete a nazbieraj čo najviac bodov! Krátke a rýchle precvičovanie gramatiky.">
+    <!-- SEO: titulok a popis -->
+    <title>Sýkorkina misia – precvičovanie slovenského pravopisu hrou | Misia9.sk</title>
+    <meta name="description" content="Bezplatná online hra na precvičovanie slovenského pravopisu: vybrané slová, i/y, veľké písmená, predložky s/z a rytmický zákon. 9 kôl, 27 otázok s vysvetlením.">
+    <meta name="keywords" content="precvičovanie slovenčiny, slovenský pravopis, vybrané slová, i y cvičenia, rytmický zákon, predložky s z, gramatika online, hra pre žiakov, Testovanie 9, opakovanie slovenčiny">
+
+    <!-- Inštrukcie pre vyhľadávacie roboty -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Misia9.sk">
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="application-name" content="Sýkorkina misia">
+    <meta name="apple-mobile-web-app-title" content="Sýkorkina misia">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Kanonická URL a jazyk -->
+    <link rel="canonical" href="https://misia9.sk/">
+    <link rel="alternate" hreflang="sk" href="https://misia9.sk/">
+    <link rel="alternate" hreflang="x-default" href="https://misia9.sk/">
+
+    <!-- Favikony -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Pre AI asistentov a vyhľadávače -->
+    <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <!-- Open Graph (Facebook, WhatsApp, Messenger…) -->
+    <meta property="og:site_name" content="Misia9.sk">
+    <meta property="og:title" content="Sýkorkina misia – slovenčina hrou, 9 kôl a 27 otázok">
+    <meta property="og:description" content="Chyť sýkorku, nájdi chybu vo vete a dovedieš ju až na strom! Vybrané slová, veľké písmená, predložky, číslovky aj rytmický zákon.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://misia9.sk/">
     <meta property="og:locale" content="sk_SK">
-    
+    <meta property="og:image" content="https://misia9.sk/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sýkorka na strome a nápis Sýkorkina misia – Misia9.sk">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sýkorkina misia – slovenčina hrou | Misia9.sk">
+    <meta name="twitter:description" content="9 kôl, 27 viet s chybou. Precvičuj slovenský pravopis hrou – zadarmo a bez registrácie.">
+    <meta name="twitter:image" content="https://misia9.sk/og-image.png">
+
+    <!-- Štruktúrované dáta (Google, Bing, AI vyhľadávače) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://misia9.sk/#website",
+          "url": "https://misia9.sk/",
+          "name": "Sýkorkina misia",
+          "alternateName": "Misia9.sk",
+          "inLanguage": "sk",
+          "description": "Bezplatná online hra na precvičovanie slovenského pravopisu a gramatiky."
+        },
+        {
+          "@type": ["WebApplication", "LearningResource"],
+          "@id": "https://misia9.sk/#hra",
+          "name": "Sýkorkina misia – nájdi chybu v slovenskom pravopise",
+          "url": "https://misia9.sk/",
+          "isPartOf": { "@id": "https://misia9.sk/#website" },
+          "inLanguage": "sk",
+          "applicationCategory": "EducationalApplication",
+          "applicationSubCategory": "GameApplication",
+          "operatingSystem": "Any (webový prehliadač)",
+          "browserRequirements": "Vyžaduje JavaScript",
+          "isAccessibleForFree": true,
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+          "image": "https://misia9.sk/og-image.png",
+          "description": "Interaktívna hra so sýkorkou: 9 kôl po 3 otázky (spolu 27). V každej vete hľadáš slovo s pravopisnou alebo gramatickou chybou a po odpovedi uvidíš vysvetlenie pravidla.",
+          "learningResourceType": ["Quiz", "Game", "Practice exercise"],
+          "educationalLevel": "Základná škola (3. – 9. ročník)",
+          "audience": { "@type": "EducationalAudience", "educationalRole": ["student", "teacher", "parent"] },
+          "teaches": [
+            "Vybrané slová",
+            "Písanie i/y po tvrdých a mäkkých spoluhláskach",
+            "Koncovky minulého času v množnom čísle",
+            "Písanie veľkých písmen",
+            "Predložky s/so a z/zo",
+            "Číslovky",
+            "Zhoda v rode a čísle",
+            "Rytmický zákon, dĺžeň a vokáň"
+          ],
+          "about": [
+            { "@type": "Thing", "name": "Slovenský pravopis" },
+            { "@type": "Thing", "name": "Slovenská gramatika" }
+          ],
+          "timeRequired": "PT10M"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://misia9.sk/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Je hra Sýkorkina misia zadarmo?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Áno. Hra je úplne zadarmo, bez registrácie a beží priamo v prehliadači na počítači, tablete aj mobile." }
+            },
+            {
+              "@type": "Question",
+              "name": "Čo si v hre precvičím?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Vybrané slová, i/y po tvrdých a mäkkých spoluhláskach, koncovky minulého času, veľké písmená, predložky s/so a z/zo, číslovky, zhodu v rode a čísle, dĺžeň, vokáň a rytmický zákon." }
+            },
+            {
+              "@type": "Question",
+              "name": "Pre koho je hra určená?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Pre žiakov základných škôl, ktorí si chcú hravo zopakovať slovenský pravopis, a pre rodičov a učiteľov, ktorí hľadajú krátke opakovanie na hodinu alebo domov." }
+            },
+            {
+              "@type": "Question",
+              "name": "Ako dlho trvá jedna misia?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Celá misia má 9 kôl po 3 otázky a trvá približne 10 minút. Po každej odpovedi sa zobrazí vysvetlenie pravidla." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Prehliadač a styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#FBBF24', accent: '#10B981', dark: '#1F2937' }}}}
+        tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#FBBF24', accent: '#10B981', dark: '#1F2937' }, fontFamily: { heading: ['Nunito', 'sans-serif'], sans: ['Inter', 'sans-serif'] } } } }
     </script>
     <style>
-        body { background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%); overflow-x: hidden; }
-        #game-area { position: relative; overflow: hidden; border-radius: 1.5rem; box-shadow: inset 0 2px 15px rgba(0,0,0,0.05); background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); }
-        #bird { position: absolute; font-size: 4rem; cursor: pointer; transition: top 2s ease-in-out, left 2s ease-in-out, transform 0.3s; user-select: none; animation: bobbing 1.5s infinite alternate ease-in-out; z-index: 10; }
-        #bird:hover { transform: scale(1.2); filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8)); }
-        .celebrate { animation: spin-bounce 1s ease-in-out; }
-        @keyframes spin-bounce { 0% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.5) rotate(180deg); } 100% { transform: scale(1) rotate(360deg); } }
-        .modal-enter { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        .toast-enter { animation: slideDown 0.3s ease-out forwards; }
+        body { background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%); overflow-x: hidden; min-height: 100vh; min-height: 100dvh; }
+        #game-area { position: relative; overflow: hidden; border-radius: 1.5rem; box-shadow: inset 0 2px 15px rgba(0,0,0,0.05); background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); min-height: max(340px, 58vh); min-height: max(340px, 58dvh); }
+
+        /* Sýkorka */
+        #bird { position: absolute; width: 84px; height: 68px; cursor: pointer; transition: top 2s ease-in-out, left 2s ease-in-out; user-select: none; z-index: 10; -webkit-tap-highlight-color: transparent; }
+        #bird .bob { width: 100%; height: 100%; animation: bobbing 1.5s infinite alternate ease-in-out; }
+        #bird .flip { width: 100%; height: 100%; transition: transform 0.3s; }
+        #bird .flip.left { transform: scaleX(-1); }
+        #bird svg { width: 100%; height: 100%; overflow: visible; transition: transform 0.3s, filter 0.3s; }
+        #bird:hover svg, #bird:focus-visible svg { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.9)); }
+        #bird:focus { outline: none; }
+        #bird .wing { transform-origin: 46px 44px; animation: flap 0.28s infinite alternate ease-in-out; }
+        #bird.landed { cursor: default; }
+        #bird.landed .bob { animation: none; }
+        #bird.landed .wing { animation: none; }
+        #bird.landed svg { animation: hop 0.5s ease-out; }
+        #bird.long-flight { transition: top 2.6s cubic-bezier(.45,.05,.35,1), left 2.6s cubic-bezier(.45,.05,.35,1); }
+        .celebrate svg { animation: spin-bounce 1s ease-in-out; }
+
         @keyframes bobbing { 0% { transform: translateY(-5px); } 100% { transform: translateY(5px); } }
+        @keyframes flap { 0% { transform: rotate(-22deg); } 100% { transform: rotate(14deg); } }
+        @keyframes hop { 0% { transform: translateY(0); } 40% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+        @keyframes spin-bounce { 0% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.4) rotate(180deg); } 100% { transform: scale(1) rotate(360deg); } }
+        .modal-enter { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes slideDown { 0% { transform: translate(-50%, -100%); opacity: 0; } 100% { transform: translate(-50%, 0); opacity: 1; } }
+
+        /* Strom vo finále */
+        #tree { position: absolute; right: 2%; bottom: 0; height: 64%; aspect-ratio: 3 / 4; max-width: 70%; transform-origin: 50% 100%; transform: scale(0); opacity: 0; z-index: 5; pointer-events: none; }
+        #tree.grow { animation: grow 1.4s cubic-bezier(.2,.9,.3,1.2) forwards; }
+        @keyframes grow { 0% { transform: scale(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+        #tree svg { width: 100%; height: 100%; display: block; }
+        #ground { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: linear-gradient(#86efac, #4ade80); transition: height 1s ease-out; z-index: 4; }
+        #ground.show { height: 7%; }
+
+        .note { position: absolute; font-size: 1.6rem; color: #2563eb; pointer-events: none; z-index: 12; animation: floatUp 2.4s ease-out forwards; font-weight: 900; }
+        @keyframes floatUp { 0% { transform: translate(0,0) scale(.6); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx, 20px), -110px) scale(1.2); opacity: 0; } }
+
+        .confetti { position: fixed; top: -12px; width: 10px; height: 14px; z-index: 70; pointer-events: none; animation: fall linear forwards; border-radius: 2px; }
+        @keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(105vh) rotate(720deg); } }
+
+        .dot { width: 14px; height: 14px; border-radius: 9999px; background: #e5e7eb; border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,.15); transition: background .3s, transform .3s; }
+        .dot.current { background: #fde68a; transform: scale(1.2); }
+        .dot.ok { background: #10B981; }
+        .dot.bad { background: #ef4444; }
+        .seg { flex: 1; height: 8px; border-radius: 9999px; background: #e5e7eb; transition: background .4s; }
+        .seg.done { background: #3B82F6; }
+        .seg.current { background: #FBBF24; }
+
+        .opt-btn:disabled { cursor: default; }
+        .hint-pulse { animation: hintPulse 2s infinite; }
+        @keyframes hintPulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            #bird .bob, #bird .wing, .hint-pulse { animation: none; }
+        }
     </style>
 </head>
-<body class="h-screen flex flex-col text-dark">
-    <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden px-6 py-3 rounded-full font-bold text-white shadow-lg transition-all duration-300">Správa</div>
-    
-    <header class="w-full max-w-5xl mx-auto p-4 flex justify-between items-center z-20">
+<body class="flex flex-col text-dark font-sans">
+
+    <header class="w-full max-w-5xl mx-auto p-4 pb-2 flex justify-between items-center gap-3 z-20">
         <!-- Logo -->
         <div class="flex items-center gap-3">
             <span class="text-4xl" aria-hidden="true">🐦</span>
             <div class="font-heading text-2xl md:text-3xl font-black text-primary drop-shadow-sm">Misia9<span class="text-secondary">.sk</span></div>
         </div>
-        <div class="bg-white px-5 py-2 rounded-full shadow-md border-2 border-primary/20 flex items-center gap-2">
-            <span class="font-bold text-gray-500 uppercase tracking-wider text-sm">Skóre:</span>
-            <span id="score-display" class="font-heading text-2xl font-black text-primary">0</span>
+        <div class="bg-white px-4 md:px-5 py-2 rounded-full shadow-md border-2 border-primary/20 flex items-center gap-2">
+            <span class="font-bold text-gray-500 uppercase tracking-wider text-xs md:text-sm">Skóre:</span>
+            <span id="score-display" class="font-heading text-2xl font-black text-primary transition-transform">0</span>
+            <span class="font-heading text-base font-black text-gray-400">/ 27</span>
         </div>
     </header>
-    
-    <main class="flex-1 w-full max-w-5xl mx-auto p-4 flex flex-col relative">
+
+    <main class="flex-1 w-full max-w-5xl mx-auto px-4 pb-2 flex flex-col relative">
         <!-- Hlavné nadpisy pre SEO -->
-        <section class="mb-4 text-center">
-            <h1 class="font-heading text-xl md:text-2xl font-bold text-gray-700 mb-2">Sýkorkina misia: Nájdi chybu v slovenskom pravopise</h1>
-            <h2 class="text-gray-600 max-w-2xl mx-auto text-base">Klikni na poletujúcu sýkorku, získaj gramatickú úlohu a nazbieraj čo najviac bodov! Zameriavame sa na slovenčinu.</h2>
+        <section class="mb-3 text-center">
+            <h1 class="font-heading text-xl md:text-2xl font-bold text-gray-700 mb-1">Sýkorkina misia: Nájdi chybu v slovenskom pravopise</h1>
+            <h2 class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">9 kôl, v každom 3 vety s chybou. Klikni na poletujúcu sýkorku, nájdi chybu a dovedieš ju až na strom!</h2>
         </section>
-        
+
+        <!-- Postup v hre -->
+        <section class="bg-white/70 rounded-2xl shadow-sm border border-white px-4 py-3 mb-3" aria-live="polite">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <div class="font-heading font-black text-gray-800 text-lg leading-tight">
+                    <span id="round-label">Kolo 1 / 9</span>
+                    <span class="text-primary" id="round-title">· Vybrané slová I</span>
+                </div>
+                <div class="flex items-center gap-2" id="dots" aria-label="Otázky v kole">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="flex gap-1" id="segments" aria-hidden="true"></div>
+        </section>
+
         <div id="game-area" class="flex-1 w-full border-4 border-white shadow-xl relative" aria-label="Herná plocha">
-            <div id="bird" style="top: 50%; left: 50%;" title="Klikni na mňa pre novú úlohu!" onclick="catchBird()" role="button" tabindex="0" aria-label="Chytiť sýkorku">🐦</div>
+            <p id="hint" class="absolute top-3 left-0 right-0 text-center text-sm font-semibold text-gray-500 hint-pulse z-[6] pointer-events-none">Chyť sýkorku! 👆</p>
+            <div id="ground"></div>
+            <div id="tree" aria-hidden="true">
+                <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMax meet">
+                    <!-- kmeň -->
+                    <path d="M132 400 C136 330 138 290 134 230 L166 230 C162 290 164 330 170 400 Z" fill="#8B5A2B"/>
+                    <path d="M146 400 C148 340 150 300 148 240" stroke="#6F4520" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <!-- konár, na ktorý si sadne sýkorka -->
+                    <path d="M140 262 C110 250 80 246 40 248" stroke="#8B5A2B" stroke-width="11" fill="none" stroke-linecap="round"/>
+                    <path d="M88 248 C82 238 80 232 82 224" stroke="#8B5A2B" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="220" rx="10" ry="6" fill="#4ade80" transform="rotate(-30 80 220)"/>
+                    <ellipse cx="44" cy="244" rx="9" ry="5" fill="#22c55e" transform="rotate(20 44 244)"/>
+                    <!-- koruna -->
+                    <circle cx="150" cy="150" r="88" fill="#22c55e"/>
+                    <circle cx="96" cy="170" r="54" fill="#16a34a"/>
+                    <circle cx="206" cy="168" r="58" fill="#16a34a"/>
+                    <circle cx="150" cy="92" r="62" fill="#4ade80"/>
+                    <circle cx="112" cy="118" r="40" fill="#4ade80"/>
+                    <circle cx="196" cy="116" r="44" fill="#22c55e"/>
+                    <!-- jabĺčka -->
+                    <circle cx="120" cy="150" r="9" fill="#ef4444"/>
+                    <circle cx="190" cy="190" r="9" fill="#ef4444"/>
+                    <circle cx="170" cy="96" r="9" fill="#ef4444"/>
+                    <circle cx="214" cy="140" r="8" fill="#f97316"/>
+                    <circle cx="88" cy="190" r="8" fill="#f97316"/>
+                </svg>
+            </div>
+
+            <div id="bird" style="top: 50%; left: 50%;" title="Klikni na mňa pre novú úlohu!" role="button" tabindex="0" aria-label="Chytiť sýkorku">
+                <div class="bob"><div class="flip">
+                    <!-- Sýkorka veľká, hľadí doprava -->
+                    <svg viewBox="0 0 100 80" aria-hidden="true">
+                        <!-- chvost -->
+                        <path d="M24 46 L2 38 L4 46 L1 54 L24 54 Z" fill="#4b6584"/>
+                        <!-- telo / chrbát -->
+                        <ellipse cx="46" cy="47" rx="27" ry="20" fill="#7d9a3c"/>
+                        <!-- bruško -->
+                        <ellipse cx="55" cy="54" rx="20" ry="15" fill="#facc15"/>
+                        <path d="M62 40 Q59 54 54 67" stroke="#1f1f1f" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <!-- nožičky -->
+                        <path d="M48 64 L46 76 M42 76 L50 76 M58 64 L58 76 M54 76 L62 76" stroke="#5b5b5b" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- krídlo -->
+                        <g class="wing">
+                            <path d="M26 42 Q42 28 60 40 Q50 58 28 53 Z" fill="#6b8fa8"/>
+                            <path d="M32 46 Q44 40 54 44" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        </g>
+                        <!-- hlava -->
+                        <circle cx="70" cy="30" r="16" fill="#1f1f1f"/>
+                        <ellipse cx="72" cy="35" rx="9" ry="7" fill="#ffffff"/>
+                        <circle cx="76" cy="25" r="2.6" fill="#000"/>
+                        <circle cx="76.9" cy="24.1" r="0.9" fill="#fff"/>
+                        <!-- zobáčik -->
+                        <path d="M85 27 L95 30.5 L85 33 Z" fill="#374151"/>
+                    </svg>
+                </div></div>
+            </div>
+
+            <!-- Záverečná karta -->
+            <div id="final-card" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-sm bg-white rounded-3xl shadow-2xl p-4 sm:p-5 border-t-8 border-accent z-20 modal-enter">
+                <h3 class="font-heading text-2xl font-black text-gray-800 mb-1">🏁 Koniec misie!</h3>
+                <p class="text-gray-600 mb-3 hidden sm:block">Sýkorka si spokojne sadla na strom. Ďakuje ti, že si ju previedol(-la) všetkými 9 kolami!</p>
+                <p class="font-heading text-xl font-black text-primary mb-1">Skóre: <span id="final-score">0</span> / 27</p>
+                <p id="final-msg" class="text-gray-700 font-semibold mb-3 sm:mb-4 text-sm sm:text-base"></p>
+                <button id="restart-btn" class="w-full px-5 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
+            </div>
         </div>
     </main>
-    
+
+    <noscript>
+        <p class="max-w-3xl mx-auto px-4 text-center text-red-600 font-semibold">Sýkorkina misia potrebuje na hranie zapnutý JavaScript.</p>
+    </noscript>
+
+    <!-- Obsah o hre (pre ľudí aj vyhľadávače) -->
+    <section id="o-hre" class="w-full max-w-5xl mx-auto px-4 pt-6 pb-2" aria-labelledby="o-hre-title">
+        <div class="bg-white/70 rounded-3xl shadow-sm border border-white p-5 md:p-8">
+            <h2 id="o-hre-title" class="font-heading text-2xl font-black text-gray-800 mb-2">O hre Sýkorkina misia</h2>
+            <p class="text-gray-700 mb-5">Sýkorkina misia je bezplatná online hra na precvičovanie slovenského pravopisu a gramatiky. Chytíš poletujúcu sýkorku, v zobrazenej vete nájdeš slovo s chybou a hneď sa dozvieš, aké pravidlo platí. Misia má <b>9 kôl po 3 otázky</b> – spolu <b>27 viet</b>. Hodí sa na rýchle opakovanie doma, na hodine slovenčiny aj ako rozcvička pred písomkou či Testovaním 9.</p>
+
+            <h3 class="font-heading text-xl font-black text-gray-800 mb-3">Čo si v 9 kolách precvičíš</h3>
+            <ol class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-6 text-gray-700 list-none p-0">
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>1. kolo:</b> vybrané slová I</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>2. kolo:</b> vybrané slová II</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>3. kolo:</b> tvrdé a mäkké spoluhlásky</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>4. kolo:</b> minulý čas v množnom čísle</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>5. kolo:</b> veľké písmená</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>6. kolo:</b> predložky s/so a z/zo</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>7. kolo:</b> číslovky</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>8. kolo:</b> zhoda v rode a čísle</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2"><b>9. kolo:</b> dĺžeň, vokáň a rytmický zákon</li>
+            </ol>
+
+            <h3 class="font-heading text-xl font-black text-gray-800 mb-3">Časté otázky</h3>
+            <div class="space-y-2">
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Je hra Sýkorkina misia zadarmo?</summary>
+                    <p class="text-gray-700 mt-2">Áno. Hra je úplne zadarmo, bez registrácie a beží priamo v prehliadači na počítači, tablete aj mobile.</p>
+                </details>
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Čo si v hre precvičím?</summary>
+                    <p class="text-gray-700 mt-2">Vybrané slová, i/y po tvrdých a mäkkých spoluhláskach, koncovky minulého času, veľké písmená, predložky s/so a z/zo, číslovky, zhodu v rode a čísle, dĺžeň, vokáň a rytmický zákon.</p>
+                </details>
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Pre koho je hra určená?</summary>
+                    <p class="text-gray-700 mt-2">Pre žiakov základných škôl, ktorí si chcú hravo zopakovať slovenský pravopis, a pre rodičov a učiteľov, ktorí hľadajú krátke opakovanie na hodinu alebo domov.</p>
+                </details>
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Ako dlho trvá jedna misia?</summary>
+                    <p class="text-gray-700 mt-2">Celá misia má 9 kôl po 3 otázky a trvá približne 10 minút. Po každej odpovedi sa zobrazí vysvetlenie pravidla.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <footer class="w-full text-center p-4 text-sm text-gray-500 flex flex-col items-center justify-center gap-2">
-        <p>&copy; 2026 Misia9.sk - Vzdelávaj sa hrou</p>
+        <p>&copy; 2026 Sýkorkina misia · Misia9.sk – vzdelávaj sa hrou</p>
         <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-gray-200/50">
             <span class="text-lg" aria-hidden="true">📊</span>
             <span class="font-bold text-gray-500">Počet návštev:</span>
@@ -79,51 +352,359 @@
         </div>
     </footer>
 
-    <div id="question-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative border-t-8 border-secondary modal-enter">
-            <div class="flex items-center justify-center gap-3 mb-6">
-                <span class="text-3xl" aria-hidden="true">🎯</span>
-                <h3 class="font-heading text-2xl font-black text-gray-800">Sýkorka ťa testuje!</h3>
-            </div>
-            <p id="question-text" class="text-lg md:text-xl text-center font-medium text-gray-700 mb-8 border-l-4 border-primary pl-4 bg-blue-50 py-3 rounded-r-lg">Nájdi pravopisnú chybu vo vete: ...</p>
-            <div id="options-container" class="flex flex-col gap-3"></div>
+    <!-- Úvodné okno -->
+    <div id="start-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 flex justify-center items-center p-4" role="dialog" aria-modal="true" aria-labelledby="start-title">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 text-center border-t-8 border-primary modal-enter">
+            <div class="text-5xl mb-2" aria-hidden="true">🐦🌳</div>
+            <h3 id="start-title" class="font-heading text-2xl md:text-3xl font-black text-gray-800 mb-3">Sýkorkina misia</h3>
+            <p class="text-gray-600 mb-2">Sýkorka sa chce dostať domov na strom. Pomôž jej!</p>
+            <ul class="text-left text-gray-700 bg-blue-50 rounded-2xl p-4 mb-6 space-y-1 text-sm md:text-base">
+                <li>🎯 Misia má <b>9 kôl</b>, v každom sú <b>3 vety</b> s chybou.</li>
+                <li>🐦 Klikni na poletujúcu sýkorku a dostaneš úlohu.</li>
+                <li>✏️ Vyber slovo, v ktorom je chyba.</li>
+                <li>🏆 Za každú správnu odpoveď získaš bod – spolu ich je 27.</li>
+            </ul>
+            <button id="start-btn" class="w-full px-5 py-4 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
         </div>
     </div>
 
-    <!-- Pôvodný herný skript -->
+    <!-- Okno s otázkou -->
+    <div id="question-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog" aria-labelledby="q-heading">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative border-t-8 border-secondary modal-enter max-h-[95vh] overflow-y-auto">
+            <div class="text-center mb-3">
+                <span id="q-chip" class="inline-block bg-secondary/20 text-amber-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Kolo 1 · Otázka 1 / 3</span>
+            </div>
+            <div class="flex items-center justify-center gap-3 mb-5">
+                <span class="text-3xl" aria-hidden="true">🎯</span>
+                <h3 id="q-heading" class="font-heading text-2xl font-black text-gray-800">Sýkorka ťa testuje!</h3>
+            </div>
+            <p id="question-text" class="text-lg md:text-xl text-center font-medium text-gray-700 mb-6 border-l-4 border-primary pl-4 bg-blue-50 py-3 rounded-r-lg"></p>
+            <div id="options-container" class="flex flex-col gap-3"></div>
+            <div id="feedback" class="hidden mt-5 rounded-2xl p-4 text-left" aria-live="assertive">
+                <p id="feedback-title" class="font-heading font-black text-lg mb-1"></p>
+                <p id="feedback-text" class="text-gray-700"></p>
+            </div>
+            <button id="next-btn" class="hidden mt-5 w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Pokračovať ➜</button>
+        </div>
+    </div>
+
+    <!-- Okno po skončení kola -->
+    <div id="round-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog" aria-labelledby="round-heading">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 text-center border-t-8 border-accent modal-enter">
+            <div class="text-5xl mb-2" aria-hidden="true">🎉</div>
+            <h3 id="round-heading" class="font-heading text-2xl md:text-3xl font-black text-gray-800 mb-2">Kolo 1 je za tebou!</h3>
+            <p id="round-result" class="text-gray-600 mb-1"></p>
+            <p id="round-praise" class="text-gray-700 font-semibold mb-4"></p>
+            <div class="bg-green-50 rounded-2xl p-4 mb-6">
+                <p class="font-heading font-black text-accent text-xl">Postupuješ do ďalšieho kola!</p>
+                <p id="next-round-title" class="text-gray-600 text-sm mt-1"></p>
+            </div>
+            <button id="next-round-btn" class="w-full px-5 py-4 rounded-xl bg-accent hover:bg-emerald-600 text-white text-lg font-bold shadow-md transition">Do ďalšieho kola ➜</button>
+        </div>
+    </div>
+
+    <!-- Herný skript -->
     <script>
-        let score = 0; let birdInterval; let isGamePaused = false; let currentQuestion = null;
-        const questionsData = [
-            { text: "Nájdi pravopisnú chybu vo vete: 'Chlapci išli v lete k rieke a chytaly tam ryby.'", options: ["išli", "rieke", "chytaly"], correctAnswer: 2, explanation: "Správne je 'chytali' – v minulom čase sa v množnom čísle (bez ohľadu na rod) vždy píše mäkké i, nie y." },
-            { text: "Nájdi chybu vo vete: 'Siedmy trpaslíci sa vrátili z bane domov.'", options: ["Siedmy", "trpaslíci", "vrátili"], correctAnswer: 0, explanation: "Správne je 'Siedmi trpaslíci' – radová číslovka sa zhoduje s podstatným menom mužského rodu životného a v nominatíve množného čísla sa píše s mäkkým i." },
-            { text: "Kde sa skrýva chyba: 'Na strome sedeli dve sýkorky a spievaly si.'", options: ["sedeli", "sýkorky", "spievaly"], correctAnswer: 2, explanation: "Správne je 'spievali' – sloveso v minulom čase s podmetom v množnom čísle vždy končí na mäkké -i, bez ohľadu na rod." },
-            { text: "Nájdi chybu vo vete: 'Sýkorka si postavila hniezdo na visokom strome pri potoku.'", options: ["postavila", "visokom", "potoku"], correctAnswer: 1, explanation: "Správne je 'vysokom' – slovo vysoký je vybrané slovo po V, preto sa píše s tvrdým y." },
-            { text: "Kde je chyba vo vete: 'Dedko rozprával vnukovi, ako jeho sin kedysi chodil loviť ryby k rieke.'", options: ["rozprával", "sin", "ryby"], correctAnswer: 1, explanation: "Správne je 'syn' – ide o vybrané slovo po S, píše sa s tvrdým y." },
-            { text: "Nájdi pravopisnú chybu: 'Mačka naháňala po dvore malú miš a potom si ľahla na slnko.'", options: ["naháňala", "miš", "ľahla"], correctAnswer: 1, explanation: "Správne je 'myš' – vybrané slovo po M sa píše s tvrdým y." },
-            { text: "V ktorom slove je chyba: 'Malý žyak sa v triede vždy hlásil ako prvý.'", options: ["Malý", "žyak", "triede"], correctAnswer: 1, explanation: "Správne je 'žiak' – po mäkkej spoluhláske ž sa vždy píše mäkké i, y sa tam nikdy nepíše." },
-            { text: "Nájdi chybu vo vete: 'Mladý vtáčik sa celé ráno snažil chitiť prvú muchu.'", options: ["Mladý", "snažil", "chitiť"], correctAnswer: 2, explanation: "Správne je 'chytiť' – po tvrdej spoluhláske ch sa vždy píše y, nikdy i." },
-            { text: "Kde sa skrýva chyba: 'Budúci Pondelok sa chystáme na výlet do lesa pozorovať vtáky.'", options: ["Budúci", "Pondelok", "pozorovať"], correctAnswer: 1, explanation: "Správne je 'pondelok' s malým p – názvy dní v týždni sa v slovenčine píšu s malým začiatočným písmenom." },
-            { text: "Nájdi pravopisnú chybu: 'Môj kamarát je Nemec, ale doma rozpráva aj Slovensky.'", options: ["kamarát", "Nemec", "Slovensky"], correctAnswer: 2, explanation: "Správne je 'slovensky' s malým s – príslovka vyjadrujúca spôsob reči sa píše s malým písmenom, veľké patrí len podstatnému menu Nemec." },
-            { text: "Kde je chyba vo vete: 'Malé dievča rýchlo čítal zaujímavú knihu o zvieratách.'", options: ["Malé", "čítal", "knihu"], correctAnswer: 1, explanation: "Správne je 'čítalo' – podmet 'dievča' je v strednom rode jednotného čísla, preto sloveso v minulom čase musí mať príponu -lo." },
-            { text: "Nájdi chybu: 'Dievčatko vybehlo s domu priamo na záhradu plnú kvetov.'", options: ["vybehlo", "s", "záhradu"], correctAnswer: 1, explanation: "Správne je 'z domu' – predložka z/zo vyjadruje pohyb von z niečoho a viaže sa s genitívom, kým s/so sa používa pri spoločenstve, napríklad 's kamarátom'." },
-            { text: "Kde sa skrýva chyba: 'Na parapete ležalo jeden červené jablko, ktoré spadlo zo stromu.'", options: ["ležalo", "jeden", "spadlo"], correctAnswer: 1, explanation: "Správne je 'jedno' – číslovka sa zhoduje v rode s podstatným menom 'jablko', ktoré je stredného rodu." }
+        // ===== Otázky: 9 kôl × 3 otázky =====
+        const rounds = [
+            { title: "Vybrané slová I", questions: [
+                { text: "Nájdi chybu vo vete: 'Sýkorka si postavila hniezdo na visokom strome pri potoku.'", options: ["postavila", "visokom", "potoku"], answer: "visokom", explanation: "Správne je 'vysokom' – slovo vysoký je vybrané slovo po V, preto sa píše s tvrdým y." },
+                { text: "Kde je chyba vo vete: 'Dedko rozprával vnukovi, ako jeho sin kedysi chodil loviť ryby k rieke.'", options: ["rozprával", "sin", "ryby"], answer: "sin", explanation: "Správne je 'syn' – ide o vybrané slovo po S, píše sa s tvrdým y." },
+                { text: "Nájdi pravopisnú chybu: 'Mačka naháňala po dvore malú miš a potom si ľahla na slnko.'", options: ["naháňala", "miš", "ľahla"], answer: "miš", explanation: "Správne je 'myš' – vybrané slovo po M sa píše s tvrdým y." }
+            ]},
+            { title: "Vybrané slová II", questions: [
+                { text: "V ktorom slove je chyba: 'Na jar sme na lúke videli veľa motílov a včiel.'", options: ["lúke", "motílov", "včiel"], answer: "motílov", explanation: "Správne je 'motýľov' – slovo motýľ patrí medzi vybrané slová po M, preto sa píše s tvrdým ý." },
+                { text: "Nájdi chybu vo vete: 'Babka v kuchyni pripravila bilinkový čaj z mäty.'", options: ["kuchyni", "bilinkový", "mäty"], answer: "bilinkový", explanation: "Správne je 'bylinkový' – slovo je príbuzné s vybraným slovom bylina (po B), preto sa píše s tvrdým y." },
+                { text: "Kde sa skrýva chyba: 'Lekár mi povedal, aby som vyplazil jazik.'", options: ["Lekár", "vyplazil", "jazik"], answer: "jazik", explanation: "Správne je 'jazyk' – ide o vybrané slovo po Z, píše sa s tvrdým y." }
+            ]},
+            { title: "Tvrdé a mäkké spoluhlásky", questions: [
+                { text: "V ktorom slove je chyba: 'Malý žyak sa v triede vždy hlásil ako prvý.'", options: ["Malý", "žyak", "triede"], answer: "žyak", explanation: "Správne je 'žiak' – po mäkkej spoluhláske ž sa vždy píše mäkké i, y sa tam nikdy nepíše." },
+                { text: "Nájdi chybu vo vete: 'Mladý vtáčik sa celé ráno snažil chitiť prvú muchu.'", options: ["Mladý", "snažil", "chitiť"], answer: "chitiť", explanation: "Správne je 'chytiť' – po tvrdej spoluhláske ch sa v domácich slovách píše vždy y, nikdy i." },
+                { text: "Nájdi chybu vo vete: 'Na výlete sme pri ohni spievali veselé pesňičky.'", options: ["ohni", "spievali", "pesňičky"], answer: "pesňičky", explanation: "Správne je 'pesničky' – v slabikách di, ti, ni, li sa d, t, n, l vyslovujú mäkko, ale mäkčeň sa nad ne nepíše." }
+            ]},
+            { title: "Minulý čas v množnom čísle", questions: [
+                { text: "Nájdi pravopisnú chybu vo vete: 'Chlapci išli v lete k rieke a chytaly tam ryby.'", options: ["išli", "rieke", "chytaly"], answer: "chytaly", explanation: "Správne je 'chytali' – v minulom čase sa v množnom čísle (bez ohľadu na rod) vždy píše mäkké i, nie y." },
+                { text: "Kde sa skrýva chyba: 'Na strome sedeli dve sýkorky a spievaly si.'", options: ["sedeli", "sýkorky", "spievaly"], answer: "spievaly", explanation: "Správne je 'spievali' – sloveso v minulom čase s podmetom v množnom čísle vždy končí na mäkké -i, bez ohľadu na rod." },
+                { text: "Kde je chyba vo vete: 'Žiačky sa pred písomkou dlho učily slovíčka.'", options: ["Žiačky", "písomkou", "učily"], answer: "učily", explanation: "Správne je 'učili' – aj keď je podmet ženského rodu, v minulom čase v množnom čísle sa vždy píše koncovka -li." }
+            ]},
+            { title: "Veľké písmená", questions: [
+                { text: "Kde sa skrýva chyba: 'Budúci Pondelok sa chystáme na výlet do lesa pozorovať vtáky.'", options: ["Budúci", "Pondelok", "pozorovať"], answer: "Pondelok", explanation: "Správne je 'pondelok' s malým p – názvy dní v týždni sa v slovenčine píšu s malým začiatočným písmenom." },
+                { text: "Nájdi pravopisnú chybu: 'Môj kamarát je Nemec, ale doma rozpráva aj Slovensky.'", options: ["kamarát", "Nemec", "Slovensky"], answer: "Slovensky", explanation: "Správne je 'slovensky' s malým s – príslovka vyjadrujúca spôsob reči sa píše s malým písmenom, veľké patrí len podstatnému menu Nemec." },
+                { text: "Nájdi chybu vo vete: 'Cez víkend sme s rodičmi navštívili hrad devín.'", options: ["víkend", "rodičmi", "devín"], answer: "devín", explanation: "Správne je 'Devín' – je to vlastné meno (názov hradu), preto sa píše s veľkým začiatočným písmenom. Slovo 'hrad' ostáva s malým h." }
+            ]},
+            { title: "Predložky s/so a z/zo", questions: [
+                { text: "Nájdi chybu: 'Dievčatko vybehlo s domu priamo na záhradu plnú kvetov.'", options: ["vybehlo", "s", "záhradu"], answer: "s", explanation: "Správne je 'z domu' – predložka z/zo vyjadruje pohyb von z niečoho a viaže sa s 2. pádom (genitívom), kým s/so sa používa pri spoločenstve, napríklad 's kamarátom'." },
+                { text: "Kde sa skrýva chyba: 'Ocko sa zo susedom dlho rozprával o futbale.'", options: ["zo", "rozprával", "futbale"], answer: "zo", explanation: "Správne je 'so susedom' – predložka s/so vyjadruje spoločenstvo (s kým?) a viaže sa so 7. pádom. Pred slovom, ktoré sa začína na s, má tvar 'so'." },
+                { text: "Nájdi chybu vo vete: 'Sýkorka zletela s konára priamo do kŕmidla.'", options: ["zletela", "s", "kŕmidla"], answer: "s", explanation: "Správne je 'z konára' – predložka z/zo vyjadruje pohyb smerom z niečoho (odkiaľ?) a viaže sa s 2. pádom." }
+            ]},
+            { title: "Číslovky", questions: [
+                { text: "Nájdi chybu vo vete: 'Siedmy trpaslíci sa vrátili z bane domov.'", options: ["Siedmy", "trpaslíci", "vrátili"], answer: "Siedmy", explanation: "Správne je 'Siedmi trpaslíci' – základná číslovka sedem má pri podstatných menách mužského rodu, ktoré označujú osoby, tvar siedmi (ako piati, šiesti) a píše sa s mäkkým i." },
+                { text: "V ktorom slove je chyba: 'Do našej triedy prišli dva noví žiaci.'", options: ["prišli", "dva", "noví"], answer: "dva", explanation: "Správne je 'dvaja' – pri podstatných menách mužského rodu, ktoré označujú osoby, používame tvary dvaja, traja, štyria." },
+                { text: "Nájdi chybu vo vete: 'Moja sestra chodí do 5 triedy základnej školy.'", options: ["sestra", "5", "základnej"], answer: "5", explanation: "Správne je 'do 5. triedy' – radová číslovka zapísaná číslicou sa vždy píše s bodkou." }
+            ]},
+            { title: "Zhoda v rode a čísle", questions: [
+                { text: "Kde je chyba vo vete: 'Malé dievča rýchlo čítal zaujímavú knihu o zvieratách.'", options: ["Malé", "čítal", "knihu"], answer: "čítal", explanation: "Správne je 'čítalo' – podmet 'dievča' je v strednom rode jednotného čísla, preto sloveso v minulom čase musí mať príponu -lo." },
+                { text: "Kde sa skrýva chyba: 'Pod stromom ležalo jeden červené jablko, ktoré v noci spadlo.'", options: ["ležalo", "jeden", "spadlo"], answer: "jeden", explanation: "Správne je 'jedno' – číslovka sa zhoduje v rode s podstatným menom 'jablko', ktoré je stredného rodu." },
+                { text: "Nájdi chybu vo vete: 'Na dvore sa s loptou hrali malé chlapci.'", options: ["dvore", "hrali", "malé"], answer: "malé", explanation: "Správne je 'malí chlapci' – prídavné meno pri podstatnom mene mužského rodu životného má v množnom čísle koncovku -í (malí, veselí, dobrí)." }
+            ]},
+            { title: "Finále: dĺžeň, vokáň a rytmický zákon", questions: [
+                { text: "Kde je chyba vo vete: 'Sýkorka mala na brušku krásné žlté pierka.'", options: ["brušku", "krásné", "pierka"], answer: "krásné", explanation: "Správne je 'krásne' – podľa rytmického zákona nemôžu v slove nasledovať dve dlhé slabiky za sebou. Po dlhej slabike 'krá' preto nasleduje krátke -e." },
+                { text: "Nájdi chybu: 'Deti v škole píšú ťažký diktát.'", options: ["Deti", "píšú", "diktát"], answer: "píšú", explanation: "Správne je 'píšu' – podľa rytmického zákona po dlhej slabike 'pí' nasleduje krátka koncovka -u." },
+                { text: "V ktorom slove je chyba: 'Zajtra pojdeme s celou triedou do divadla.'", options: ["Zajtra", "pojdeme", "divadla"], answer: "pojdeme", explanation: "Správne je 'pôjdeme' – v budúcom čase slovesa ísť sa píše ô (vokáň): pôjdem, pôjdeš, pôjdeme." }
+            ]}
         ];
-        const bird = document.getElementById('bird'); const gameArea = document.getElementById('game-area'); const scoreDisplay = document.getElementById('score-display'); const modal = document.getElementById('question-modal'); const questionText = document.getElementById('question-text'); const optionsContainer = document.getElementById('options-container'); const toast = document.getElementById('toast');
-        function moveBird() { if (isGamePaused) return; const areaWidth = gameArea.clientWidth; const areaHeight = gameArea.clientHeight; const birdWidth = bird.clientWidth || 64; const birdHeight = bird.clientHeight || 64; const randomX = Math.floor(Math.random() * (areaWidth - birdWidth)); const randomY = Math.floor(Math.random() * (areaHeight - birdHeight)); const currentLeft = parseInt(bird.style.left || 0); if (randomX > currentLeft) { bird.style.transform = "scaleX(-1)"; } else { bird.style.transform = "scaleX(1)"; } bird.style.left = `${randomX}px`; bird.style.top = `${randomY}px`; }
-        function startBirdEngine() { isGamePaused = false; moveBird(); birdInterval = setInterval(moveBird, 2200); }
+        const TOTAL = rounds.reduce((n, r) => n + r.questions.length, 0);
+
+        const roundPraise = [
+            [0, "Nevadí, chyby sú na to, aby sme sa z nich učili. 💪"],
+            [1, "Dobrý začiatok, v ďalšom kole to bude lepšie! 🙂"],
+            [2, "Veľmi pekne, takmer bez chyby! 👏"],
+            [3, "Perfektné kolo, všetko správne! 🌟"]
+        ];
+
+        // ===== Stav hry =====
+        let score = 0, roundIdx = 0, qIdx = 0, roundCorrect = 0;
+        let roundOrder = [];            // poradie otázok v aktuálnom kole
+        let results = [];               // výsledky otázok v aktuálnom kole (true/false)
+        let birdInterval = null, isGamePaused = true, currentQuestion = null, answered = false, finished = false;
+
+        const $ = id => document.getElementById(id);
+        const bird = $('bird'), flip = bird.querySelector('.flip'), gameArea = $('game-area');
+        const scoreDisplay = $('score-display'), modal = $('question-modal'), questionText = $('question-text');
+        const optionsContainer = $('options-container'), feedback = $('feedback'), nextBtn = $('next-btn');
+        const roundModal = $('round-modal'), startModal = $('start-modal');
+        const tree = $('tree'), ground = $('ground'), finalCard = $('final-card'), hint = $('hint');
+
+        const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+        // ===== Ukazovateľ postupu =====
+        const segWrap = $('segments');
+        for (let i = 0; i < rounds.length; i++) { const s = document.createElement('span'); s.className = 'seg'; segWrap.appendChild(s); }
+        function renderProgress() {
+            $('round-label').textContent = `Kolo ${Math.min(roundIdx + 1, rounds.length)} / ${rounds.length}`;
+            $('round-title').textContent = `· ${rounds[Math.min(roundIdx, rounds.length - 1)].title}`;
+            [...segWrap.children].forEach((s, i) => { s.className = 'seg' + (i < roundIdx || finished ? ' done' : i === roundIdx ? ' current' : ''); });
+            [...$('dots').children].forEach((d, i) => { d.className = 'dot' + (results[i] === true ? ' ok' : results[i] === false ? ' bad' : (i === qIdx && !finished ? ' current' : '')); });
+            scoreDisplay.textContent = score;
+        }
+
+        // ===== Lietanie sýkorky =====
+        function placeBird(x, y) {
+            const currentLeft = parseFloat(bird.style.left) || 0;
+            flip.classList.toggle('left', x < currentLeft);
+            bird.style.left = `${x}px`; bird.style.top = `${y}px`;
+        }
+        function moveBird() {
+            if (isGamePaused) return;
+            const w = gameArea.clientWidth, h = gameArea.clientHeight;
+            const bw = bird.offsetWidth || 84, bh = bird.offsetHeight || 68;
+            placeBird(Math.floor(Math.random() * Math.max(1, w - bw)), Math.floor(Math.random() * Math.max(1, h - bh)));
+        }
+        function startBirdEngine() { if (finished) return; isGamePaused = false; clearInterval(birdInterval); moveBird(); birdInterval = setInterval(moveBird, 2200); }
         function stopBirdEngine() { isGamePaused = true; clearInterval(birdInterval); }
-        function showToast(message, type) { toast.textContent = message; toast.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-[60] px-6 py-3 rounded-full font-bold text-white shadow-lg transition-all duration-300 toast-enter`; if (type === 'success') { toast.classList.add('bg-accent'); } else { toast.classList.add('bg-red-500'); } toast.classList.remove('hidden'); setTimeout(() => { toast.classList.add('hidden'); toast.classList.remove('toast-enter'); }, 3000); }
-        function catchBird() { if (isGamePaused) return; stopBirdEngine(); const randomIndex = Math.floor(Math.random() * questionsData.length); currentQuestion = questionsData[randomIndex]; questionText.textContent = currentQuestion.text; optionsContainer.innerHTML = ''; currentQuestion.options.forEach((option, index) => { const btn = document.createElement('button'); btn.className = "w-full text-left px-5 py-4 rounded-xl border-2 border-gray-200 bg-gray-50 hover:bg-primary/10 hover:border-primary/50 font-semibold text-gray-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary/20"; btn.textContent = option; btn.onclick = () => checkAnswer(index); optionsContainer.appendChild(btn); }); modal.classList.remove('hidden'); }
-        function checkAnswer(selectedIndex) { modal.classList.add('hidden'); if (selectedIndex === currentQuestion.correctAnswer) { score++; scoreDisplay.textContent = score; scoreDisplay.classList.add('text-accent', 'scale-125'); setTimeout(() => scoreDisplay.classList.remove('text-accent', 'scale-125'), 300); bird.classList.add('celebrate'); setTimeout(() => bird.classList.remove('celebrate'), 1000); showToast('Výborne! Správna odpoveď. 🌟', 'success'); } else { showToast(`Ups, to nebolo správne. ${currentQuestion.explanation}`, 'error'); } setTimeout(startBirdEngine, 1000); }
-        window.onload = () => { bird.style.left = `${(gameArea.clientWidth / 2) - 32}px`; bird.style.top = `${(gameArea.clientHeight / 2) - 32}px`; setTimeout(startBirdEngine, 500); };
+
+        // ===== Kolá =====
+        function startRound() {
+            qIdx = 0; roundCorrect = 0; results = [];
+            roundOrder = shuffle(rounds[roundIdx].questions);
+            renderProgress();
+            hint.classList.remove('hidden');
+            setTimeout(startBirdEngine, 400);
+        }
+
+        function catchBird() {
+            if (isGamePaused || finished) return;
+            stopBirdEngine();
+            hint.classList.add('hidden');
+            currentQuestion = roundOrder[qIdx];
+            answered = false;
+            $('q-chip').textContent = `Kolo ${roundIdx + 1} · Otázka ${qIdx + 1} / 3`;
+            questionText.textContent = currentQuestion.text;
+            optionsContainer.innerHTML = '';
+            feedback.classList.add('hidden'); nextBtn.classList.add('hidden');
+            shuffle(currentQuestion.options).forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = "opt-btn w-full text-left px-5 py-4 rounded-xl border-2 border-gray-200 bg-gray-50 hover:bg-primary/10 hover:border-primary/50 font-semibold text-gray-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary/20";
+                btn.textContent = option;
+                btn.dataset.value = option;
+                btn.onclick = () => checkAnswer(option);
+                optionsContainer.appendChild(btn);
+            });
+            modal.classList.remove('hidden');
+            optionsContainer.firstChild.focus({ preventScroll: true });
+        }
+
+        function checkAnswer(selected) {
+            if (answered) return;
+            answered = true;
+            const correct = selected === currentQuestion.answer;
+            [...optionsContainer.children].forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-primary/10', 'hover:border-primary/50', 'bg-gray-50', 'border-gray-200');
+                if (btn.dataset.value === currentQuestion.answer) btn.classList.add('bg-green-100', 'border-accent', 'text-green-800');
+                else if (btn.dataset.value === selected) btn.classList.add('bg-red-100', 'border-red-400', 'text-red-800');
+                else btn.classList.add('bg-gray-50', 'border-gray-200', 'opacity-60');
+            });
+            results[qIdx] = correct;
+            if (correct) {
+                score++; roundCorrect++;
+                scoreDisplay.textContent = score;
+                scoreDisplay.classList.add('text-accent', 'scale-125');
+                setTimeout(() => scoreDisplay.classList.remove('text-accent', 'scale-125'), 400);
+                bird.classList.add('celebrate'); setTimeout(() => bird.classList.remove('celebrate'), 1000);
+                feedback.className = 'mt-5 rounded-2xl p-4 text-left bg-green-50 border-2 border-green-200';
+                $('feedback-title').textContent = 'Výborne! Správna odpoveď. 🌟';
+                $('feedback-title').className = 'font-heading font-black text-lg mb-1 text-green-700';
+            } else {
+                feedback.className = 'mt-5 rounded-2xl p-4 text-left bg-red-50 border-2 border-red-200';
+                $('feedback-title').textContent = 'Ups, to nebolo správne.';
+                $('feedback-title').className = 'font-heading font-black text-lg mb-1 text-red-600';
+            }
+            $('feedback-text').textContent = currentQuestion.explanation;
+            renderProgress();
+            const last = qIdx === roundOrder.length - 1;
+            nextBtn.textContent = !last ? 'Pokračovať ➜' : (roundIdx === rounds.length - 1 ? 'Dokončiť misiu 🏁' : 'Dokončiť kolo 🎉');
+            nextBtn.classList.remove('hidden');
+            nextBtn.focus({ preventScroll: true });
+            nextBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+
+        function nextStep() {
+            modal.classList.add('hidden');
+            if (qIdx < roundOrder.length - 1) {
+                qIdx++; renderProgress();
+                setTimeout(startBirdEngine, 500);
+                return;
+            }
+            // koniec kola
+            if (roundIdx === rounds.length - 1) { finishMission(); return; }
+            $('round-heading').textContent = `Kolo ${roundIdx + 1} je za tebou!`;
+            $('round-result').textContent = `Správne odpovede v tomto kole: ${roundCorrect} / 3`;
+            $('round-praise').textContent = roundPraise.find(p => p[0] === roundCorrect)[1];
+            $('next-round-title').textContent = `Kolo ${roundIdx + 2}: ${rounds[roundIdx + 1].title}`;
+            roundModal.classList.remove('hidden');
+            $('next-round-btn').focus({ preventScroll: true });
+            confetti(40);
+        }
+
+        function nextRound() {
+            roundModal.classList.add('hidden');
+            roundIdx++;
+            startRound();
+        }
+
+        // ===== Finále: sýkorka si sadne na strom =====
+        function branchPoint() {
+            // konár v SVG (viewBox 300×400) – miesto, kam sýkorka dosadne
+            const BX = 78, BY = 248;
+            const svg = tree.querySelector('svg');
+            const area = gameArea.getBoundingClientRect();
+            const r = svg.getBoundingClientRect();
+            const s = Math.min(r.width / 300, r.height / 400);
+            const offX = (r.width - 300 * s) / 2, offY = r.height - 400 * s; // xMidYMax
+            return { x: r.left - area.left - gameArea.clientLeft + offX + BX * s, y: r.top - area.top - gameArea.clientTop + offY + BY * s };
+        }
+
+        function finishMission() {
+            finished = true; stopBirdEngine();
+            hint.classList.add('hidden');
+            renderProgress();
+            ground.classList.add('show');
+            tree.classList.add('grow');
+            setTimeout(() => {
+                const p = branchPoint();
+                const bw = bird.offsetWidth, bh = bird.offsetHeight;
+                bird.classList.add('long-flight');
+                placeBird(p.x - bw * 0.52, p.y - bh * 0.97);
+                flip.classList.remove('left');
+                setTimeout(() => {
+                    bird.classList.add('landed');
+                    bird.setAttribute('aria-label', 'Sýkorka sedí na strome');
+                    bird.removeAttribute('title');
+                    sing(p);
+                    confetti(90);
+                    setTimeout(showFinalCard, 900);
+                }, 2650);
+            }, 1300);
+        }
+
+        function sing(p) {
+            ['♪', '♫', '♪', '♬', '♪'].forEach((n, i) => setTimeout(() => {
+                const el = document.createElement('span');
+                el.className = 'note'; el.textContent = n;
+                el.style.left = `${p.x + 10 + i * 6}px`; el.style.top = `${p.y - 70}px`;
+                el.style.setProperty('--dx', `${(i % 2 ? -1 : 1) * (15 + i * 8)}px`);
+                gameArea.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }, i * 450));
+        }
+
+        function showFinalCard() {
+            $('final-score').textContent = score;
+            const pct = score / TOTAL;
+            $('final-msg').textContent = pct === 1 ? 'Bez jedinej chyby! Si pravopisný majster. 🏆'
+                : pct >= 0.8 ? 'Skvelý výsledok! Slovenčinu máš v malíčku. 🌟'
+                : pct >= 0.5 ? 'Dobrá práca! Ešte trochu tréningu a budeš majster. 👍'
+                : 'Misia splnená! Skús to znova a uvidíš, že to pôjde lepšie. 💪';
+            finalCard.classList.remove('hidden');
+            $('restart-btn').focus({ preventScroll: true });
+        }
+
+        function restart() {
+            finalCard.classList.add('hidden');
+            tree.classList.remove('grow'); ground.classList.remove('show');
+            bird.classList.remove('landed', 'long-flight');
+            bird.setAttribute('aria-label', 'Chytiť sýkorku'); bird.title = 'Klikni na mňa pre novú úlohu!';
+            score = 0; roundIdx = 0; finished = false;
+            startRound();
+        }
+
+        // ===== Konfety =====
+        function confetti(n) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const colors = ['#3B82F6', '#FBBF24', '#10B981', '#ef4444', '#a855f7', '#f97316'];
+            for (let i = 0; i < n; i++) {
+                const c = document.createElement('span');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.background = colors[i % colors.length];
+                c.style.animationDuration = (2 + Math.random() * 2) + 's';
+                c.style.animationDelay = (Math.random() * 0.6) + 's';
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 5000);
+            }
+        }
+
+        // ===== Udalosti =====
+        bird.addEventListener('click', catchBird);
+        bird.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); catchBird(); } });
+        nextBtn.addEventListener('click', nextStep);
+        $('next-round-btn').addEventListener('click', nextRound);
+        $('restart-btn').addEventListener('click', restart);
+        $('start-btn').addEventListener('click', () => { startModal.classList.add('hidden'); startRound(); });
+
+        window.addEventListener('load', () => {
+            bird.style.left = `${(gameArea.clientWidth / 2) - 42}px`;
+            bird.style.top = `${(gameArea.clientHeight / 2) - 34}px`;
+            renderProgress();
+        });
+        window.addEventListener('resize', () => {
+            if (!finished) return;
+            const p = branchPoint();
+            bird.classList.remove('long-flight');
+            bird.style.transition = 'none';
+            bird.style.left = `${p.x - bird.offsetWidth * 0.52}px`; bird.style.top = `${p.y - bird.offsetHeight * 0.97}px`;
+            requestAnimationFrame(() => { bird.style.transition = ''; });
+        });
     </script>
 
-    <!-- Netlify Blobs API Počítadlo -->
+    <!-- Cloudflare KV počítadlo návštev -->
     <script>
         // Skontrolujeme, či sa návštevník už v tejto relácii započítal (zabraňuje +1 pri stlačení F5)
-        const counted = sessionStorage.getItem('misia9_counted');
+        let counted = null;
+        try { counted = sessionStorage.getItem('misia9_counted'); } catch (e) {}
         const apiUrl = counted ? '/api/counter?readOnly=true' : '/api/counter';
-        
+
         fetch(apiUrl, { cache: 'no-store' })
             .then(response => {
                 if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -134,9 +715,7 @@
                 const counterEl = document.getElementById('visit-counter');
                 counterEl.classList.remove('animate-pulse');
                 counterEl.textContent = data.count.toLocaleString('sk-SK');
-                
-                // Zaznačíme si, že tento návštevník už bol pripočítaný
-                if (!counted) sessionStorage.setItem('misia9_counted', 'true');
+                if (!counted) { try { sessionStorage.setItem('misia9_counted', 'true'); } catch (e) {} }
             })
             .catch(error => {
                 console.error("Chyba API:", error);
