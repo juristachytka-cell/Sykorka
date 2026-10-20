@@ -57,5 +57,14 @@ export function decodeLogo(dataUrl) {
   return type ? { bytes, type } : null;
 }
 
+// zapnuté, kým v Cloudflare nie je TUTORS_ENABLED = 0
+export const tutorsEnabled = env => String(env.TUTORS_ENABLED ?? "1").trim() !== "0";
+
+// odtlačok IČO (SHA-256) – na kontrolu duplicít aj po vymazaní samotného IČO
+export async function icoHash(ico) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("misia9|" + ico));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
 // verejné údaje schválených doučovateľov
 export const publicTutor = t => ({ id: t.id, name: t.name, url: t.url, side: t.side, order: t.order, v: t.updated || t.created });
