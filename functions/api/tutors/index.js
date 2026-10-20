@@ -1,20 +1,21 @@
 // Cloudflare Pages Function – doučovatelia
 // Dostupné na: /api/tutors
 //
-// VYPÍNAČ: kým v Cloudflare (Settings -> Variables and Secrets) nie je premenná TUTORS_ENABLED = 1,
-// doučovatelia sa na webe nezobrazujú a formulár neprijíma prihlášky. Správca ich aj tak môže spravovať.
+// Umiestnenie je ZADARMO. VYPÍNAČ: premenná TUTORS_ENABLED = 0 v Cloudflare (Settings -> Variables and Secrets)
+// doučovateľov na webe skryje a formulár prestane prijímať prihlášky. Bez premennej sú zapnutí.
+// Ochrana údajov: IČO sa po schválení vymaže (ostane len odtlačok proti duplicitám), e-mail sa zmaže spolu s prihláškou.
 //
 //   GET  /api/tutors   -> schválení doučovatelia (zobrazujú sa po stranách hry na notebooku)
 //   POST /api/tutors   -> nová prihláška { name, url, ico, email, logo (data URL), consent }
 //                         Prihláška čaká na schválenie správcom na stránke /vysledky.
 
 import { NickFilter } from "../../_shared/nickfilter.js";
-import { readTutors, writeTutors, normalizeIco, normalizeUrl, decodeLogo, publicTutor, MAX_PENDING } from "../../_shared/tutors.js";
+import { readTutors, writeTutors, normalizeIco, normalizeUrl, decodeLogo, publicTutor, MAX_PENDING, tutorsEnabled, icoHash } from "../../_shared/tutors.js";
 
 const json = (data, status = 200, cache = "no-store") =>
   Response.json(data, { status, headers: { "Cache-Control": cache } });
 
-const enabled = env => String(env.TUTORS_ENABLED || "") === "1";
+const enabled = tutorsEnabled;
 
 export async function onRequestGet({ env }) {
   if (!enabled(env)) return json({ enabled: false, tutors: [] }, 200, "public, max-age=300");
@@ -50,13 +51,14 @@ export async function onRequestPost({ request, env }) {
   if (!logo) return json({ error: "Logo sa nepodarilo spracovať. Použi obrázok PNG, JPG alebo WebP." }, 400);
 
   const list = await readTutors(env);
-  if (list.some(t => t.ico === ico && t.status !== "hidden")) return json({ error: "Prihláška s týmto IČO už existuje. Ak chceš zmeniť údaje, napíš správcovi stránky." }, 409);
+  const hash = await icoHash(ico);
+  if (list.some(t => (t.icoHash === hash || t.ico === ico) && t.status !== "hidden")) return json({ error: "Prihláška s týmto IČO už existuje. Ak chceš zmeniť údaje, napíš správcovi stránky." }, 409);
   if (list.filter(t => t.status === "pending").length >= MAX_PENDING) return json({ error: "Momentálne čaká veľa prihlášok. Skús to prosím o pár dní." }, 429);
 
   const now = new Date().toISOString();
   const id = crypto.randomUUID().replace(/-/g, "").slice(0, 12);
   await env.COUNTER.put(`tutorlogo:${id}`, logo.bytes, { metadata: { type: logo.type } });
-  list.push({ id, name, url, ico, email, status: "pending", side: "left", order: 99, created: now, updated: now, logoType: logo.type });
+  list.push({ id, name, url, ico, icoHash: hash, email, status: "pending", side: "left", order: 99, created: now, updated: now, logoType: logo.type });
   await writeTutors(env, list);
   return json({ ok: true });
 }
