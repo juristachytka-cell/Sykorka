@@ -6,12 +6,12 @@
 //   DELETE /api/admin/tutors?id=...       -> zmaže prihlášku aj logo
 
 import { json, guard } from "../../_shared/auth.js";
-import { readTutors, writeTutors, SLOTS_PER_SIDE } from "../../_shared/tutors.js";
+import { readTutors, writeTutors, SLOTS_PER_SIDE, tutorsEnabled } from "../../_shared/tutors.js";
 
 export async function onRequestGet({ request, env }) {
   const g = await guard(request, env);
   if (g.res) return g.res;
-  return json({ tutors: await readTutors(env), slots: SLOTS_PER_SIDE });
+  return json({ tutors: await readTutors(env), slots: SLOTS_PER_SIDE, enabled: tutorsEnabled(env) });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -30,7 +30,10 @@ export async function onRequestPost({ request, env }) {
     const taken = list.find(x => x.id !== t.id && x.status === "approved" && x.side === side && x.order === order);
     if (taken) return json({ error: `Miesto ${order} na ${side === "left" ? "ľavej" : "pravej"} strane už má „${taken.name}“. Vyber iné miesto.` }, 409);
   }
-  if (b.action === "approve") t.status = "approved";
+  if (b.action === "approve") {
+    t.status = "approved";
+    if (t.ico) { t.icoVerified = true; t.ico = ""; }   // IČO po overení vymažeme (odtlačok icoHash ostáva)
+  }
   if (b.action === "hide") t.status = "hidden";
   t.side = side; t.order = order;
   t.updated = new Date().toISOString();
