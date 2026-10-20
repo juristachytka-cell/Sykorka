@@ -1,6 +1,6 @@
 # Sýkorkina misia (Misia9.sk): ukážky otázok
 
-> Ukážky z hry Sýkorkina misia (https://misia9.sk/). Hra má 306 viet s jednou pravopisnou alebo gramatickou chybou v dvoch úrovniach; každý deň o polnoci vyberie 27 nových. Nižšie sú dve ukážky z každej témy – chybné slovo a vysvetlenie pravidla.
+> Ukážky z hry Sýkorkina misia (https://misia9.sk/). Hra má 1 000 viet s jednou pravopisnou alebo gramatickou chybou v dvoch úrovniach po 15 tém; každý deň o polnoci vyberie 9 tém a 27 nových viet. Nižšie sú dve ukážky z každej témy – chybné slovo a vysvetlenie pravidla.
 
 ## Ľahšia úroveň (3. – 5. ročník)
 
@@ -85,6 +85,60 @@
   - Chybné slovo: píšú
   - Vysvetlenie: Správne je 'píšu' – podľa rytmického zákona po dlhej slabike 'pí' nasleduje krátka koncovka -u.
 
+### 10. Mäkčeň: ď, ť, ň, ľ
+
+- Veta s chybou: „Dakujem ti za krásny darček.“
+  - Chybné slovo: Dakujem
+  - Vysvetlenie: Správne je 'Ďakujem' – pred a, o, u, á, ú, ô, ia, iu a na konci slabiky píšeme nad d, t, n, l mäkčeň (ď, ť, ň, ľ).
+- Veta s chybou: „V zoo sme videli tavu s dvoma hrbmi.“
+  - Chybné slovo: tavu
+  - Vysvetlenie: Správne je 'ťavu' – pred a, o, u, á, ú, ô, ia, iu a na konci slabiky píšeme nad d, t, n, l mäkčeň (ď, ť, ň, ľ).
+
+### 11. Dvojhlásky ia, ie, iu
+
+- Veta s chybou: „V pjatok ideme do divadla.“
+  - Chybné slovo: pjatok
+  - Vysvetlenie: Správne je 'piatok' – v slovenčine sa píše dvojhláska ia, nie ja.
+- Veta s chybou: „Na stole bol čerstvý chléb.“
+  - Chybné slovo: chléb
+  - Vysvetlenie: Správne je 'chlieb' – v slovenčine sa píše dvojhláska ie. Tvar chléb je český.
+
+### 12. Predpona vy- a slová s vi-
+
+- Veta s chybou: „Chlapec vibehol z domu bez bundy.“
+  - Chybné slovo: vibehol
+  - Vysvetlenie: Správne je 'vybehol' – predpona vy- (vý-) sa vždy píše s tvrdým y.
+- Veta s chybou: „Na vílete sme videli jeleňa.“
+  - Chybné slovo: vílete
+  - Vysvetlenie: Správne je 'výlete' – slovo výlet má predponu vý-, ktorá sa píše s tvrdým ý. Slovo videli je správne – vidieť nemá predponu.
+
+### 13. Zámená
+
+- Veta s chybou: „Pozri sa na mňe!“
+  - Chybné slovo: mňe
+  - Vysvetlenie: Správne je 'mňa' – na koho? – na mňa (4. pád).
+- Veta s chybou: „Prines mňa, prosím, pohár vody.“
+  - Chybné slovo: mňa
+  - Vysvetlenie: Správne je 'mne' – komu? – mne (3. pád), prípadne kratší tvar mi.
+
+### 14. Tvary slovies v prítomnom čase
+
+- Veta s chybou: „My píšme diktát.“
+  - Chybné slovo: píšme
+  - Vysvetlenie: Správne je 'píšeme' – my píšeme (1. osoba množného čísla). Tvar píšme je rozkaz.
+- Veta s chybou: „Oni sa pekne učá.“
+  - Chybné slovo: učá
+  - Vysvetlenie: Správne je 'učia' – oni sa učia – 3. osoba množného čísla.
+
+### 15. Spodobovanie
+
+- Veta s chybou: „Na stromoch už dozreli hrušky a slifky.“
+  - Chybné slovo: slifky
+  - Vysvetlenie: Správne je 'slivky' – hoci vyslovujeme inak, píšeme podľa príbuzného slova slivka.
+- Veta s chybou: „Vonku je veľký mrás.“
+  - Chybné slovo: mrás
+  - Vysvetlenie: Správne je 'mráz' – hoci vyslovujeme inak, píšeme podľa príbuzného slova mrazy.
+
 ## Ťažšia úroveň (6. – 9. ročník)
 
 ### 1. Vybrané slová a homonymá
@@ -167,3 +221,57 @@
 - Veta s chybou: „Na desiatu som si dal pečivo s mesom.“
   - Chybné slovo: mesom
   - Vysvetlenie: Správne je 'mäsom' – v slove mäso a v slovách od neho odvodených sa píše ä (široké e).
+
+### 10. Cudzie slová
+
+- Veta s chybou: „Na hodine fiziky sme robili pokus.“
+  - Chybné slovo: fiziky
+  - Vysvetlenie: Správne je 'fyziky' – cudzie slová píšeme s i alebo y podľa pôvodu slova, nie podľa pravidiel o tvrdých a mäkkých spoluhláskach.
+- Veta s chybou: „V počítači sa pokazil celý sistém.“
+  - Chybné slovo: sistém
+  - Vysvetlenie: Správne je 'systém' – cudzie slová píšeme s i alebo y podľa pôvodu slova, nie podľa pravidiel o tvrdých a mäkkých spoluhláskach.
+
+### 11. Písanie spolu a oddelene
+
+- Veta s chybou: „Na koniec sme si dali zmrzlinu.“
+  - Chybné slovo: Na koniec
+  - Vysvetlenie: Správne je 'Nakoniec' – príslovka nakoniec (na záver) sa píše spolu.
+- Veta s chybou: „Prišiel som do školy na čas.“
+  - Chybné slovo: na čas
+  - Vysvetlenie: Správne je 'načas' – príslovka načas (presne včas) sa píše spolu.
+
+### 12. Skloňovanie zámen
+
+- Veta s chybou: „Bez jeho by sme to nezvládli.“
+  - Chybné slovo: jeho
+  - Vysvetlenie: Správne je 'neho' – po predložke má osobné zámeno tvar s n- – bez neho.
+- Veta s chybou: „Pre ju by urobil čokoľvek.“
+  - Chybné slovo: ju
+  - Vysvetlenie: Správne je 'ňu' – po predložke má osobné zámeno tvar s ň- – pre ňu.
+
+### 13. Prídavné mená na -ský, -cký
+
+- Veta s chybou: „V obchode predávali nemeské autá.“
+  - Chybné slovo: nemeské
+  - Vysvetlenie: Správne je 'nemecké' – prídavné meno od slova Nemec má príponu -cký (Nemec → nemecký).
+- Veta s chybou: „Slovenský hokejisti vyhrali zápas.“
+  - Chybné slovo: Slovenský
+  - Vysvetlenie: Správne je 'Slovenskí' – pri mužských životných podstatných menách v množnom čísle má prídavné meno koncovku -í.
+
+### 14. Podmieňovací a rozkazovací spôsob
+
+- Veta s chybou: „Ke by som mal čas, išiel by som s vami.“
+  - Chybné slovo: Ke by
+  - Vysvetlenie: Správne je 'Keby' – spojka keby sa píše spolu.
+- Veta s chybou: „Išli bysme radi s vami.“
+  - Chybné slovo: bysme
+  - Vysvetlenie: Správne je 'by sme' – v slovenčine píšeme by a sme oddelene. Tvar bysme je český.
+
+### 15. Homonymá a podobné slová
+
+- Veta s chybou: „Som veľmi rad, že si prišiel.“
+  - Chybné slovo: rad
+  - Vysvetlenie: Správne je 'rád' – rád (s radosťou) sa píše s dlhým á. Rad s krátkym a je zástup alebo poradie.
+- Veta s chybou: „Deti sa postavili do rádu pred jedálňou.“
+  - Chybné slovo: rádu
+  - Vysvetlenie: Správne je 'radu' – postaviť sa do radu (zástupu) – rad s krátkym a. Rád s dĺžňom znamená s radosťou.
