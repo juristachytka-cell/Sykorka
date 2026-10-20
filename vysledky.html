@@ -135,7 +135,7 @@
         <div id="tab-tutors" class="hidden">
             <div class="card">
                 <h2 style="margin-top:0">Miesta po stranách hry</h2>
-                <p class="muted" style="margin-top:0"><b>Vypínač:</b> na webe sa doučovatelia zobrazia až po nastavení premennej <code>TUTORS_ENABLED</code> = <code>1</code> v Cloudflare (Settings → Variables and Secrets). Dovtedy ich tu môžeš len pripravovať. Logá sa zobrazujú len na širokých obrazovkách (notebook, počítač). Na každej strane sú 3 miesta. Prihlášku nájdu doučovatelia na <a href="/pridat-doucovatela" target="_blank">misia9.sk/pridat-doucovatela</a>.</p>
+                <p class="muted" style="margin-top:0"><span id="tutors-state"></span> Umiestnenie je zadarmo. Vypnúť ho môžeš premennou <code>TUTORS_ENABLED</code> = <code>0</code> v Cloudflare (Settings → Variables and Secrets). Po schválení sa IČO doučovateľa automaticky vymaže. Logá sa zobrazujú po stranách na širokých obrazovkách (notebook, počítač). Na každej strane sú 3 miesta. Prihlášku nájdu doučovatelia na <a href="/pridat-doucovatela" target="_blank">misia9.sk/pridat-doucovatela</a>.</p>
                 <div class="slots">
                     <div><b>Ľavá strana</b><div id="slots-left"></div></div>
                     <div><b>Pravá strana</b><div id="slots-right"></div></div>
@@ -184,7 +184,7 @@
         return d;
     }
     async function loadTutors() {
-        try { const d = await tApi('GET'); tutors = d.tutors || []; SLOTS = d.slots || 4; renderTutorsAdmin(); }
+        try { const d = await tApi('GET'); tutors = d.tutors || []; SLOTS = d.slots || 4; $('tutors-state').textContent = d.enabled ? '🟢 Doučovatelia sú na webe zapnutí.' : '⚪ Doučovatelia sú na webe vypnutí.'; renderTutorsAdmin(); }
         catch (e) { $('tutor-err').textContent = 'Doučovateľov sa nepodarilo načítať: ' + e.message; }
     }
     const logoCache = {};
@@ -216,10 +216,12 @@
             const info = el('div');
             const h = el('h3', {}, t.name); h.appendChild(el('span', { className: 'status ' + t.status }, ST[t.status] + (t.status === 'approved' ? ` · ${SIDE[t.side]} ${t.order}.` : '')));
             const web = el('p', { className: 'meta' }, 'Web: '); web.appendChild(el('a', { href: t.url, target: '_blank', rel: 'noopener' }, t.url));
-            const ico = el('p', { className: 'meta' }, `IČO: ${t.ico} `);
-            const copy = el('button', { className: 'secondary', type: 'button', style: 'padding:2px 8px;font-size:.8rem' }, 'Kopírovať');
-            copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(t.ico); copy.textContent = 'Skopírované ✓'; };
-            ico.appendChild(copy);
+            const ico = el('p', { className: 'meta' }, t.ico ? `IČO: ${t.ico} ` : 'IČO: overené a z ochrany údajov vymazané ✓');
+            if (t.ico) {
+                const copy = el('button', { className: 'secondary', type: 'button', style: 'padding:2px 8px;font-size:.8rem' }, 'Kopírovať');
+                copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(t.ico); copy.textContent = 'Skopírované ✓'; };
+                ico.appendChild(copy);
+            }
             const mail = el('p', { className: 'meta' }, 'E-mail: '); mail.appendChild(el('a', { href: 'mailto:' + t.email }, t.email));
             const date = el('p', { className: 'meta' }, 'Prihláška: ' + fmtDate(t.created));
             const acts = el('div', { className: 'tactions' });
@@ -242,7 +244,7 @@
                 const hide = el('button', { type: 'button', className: 'secondary' }, 'Skryť'); hide.onclick = () => act('hide');
                 acts.append(save, hide);
             } else {
-                const ok = el('button', { type: 'button', className: 'ok' }, '✓ Schváliť a zobraziť'); ok.onclick = () => act('approve');
+                const ok = el('button', { type: 'button', className: 'ok' }, '✓ Schváliť a zobraziť'); ok.onclick = () => { if (!t.ico || confirm('Overila si IČO v registri? Po schválení sa IČO z ochrany údajov vymaže.')) act('approve'); };
                 acts.append(ok);
             }
             const del = el('button', { type: 'button', className: 'danger' }, 'Zmazať');

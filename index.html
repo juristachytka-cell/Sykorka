@@ -139,7 +139,7 @@
             {
               "@type": "Question",
               "name": "Aké údaje sa ukladajú?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka vygenerovaná hrou (napr. Bystrá Sýkorka 42), nepovinne kraj, úroveň, body, čas a dátum. Bez cookies, reklamy a sledovania; odznaky a nastavenia zostávajú len v prehliadači hráča." }
+              "acceptedAnswer": { "@type": "Answer", "text": "Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka vygenerovaná hrou (napr. Bystrá Sýkorka 42), nepovinne kraj, úroveň, body, čas a dátum. Bez cookies, platenej reklamy a sledovania; odznaky a nastavenia zostávajú len v prehliadači hráča." }
             }
           ]
         }
@@ -260,6 +260,15 @@
         .sh { padding: .55rem .9rem; border-radius: .75rem; font-weight: 800; font-size: .9rem; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: transform .15s; }
         .sh:hover { transform: translateY(-1px); }
 
+        /* mobil (aj s väčším písmom): úvodná a záverečná karta sú v toku stránky, hracia plocha sa natiahne podľa nich */
+        @media (max-width: 640px) {
+            #start-modal { position: relative; inset: auto; padding: 10px; }
+            #start-modal > div { padding: 16px; }
+            #final-card { position: relative; top: auto; left: auto; right: auto; margin: 10px 10px 270px; }
+            #tree { height: 260px; max-width: 75%; }
+            #ground.show { height: 34px; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             #bird .bob, #bird .wing, .hint-pulse { animation: none; }
         }
@@ -376,22 +385,22 @@
                         <button type="button" class="lvl-btn" data-level="easy" role="radio" aria-checked="true">🌱 Ľahšia<small>3. – 5. ročník</small></button>
                         <button type="button" class="lvl-btn" data-level="hard" role="radio" aria-checked="false">🔥 Ťažšia<small>6. – 9. ročník</small></button>
                     </div>
-                    <p id="ranked-note" class="hidden text-xs font-semibold text-purple-700 bg-purple-50 rounded-xl px-3 py-2 mb-3">✅ Dnešnú súťažnú hru na tejto úrovni už máš za sebou. Ďalšie hry sú tréning s inými otázkami – nová súťaž začína o polnoci.</p>
+                    <p id="ranked-note" class="hidden text-xs font-semibold text-purple-700 bg-purple-50 rounded-xl px-3 py-2 mb-3">✅ Dnešnú súťažnú hru už máš za sebou. Teraz si môžeš trénovať s inými otázkami – nová súťaž bude o polnoci.</p>
                     <form id="start-form" novalidate>
-                        <div class="flex gap-2 mb-1 items-stretch">
-                            <div class="min-w-0 flex-1 px-2 py-2 rounded-xl border-2 border-gray-200 bg-white flex flex-col items-center justify-center leading-tight">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Tvoja prezývka</span>
-                                <span id="pseudo" class="font-heading font-black text-gray-800 text-sm sm:text-base" aria-live="polite"></span>
+                        <div class="flex gap-2 mb-2 items-stretch">
+                            <div class="min-w-0 flex-1 px-3 py-2 rounded-xl border-2 border-gray-200 bg-white text-left leading-tight">
+                                <span class="block text-[10px] font-bold uppercase tracking-wider text-gray-400">Tvoja prezývka</span>
+                                <span id="pseudo" class="block font-heading font-black text-gray-800 text-base" aria-live="polite"></span>
                             </div>
-                            <button id="reroll" type="button" class="w-11 shrink-0 rounded-xl border-2 border-gray-200 bg-white text-xl hover:border-primary transition" title="Iná prezývka" aria-label="Vymyslieť inú prezývku">🎲</button>
-                            <label for="kraj" class="sr-only">Kraj (nepovinné)</label>
-                            <select id="kraj" class="min-w-0 w-[38%] px-1 py-2 rounded-xl border-2 border-gray-200 bg-white focus:border-primary focus:outline-none text-xs sm:text-sm font-semibold text-gray-700">
-                                <option value="">Kraj</option>
-                                <option value="Bratislavský kraj">Bratislavský</option><option value="Trnavský kraj">Trnavský</option><option value="Trenčiansky kraj">Trenčiansky</option><option value="Nitriansky kraj">Nitriansky</option>
-                                <option value="Žilinský kraj">Žilinský</option><option value="Banskobystrický kraj">Banskobystrický</option><option value="Prešovský kraj">Prešovský</option><option value="Košický kraj">Košický</option>
-                            </select>
+                            <button id="reroll" type="button" class="shrink-0 px-3 rounded-xl border-2 border-gray-200 bg-white text-sm font-bold text-gray-700 hover:border-primary transition flex items-center gap-1" title="Iná prezývka" aria-label="Vymyslieť inú prezývku"><span class="text-xl" aria-hidden="true">🎲</span> Iná</button>
                         </div>
-                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Prezývku ti vymyslí sýkorka 🎲, takže v rebríčku nikto nespozná, kto si. Kraj je nepovinný. Počíta sa len prvá dnešná hra.</p>
+                        <label for="kraj" class="sr-only">Kraj (nepovinné)</label>
+                        <select id="kraj" class="w-full mb-1 px-3 py-2.5 rounded-xl border-2 border-gray-200 bg-white focus:border-primary focus:outline-none text-sm font-semibold text-gray-700">
+                            <option value="">📍 Kraj (nepovinné)</option>
+                            <option value="Bratislavský kraj">Bratislavský kraj</option><option value="Trnavský kraj">Trnavský kraj</option><option value="Trenčiansky kraj">Trenčiansky kraj</option><option value="Nitriansky kraj">Nitriansky kraj</option>
+                            <option value="Žilinský kraj">Žilinský kraj</option><option value="Banskobystrický kraj">Banskobystrický kraj</option><option value="Prešovský kraj">Prešovský kraj</option><option value="Košický kraj">Košický kraj</option>
+                        </select>
+                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Prezývku ti vymyslí sýkorka, takže v rebríčku nikto nespozná, kto si. Do rebríčka sa počíta len prvá dnešná hra.</p>
                         <button id="start-btn" type="submit" class="w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
                         <button id="try-btn" type="button" class="w-full mt-2 text-sm font-bold text-purple-700 hover:underline">🧪 Najprv si to vyskúšam (mimo rebríčka)</button>
                     </form>
@@ -399,7 +408,7 @@
             </div>
 
             <!-- Záverečná karta -->
-            <div id="final-card" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-sm bg-white rounded-3xl shadow-2xl p-4 sm:p-5 border-t-8 border-accent z-20 modal-enter">
+            <div id="final-card" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-sm text-center sm:text-left bg-white rounded-3xl shadow-2xl p-4 sm:p-5 border-t-8 border-accent z-20 modal-enter">
                 <h3 class="font-heading text-2xl font-black text-gray-800 mb-1">🏁 Koniec misie!</h3>
                 <p class="text-gray-600 mb-3 hidden sm:block">Sýkorka si spokojne sadla na strom. Ďakuje ti, že si ju previedol(-la) všetkými 9 kolami!</p>
                 <p class="font-heading text-xl font-black text-primary mb-1"><span id="final-name"></span>Skóre: <span id="final-score">0</span> / 27 · ⏱️ <span id="final-time">0:00</span></p>
@@ -407,10 +416,10 @@
                 <p id="final-level" class="text-xs text-gray-500 mb-1 hidden sm:block"></p>
                 <p id="final-rank" class="text-amber-700 font-bold mb-3 text-sm sm:text-base min-h-[1.25rem]"></p>
                 <div class="flex gap-2">
-                    <button id="restart-btn" class="flex-1 px-4 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
-                    <a href="#rebricek" class="flex-1 text-center px-4 py-2.5 sm:py-3 rounded-xl bg-secondary hover:bg-amber-400 text-gray-900 font-bold shadow-md transition">Rebríček 🏆</a>
-                    <button id="final-share" type="button" class="px-3 py-2.5 sm:py-3 rounded-xl bg-accent hover:bg-emerald-600 text-white font-bold shadow-md transition" title="Zdieľať výsledok" aria-label="Zdieľať výsledok">📤</button>
+                    <button id="restart-btn" class="flex-1 whitespace-nowrap px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
+                    <a href="#rebricek" class="flex-1 whitespace-nowrap text-center px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-secondary hover:bg-amber-400 text-gray-900 font-bold shadow-md transition">Rebríček 🏆</a>
                 </div>
+                <button id="final-share" type="button" class="w-full mt-2 px-4 py-2.5 sm:py-3 rounded-xl bg-accent hover:bg-emerald-600 text-white font-bold shadow-md transition">📤 Zdieľať výsledok</button>
                 <a id="final-extra" href="#vysledok" class="block text-center mt-2 text-sm font-bold text-primary underline underline-offset-2"></a>
             </div>
         </div>
@@ -428,15 +437,15 @@
                 <img id="share-preview" alt="Obrázok s výsledkom na zdieľanie" class="w-full max-w-[200px] rounded-xl shadow mx-auto bg-white">
                 <div>
                     <h3 class="font-heading text-lg font-black text-gray-800 mb-1">📤 Pochváľ sa a vyzvi kamarátov</h3>
-                    <p class="text-sm text-gray-600 mb-3">Odkaz je zároveň výzva – kamarát uvidí tvoje skóre a zahrá si rovnaké otázky dňa.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <button type="button" data-share="native" id="share-native" class="sh bg-primary text-white">📤 Zdieľať…</button>
+                    <p class="text-sm text-gray-600 mb-3">Odkaz je zároveň výzva – kamarát či kamarátka uvidí tvoje skóre a zahrá si rovnaké otázky dňa. Instagram: obrázok sa stiahne a pridáš ho ako príspevok alebo príbeh.</p>
+                    <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+                        <button type="button" data-share="native" id="share-native" class="sh col-span-2 bg-primary text-white">📤 Zdieľať…</button>
                         <button type="button" data-share="fb" class="sh text-white" style="background:#1877F2">Facebook</button>
                         <button type="button" data-share="wa" class="sh text-white" style="background:#25D366">WhatsApp</button>
                         <button type="button" data-share="mail" class="sh bg-white text-gray-800">✉️ E-mail</button>
                         <button type="button" data-share="edupage" class="sh bg-white text-gray-800">🏫 EduPage</button>
-                        <button type="button" data-share="img" class="sh bg-white text-gray-800">📸 Instagram – obrázok</button>
-                        <button type="button" data-share="copy" class="sh bg-white text-gray-800">🔗 Kopírovať odkaz</button>
+                        <button type="button" data-share="img" class="sh bg-white text-gray-800">📸 Instagram</button>
+                        <button type="button" data-share="copy" class="sh col-span-2 sm:col-span-1 bg-white text-gray-800">🔗 Kopírovať odkaz</button>
                     </div>
                     <p id="share-msg" class="text-sm font-semibold text-green-700 mt-2 min-h-[1.25rem]" aria-live="polite"></p>
                 </div>
@@ -539,7 +548,7 @@
                 </details>
                 <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
                     <summary class="font-semibold cursor-pointer">Aké údaje sa ukladajú?</summary>
-                    <p class="text-gray-700 mt-2">Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka, ktorú vygeneruje hra (napr. „Bystrá Sýkorka 42“), nepovinne kraj, úroveň, body, čas a dátum. Nepoužívame cookies, reklamu ani sledovanie. Odznaky a nastavenia zostávajú len v tvojom prehliadači. Viac na stránke <a href="/sukromie" class="text-primary underline">Ochrana súkromia</a>.</p>
+                    <p class="text-gray-700 mt-2">Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka, ktorú vygeneruje hra (napr. „Bystrá Sýkorka 42“), nepovinne kraj, úroveň, body, čas a dátum. Nepoužívame cookies, platenú reklamu ani sledovanie. Odznaky a nastavenia zostávajú len v tvojom prehliadači. Viac na stránke <a href="/sukromie" class="text-primary underline">Ochrana súkromia</a>.</p>
                 </details>
             </div>
         </div>
@@ -552,11 +561,11 @@
     <footer class="w-full text-center p-4 text-sm text-gray-500 flex flex-col items-center justify-center gap-2">
         <p id="tutors-footer-link" class="hidden"><a href="/pridat-doucovatela" class="font-bold text-primary hover:underline">🎓 Ste doučovateľ? Pridajte svoje logo na Misia9.sk</a></p>
         <section id="tutors-bottom" hidden class="tutors-bottom w-full max-w-5xl mx-auto py-2" aria-label="Doučovatelia">
-            <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Doučovatelia <span class="normal-case font-semibold tracking-normal text-gray-400">· reklama</span></p>
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Doučovatelia <span class="normal-case font-semibold tracking-normal text-gray-400">· propagácia zadarmo</span></p>
             <div id="tutors-bottom-row" class="row"></div>
         </section>
         <p>&copy; 2026 Sýkorkina misia · Misia9.sk – vzdelávaj sa hrou</p>
-        <p><a href="/sukromie" class="hover:underline">Ochrana súkromia a podmienky</a> · bez reklamy, cookies a sledovania</p>
+        <p><a href="/sukromie" class="hover:underline">Ochrana súkromia a podmienky</a> · bez platenej reklamy, cookies a sledovania</p>
         <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-gray-200/50">
             <span class="text-lg" aria-hidden="true">📊</span>
             <span class="font-bold text-gray-500">Počet návštev:</span>
@@ -844,11 +853,11 @@
                 const me = highlightName && r.name.toLowerCase() === highlightName.toLowerCase();
                 tr.className = 'border-b border-gray-100 last:border-0' + (me ? ' bg-amber-50 font-bold' : '');
                 const tdRank = document.createElement('td'); tdRank.className = 'py-2 pr-2'; tdRank.textContent = medals[i] || `${i + 1}.`;
-                const tdName = document.createElement('td'); tdName.className = 'py-2 pr-2 break-all';
+                const tdName = document.createElement('td'); tdName.className = 'py-2 pr-2 break-words';
                 const nm = document.createElement('div'); nm.textContent = r.name; tdName.appendChild(nm);
-                if (r.city) { const ct = document.createElement('div'); ct.className = 'text-xs text-gray-500 font-normal'; ct.textContent = '📍 ' + r.city; tdName.appendChild(ct); }
-                const tdScore = document.createElement('td'); tdScore.className = 'py-2 pr-2 text-right tabular-nums'; tdScore.textContent = `${r.score} / 27`;
-                const tdTime = document.createElement('td'); tdTime.className = 'py-2 text-right tabular-nums'; tdTime.textContent = fmtTime(r.timeMs);
+                if (r.city) { const ct = document.createElement('div'); ct.className = 'text-xs text-gray-500 font-normal whitespace-nowrap'; ct.textContent = '📍 ' + r.city.replace(' kraj', ''); tdName.appendChild(ct); }
+                const tdScore = document.createElement('td'); tdScore.className = 'py-2 pr-2 text-right tabular-nums whitespace-nowrap'; tdScore.textContent = `${r.score}/27`;
+                const tdTime = document.createElement('td'); tdTime.className = 'py-2 text-right tabular-nums whitespace-nowrap'; tdTime.textContent = fmtTime(r.timeMs);
                 tr.append(tdRank, tdName, tdScore, tdTime);
                 body.appendChild(tr);
             });
@@ -1067,6 +1076,7 @@
                 : (playedRankedToday(level) ? '🧪 Tréning sa nepočíta do rebríčka. Nová súťažná hra začína o polnoci.' : '🧪 Tréning sa nepočíta do rebríčka. Súťažnú hru máš dnes ešte pred sebou!');
             $('final-name').textContent = mode === 'ranked' && playerName ? `${playerName} · ` : '';
             finalCard.classList.remove('hidden');
+            requestAnimationFrame(keepBirdOnBranch);
             $('restart-btn').focus({ preventScroll: true });
 
             // zdieľanie
@@ -1299,10 +1309,10 @@
             const today = dayKey(), box = $('challenge-note');
             box.classList.remove('hidden');
             if (d === today) {
-                box.textContent = `🏁 Výzva: kamarát dnes získal ${sc} / 27 za ${fmtTime(sec * 1000)} (${lv === 'hard' ? 'ťažšia' : 'ľahšia'} úroveň). Prekonáš to?`;
+                box.textContent = `🏁 Niekto ťa vyzval! Dnes získal(a) ${sc} / 27 bodov za ${fmtTime(sec * 1000)} na ${lv === 'hard' ? 'ťažšej' : 'ľahšej'} úrovni. Prekonáš to?`;
                 level = lv; store.set('misia9_level', lv);
             } else {
-                box.textContent = `🏁 Kamarát ťa vyzýva! Mal ${sc} / 27 bodov – dnes sú nové otázky, skús ho prekonať.`;
+                box.textContent = `🏁 Niekto ťa vyzval! Mal(a) ${sc} / 27 bodov – dnes sú nové otázky, skús to prekonať.`;
             }
         })();
 
@@ -1334,7 +1344,7 @@
             for (const side of ['left', 'right']) {
                 const col = $(`tutors-${side}`);
                 col.innerHTML = '';
-                const label = document.createElement('div'); label.className = 'col-label'; label.innerHTML = 'Doučovatelia<br><span>reklama</span>';
+                const label = document.createElement('div'); label.className = 'col-label'; label.innerHTML = 'Doučovatelia<br><span>propagácia zadarmo</span>';
                 col.appendChild(label);
                 const items = list.filter(t => t.side === side).sort((a, b) => a.order - b.order).slice(0, SLOTS);
                 // každé miesto: buď logo doučovateľa, alebo prázdny rámček „Voľné miesto“
@@ -1374,14 +1384,16 @@
             setInterval(updateCountdown, 30000);
             startBirdEngine(); // sýkorka poletuje už za úvodnou kartičkou
         });
-        window.addEventListener('resize', () => {
-            if (!finished) return;
+        // sýkorka zostane na konári aj keď sa zmení veľkosť plochy (otočenie mobilu, zobrazenie záverečnej karty)
+        function keepBirdOnBranch() {
+            if (!finished || !bird.classList.contains('landed')) return;
             const p = branchPoint();
             bird.classList.remove('long-flight');
             bird.style.transition = 'none';
             bird.style.left = `${p.x - bird.offsetWidth * 0.52}px`; bird.style.top = `${p.y - bird.offsetHeight * 0.97}px`;
             requestAnimationFrame(() => { bird.style.transition = ''; });
-        });
+        }
+        window.addEventListener('resize', keepBirdOnBranch);
     </script>
 
     <!-- Cloudflare KV počítadlo návštev -->

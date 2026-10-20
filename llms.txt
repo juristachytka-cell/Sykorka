@@ -32,6 +32,7 @@ Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťa�
 
 - [Hra Sýkorkina misia](https://misia9.sk/): spustenie hry priamo v prehliadači
 - [Ukážky otázok s vysvetleniami](https://misia9.sk/llms-full.txt): vybrané vety z každej témy a pravidlá
+- [Pre doučovateľov](https://misia9.sk/pridat-doucovatela): súkromní doučovatelia môžu zadarmo požiadať o zobrazenie loga
 
 ## Fakty
 
