@@ -5,7 +5,7 @@
 //   tutorlogo:<id>      -> obrázok loga (240 × 120 px)
 
 export const TUTORS_KEY = "tutors";
-export const SLOTS_PER_SIDE = 4;          // koľko log sa zmestí na jednu stranu
+export const SLOTS_PER_SIDE = 3;          // koľko log sa zmestí na jednu stranu
 export const MAX_PENDING = 30;            // ochrana pred zahltením prihláškami
 export const MAX_LOGO_BYTES = 150 * 1024;
 

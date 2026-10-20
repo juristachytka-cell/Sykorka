@@ -236,6 +236,9 @@
         @media (min-width: 1320px) { .tutors-bottom { display: none; } }
         .tutors-bottom .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .tutors-bottom .tutor { width: 136px; }
+        .tutor.free { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 92px; background: rgba(255,255,255,.55); border: 2px dashed #bfdbfe; box-shadow: none; color: #3b82f6; font-size: 11px; font-weight: 800; line-height: 1.3; }
+        .tutor.free b { font-size: 18px; line-height: 1; margin-bottom: 4px; }
+        .tutor.free:hover { border-color: #3b82f6; background: #fff; }
         .tutor.promo { background: rgba(255,255,255,.6); border: 2px dashed #93c5fd; box-shadow: none; padding: 10px 6px; color: #2563eb; font-size: 12px; font-weight: 800; line-height: 1.3; }
 
         @media (prefers-reduced-motion: reduce) {
@@ -248,7 +251,7 @@
     <header class="w-full max-w-5xl mx-auto p-4 pb-2 flex justify-between items-center gap-3 z-20">
         <!-- Logo -->
         <div class="flex items-center gap-3">
-            <span class="text-4xl" aria-hidden="true">🐦</span>
+            <img src="/favicon.svg" width="44" height="44" alt="" aria-hidden="true" class="w-11 h-11">
             <div class="font-heading text-2xl md:text-3xl font-black text-primary drop-shadow-sm">Misia9<span class="text-secondary">.sk</span></div>
         </div>
         <div class="flex items-center gap-2">
@@ -1204,7 +1207,7 @@
         }));
 
         // ===== Doučovatelia po stranách (len na širokej obrazovke) =====
-        const SLOTS = 4;
+        const SLOTS = 3;   // miest na jednej strane (spolu 6)
         const wideQuery = window.matchMedia('(min-width: 1320px)');
         let tutorsLoaded = false;
         function tutorTile(t) {
@@ -1234,11 +1237,15 @@
                 const label = document.createElement('div'); label.className = 'col-label'; label.innerHTML = 'Doučovatelia<br><span>reklama</span>';
                 col.appendChild(label);
                 const items = list.filter(t => t.side === side).sort((a, b) => a.order - b.order).slice(0, SLOTS);
-                items.forEach(t => col.appendChild(tutorTile(t)));
-                if (items.length < SLOTS) {
-                    const promo = document.createElement('a'); promo.className = 'tutor promo'; promo.href = '/pridat-doucovatela';
-                    promo.textContent = 'Ste doučovateľ? Tu môže byť vaše logo →';
-                    col.appendChild(promo);
+                // každé miesto: buď logo doučovateľa, alebo prázdny rámček „Voľné miesto“
+                for (let i = 1; i <= SLOTS; i++) {
+                    const t = items.find(x => x.order === i);
+                    if (t) { col.appendChild(tutorTile(t)); continue; }
+                    const free = document.createElement('a'); free.className = 'tutor free'; free.href = '/pridat-doucovatela';
+                    free.title = 'Ste doučovateľ? Pridajte sem svoje logo';
+                    const plus = document.createElement('b'); plus.textContent = '+';
+                    free.append(plus, document.createTextNode('Voľné miesto'), document.createElement('br'), document.createTextNode('pre vaše logo →'));
+                    col.appendChild(free);
                 }
             }
         }
