@@ -4,7 +4,7 @@
 // Používa rovnaký KV namespace ako počítadlo (binding: COUNTER).
 //
 //   GET  /api/results?level=easy|hard   -> dnešný rebríček TOP 10 pre danú úroveň
-//   POST /api/results                   -> uloží výsledok { name, city, level, day, score, timeMs }
+//   POST /api/results                   -> uloží výsledok { name (anonymná prezývka), city (kraj), level, day, score, timeMs }
 //
 // Rebríček je denný: o polnoci (slovenský čas) začína nový.
 // Všetky výsledky a mazanie: /api/admin/results (len pre správcu).
@@ -17,7 +17,7 @@ const MAX_TIME = 3 * 60 * 60 * 1000; // 3 hodiny
 const LEVELS = ["easy", "hard"];
 const TOP_TTL = 60 * 60 * 24 * 45;   // denné rebríčky sa samy zmažú po 45 dňoch
 
-import { NickFilter } from "../_shared/nickfilter.js";
+import { isPseudonym, isKraj } from "../_shared/pseudonym.js";
 
 const json = (data, status = 200) =>
   Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
@@ -59,15 +59,14 @@ export async function onRequestPost({ request, env }) {
   let body;
   try { body = await request.json(); } catch { return json({ error: "Neplatné dáta." }, 400); }
 
-  const n = clean(body?.name, 40);
-  const c = clean(body?.city, 30);
+  const n = String(body?.name || "").normalize("NFC").trim();
+  const c = String(body?.city || "").normalize("NFC").trim();
   const l = body?.level;
   const s = Number(body?.score);
   const t = Number(body?.timeMs);
-  if (n.length < 2 || n.length > 20) return json({ error: "Prezývka musí mať 2 až 20 znakov." }, 400);
-  const cn = NickFilter.check(n);
-  if (!cn.ok) return json({ error: cn.reason === "vulgar" ? "Táto prezývka sa nedá použiť." : "Prezývka nevyzerá ako skutočná prezývka." }, 400);
-  if (c && !NickFilter.check(c, "city").ok) return json({ error: "Názov mesta sa nedá použiť." }, 400);
+  // len anonymné prezývky vygenerované hrou (napr. „Bystrá Sýkorka 42“) a kraj zo zoznamu
+  if (!isPseudonym(n)) return json({ error: "Neplatná prezývka." }, 400);
+  if (!isKraj(c)) return json({ error: "Neplatný kraj." }, 400);
   if (!LEVELS.includes(l)) return json({ error: "Neplatná úroveň." }, 400);
   if (!Number.isInteger(s) || s < 0 || s > MAX_SCORE) return json({ error: "Neplatné skóre." }, 400);
   if (!Number.isFinite(t) || t < MIN_TIME || t > MAX_TIME) return json({ error: "Neplatný čas." }, 400);
@@ -81,7 +80,7 @@ export async function onRequestPost({ request, env }) {
   const rec = { n, c, l, y, s, t: Math.round(t), d: new Date(now).toISOString() };
   // obrátený čas v kľúči -> zoznam je zoradený od najnovších
   const key = `result:${String(9999999999999 - now).padStart(13, "0")}-${crypto.randomUUID().slice(0, 8)}`;
-  await env.COUNTER.put(key, JSON.stringify(rec), { metadata: rec });
+  await env.COUNTER.put(key, JSON.stringify(rec), { metadata: rec, expirationTtl: 60 * 60 * 24 * 180 }); // zmaže sa po 180 dňoch
 
   // denný rebríček pre úroveň: každá prezývka len raz (jej najlepší výsledok)
   const tk = topKey(y, l);

@@ -10,7 +10,7 @@ export async function onRequestGet({ request, env }) {
   if (!/^[a-f0-9]{12}$/.test(id)) return new Response("Not found", { status: 404 });
   const t = (await readTutors(env)).find(x => x.id === id);
   if (!t) return new Response("Not found", { status: 404 });
-  const approved = t.status === "approved";
+  const approved = t.status === "approved" && String(env.TUTORS_ENABLED || "") === "1";
   if (!approved) {
     const g = await guard(request, env);
     if (g.res) return new Response("Not found", { status: 404 });

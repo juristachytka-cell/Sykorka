@@ -1,6 +1,9 @@
 // Cloudflare Pages Function – doučovatelia
 // Dostupné na: /api/tutors
 //
+// VYPÍNAČ: kým v Cloudflare (Settings -> Variables and Secrets) nie je premenná TUTORS_ENABLED = 1,
+// doučovatelia sa na webe nezobrazujú a formulár neprijíma prihlášky. Správca ich aj tak môže spravovať.
+//
 //   GET  /api/tutors   -> schválení doučovatelia (zobrazujú sa po stranách hry na notebooku)
 //   POST /api/tutors   -> nová prihláška { name, url, ico, email, logo (data URL), consent }
 //                         Prihláška čaká na schválenie správcom na stránke /vysledky.
@@ -11,15 +14,19 @@ import { readTutors, writeTutors, normalizeIco, normalizeUrl, decodeLogo, public
 const json = (data, status = 200, cache = "no-store") =>
   Response.json(data, { status, headers: { "Cache-Control": cache } });
 
+const enabled = env => String(env.TUTORS_ENABLED || "") === "1";
+
 export async function onRequestGet({ env }) {
+  if (!enabled(env)) return json({ enabled: false, tutors: [] }, 200, "public, max-age=300");
   const list = (await readTutors(env))
     .filter(t => t.status === "approved")
     .sort((a, b) => (a.side === b.side ? a.order - b.order : a.side < b.side ? -1 : 1))
     .map(publicTutor);
-  return json({ tutors: list }, 200, "public, max-age=300");
+  return json({ enabled: true, tutors: list }, 200, "public, max-age=300");
 }
 
 export async function onRequestPost({ request, env }) {
+  if (!enabled(env)) return json({ error: "Prihlášky doučovateľov momentálne neprijímame." }, 403);
   let b;
   try { b = await request.json(); } catch { return json({ error: "Neplatné dáta." }, 400); }
   if (b?.website) return json({ ok: true }); // pasca na roboty (skryté pole)

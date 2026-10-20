@@ -139,7 +139,7 @@
             {
               "@type": "Question",
               "name": "Aké údaje sa ukladajú?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Len prezývka, nepovinne mesto, úroveň, počet bodov, čas hry a dátum. Prezývka s mestom a výsledkom sa môže zobraziť v dennom rebríčku TOP 10. Žiadne e-maily ani iné osobné údaje sa nezbierajú. Odznaky sa ukladajú len v prehliadači hráča." }
+              "acceptedAnswer": { "@type": "Answer", "text": "Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka vygenerovaná hrou (napr. Bystrá Sýkorka 42), nepovinne kraj, úroveň, body, čas a dátum. Bez cookies, reklamy a sledovania; odznaky a nastavenia zostávajú len v prehliadači hráča." }
             }
           ]
         }
@@ -148,11 +148,8 @@
     </script>
 
     <!-- Prehliadač a styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#FBBF24', accent: '#10B981', dark: '#1F2937' }, fontFamily: { heading: ['Nunito', 'sans-serif'], sans: ['Inter', 'sans-serif'] } } } }
-    </script>
+    <!-- štýly a písma sú priamo na misia9.sk (žiadne načítanie z cudzích serverov) -->
+    <link rel="stylesheet" href="/styles.css">
     <style>
         body { background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%); overflow-x: hidden; min-height: 100vh; min-height: 100dvh; }
         #game-area { position: relative; overflow: hidden; border-radius: 1.5rem; box-shadow: inset 0 2px 15px rgba(0,0,0,0.05); background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); min-height: max(340px, 58vh); min-height: max(340px, 58dvh); }
@@ -221,6 +218,7 @@
 
         /* Doučovatelia po stranách – len na širokej obrazovke (notebook, počítač) */
         .tutor-col { display: none; }
+        [hidden] { display: none !important; }
         @media (min-width: 1320px) {
             .tutor-col { display: flex; position: fixed; top: 50%; transform: translateY(-50%); width: 136px; flex-direction: column; gap: 10px; z-index: 15; }
             #tutors-left { left: 12px; } #tutors-right { right: 12px; }
@@ -258,6 +256,9 @@
             #next-btn { margin-top: 12px; padding-top: 12px; padding-bottom: 12px; }
             #r-box .text-5xl { font-size: 2.25rem; }
         }
+
+        .sh { padding: .55rem .9rem; border-radius: .75rem; font-weight: 800; font-size: .9rem; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: transform .15s; }
+        .sh:hover { transform: translateY(-1px); }
 
         @media (prefers-reduced-motion: reduce) {
             #bird .bob, #bird .wing, .hint-pulse { animation: none; }
@@ -370,23 +371,29 @@
                 <div class="pointer-events-auto bg-white/95 rounded-3xl shadow-xl max-w-md w-full p-5 md:p-6 text-center border-2 border-white modal-enter">
                     <h3 id="start-title" class="font-heading text-xl sm:text-2xl md:text-3xl font-black text-gray-800 mb-1">Pomôž sýkorke domov! 🌳</h3>
                     <p class="text-gray-600 mb-3 text-sm">9 kôl · 27 viet · na čas · <b>každý deň nové otázky</b></p>
+                    <p id="challenge-note" class="hidden text-sm font-bold text-amber-800 bg-amber-50 rounded-xl px-3 py-2 mb-3"></p>
                     <div class="grid grid-cols-2 gap-2 mb-3" role="radiogroup" aria-label="Úroveň">
                         <button type="button" class="lvl-btn" data-level="easy" role="radio" aria-checked="true">🌱 Ľahšia<small>3. – 5. ročník</small></button>
                         <button type="button" class="lvl-btn" data-level="hard" role="radio" aria-checked="false">🔥 Ťažšia<small>6. – 9. ročník</small></button>
                     </div>
                     <p id="ranked-note" class="hidden text-xs font-semibold text-purple-700 bg-purple-50 rounded-xl px-3 py-2 mb-3">✅ Dnešnú súťažnú hru na tejto úrovni už máš za sebou. Ďalšie hry sú tréning s inými otázkami – nová súťaž začína o polnoci.</p>
                     <form id="start-form" novalidate>
-                        <div class="flex gap-2 mb-1">
-                            <label for="nick" class="sr-only">Tvoja prezývka</label>
-                            <input id="nick" name="nick" type="text" maxlength="20" autocomplete="nickname" placeholder="Prezývka"
-                                   class="min-w-0 flex-[3] px-3 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/20 text-base font-semibold text-center">
-                            <label for="city" class="sr-only">Mesto (nepovinné)</label>
-                            <input id="city" name="city" type="text" maxlength="30" autocomplete="address-level2" placeholder="Mesto"
-                                   class="min-w-0 flex-[2] px-3 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/20 text-sm font-semibold text-center">
+                        <div class="flex gap-2 mb-1 items-stretch">
+                            <div class="min-w-0 flex-1 px-2 py-2 rounded-xl border-2 border-gray-200 bg-white flex flex-col items-center justify-center leading-tight">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Tvoja prezývka</span>
+                                <span id="pseudo" class="font-heading font-black text-gray-800 text-sm sm:text-base" aria-live="polite"></span>
+                            </div>
+                            <button id="reroll" type="button" class="w-11 shrink-0 rounded-xl border-2 border-gray-200 bg-white text-xl hover:border-primary transition" title="Iná prezývka" aria-label="Vymyslieť inú prezývku">🎲</button>
+                            <label for="kraj" class="sr-only">Kraj (nepovinné)</label>
+                            <select id="kraj" class="min-w-0 w-[38%] px-1 py-2 rounded-xl border-2 border-gray-200 bg-white focus:border-primary focus:outline-none text-xs sm:text-sm font-semibold text-gray-700">
+                                <option value="">Kraj</option>
+                                <option value="Bratislavský kraj">Bratislavský</option><option value="Trnavský kraj">Trnavský</option><option value="Trenčiansky kraj">Trenčiansky</option><option value="Nitriansky kraj">Nitriansky</option>
+                                <option value="Žilinský kraj">Žilinský</option><option value="Banskobystrický kraj">Banskobystrický</option><option value="Prešovský kraj">Prešovský</option><option value="Košický kraj">Košický</option>
+                            </select>
                         </div>
-                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Mesto je nepovinné. Do rebríčka sa počíta len prvá dnešná hra – prezývka a mesto sa v ňom zobrazia.</p>
+                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Prezývku ti vymyslí sýkorka 🎲, takže v rebríčku nikto nespozná, kto si. Kraj je nepovinný. Počíta sa len prvá dnešná hra.</p>
                         <button id="start-btn" type="submit" class="w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
-                        <button id="try-btn" type="button" class="w-full mt-2 text-sm font-bold text-purple-700 hover:underline">🧪 Najprv si to vyskúšam (bez prezývky, mimo rebríčka)</button>
+                        <button id="try-btn" type="button" class="w-full mt-2 text-sm font-bold text-purple-700 hover:underline">🧪 Najprv si to vyskúšam (mimo rebríčka)</button>
                     </form>
                 </div>
             </div>
@@ -402,6 +409,7 @@
                 <div class="flex gap-2">
                     <button id="restart-btn" class="flex-1 px-4 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
                     <a href="#rebricek" class="flex-1 text-center px-4 py-2.5 sm:py-3 rounded-xl bg-secondary hover:bg-amber-400 text-gray-900 font-bold shadow-md transition">Rebríček 🏆</a>
+                    <button id="final-share" type="button" class="px-3 py-2.5 sm:py-3 rounded-xl bg-accent hover:bg-emerald-600 text-white font-bold shadow-md transition" title="Zdieľať výsledok" aria-label="Zdieľať výsledok">📤</button>
                 </div>
                 <a id="final-extra" href="#vysledok" class="block text-center mt-2 text-sm font-bold text-primary underline underline-offset-2"></a>
             </div>
@@ -416,6 +424,23 @@
     <section id="vysledok" class="hidden w-full max-w-5xl mx-auto px-4 pt-6" aria-labelledby="vysledok-title">
         <div class="bg-white/80 rounded-3xl shadow-sm border border-white p-5 md:p-8">
             <h2 id="vysledok-title" class="font-heading text-2xl font-black text-gray-800 mb-3">📋 Výsledok misie</h2>
+            <div id="share-box" class="hidden bg-blue-50 rounded-2xl p-4 mb-4 grid sm:grid-cols-[200px_1fr] gap-4 items-center">
+                <img id="share-preview" alt="Obrázok s výsledkom na zdieľanie" class="w-full max-w-[200px] rounded-xl shadow mx-auto bg-white">
+                <div>
+                    <h3 class="font-heading text-lg font-black text-gray-800 mb-1">📤 Pochváľ sa a vyzvi kamarátov</h3>
+                    <p class="text-sm text-gray-600 mb-3">Odkaz je zároveň výzva – kamarát uvidí tvoje skóre a zahrá si rovnaké otázky dňa.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" data-share="native" id="share-native" class="sh bg-primary text-white">📤 Zdieľať…</button>
+                        <button type="button" data-share="fb" class="sh text-white" style="background:#1877F2">Facebook</button>
+                        <button type="button" data-share="wa" class="sh text-white" style="background:#25D366">WhatsApp</button>
+                        <button type="button" data-share="mail" class="sh bg-white text-gray-800">✉️ E-mail</button>
+                        <button type="button" data-share="edupage" class="sh bg-white text-gray-800">🏫 EduPage</button>
+                        <button type="button" data-share="img" class="sh bg-white text-gray-800">📸 Instagram – obrázok</button>
+                        <button type="button" data-share="copy" class="sh bg-white text-gray-800">🔗 Kopírovať odkaz</button>
+                    </div>
+                    <p id="share-msg" class="text-sm font-semibold text-green-700 mt-2 min-h-[1.25rem]" aria-live="polite"></p>
+                </div>
+            </div>
             <div id="new-badges" class="hidden bg-amber-50 rounded-2xl p-4 mb-4"></div>
             <h3 class="font-heading text-lg font-black text-gray-800 mb-2">✏️ Tvoje chyby a vysvetlenia</h3>
             <div id="mistakes" class="space-y-3"></div>
@@ -506,7 +531,7 @@
                 </details>
                 <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
                     <summary class="font-semibold cursor-pointer">Môžem si hru najprv vyskúšať?</summary>
-                    <p class="text-gray-700 mt-2">Áno. Tlačidlo „Najprv si to vyskúšam“ spustí tréning bez prezývky s inými otázkami, než sú v dnešnej súťaži. Do denného rebríčka sa počíta len prvá súťažná hra dňa na každej úrovni, ďalšie hry sú tréning. Nevhodné a nezmyselné prezývky hra neprijme.</p>
+                    <p class="text-gray-700 mt-2">Áno. Tlačidlo „Najprv si to vyskúšam“ spustí tréning bez prezývky s inými otázkami, než sú v dnešnej súťaži. Do denného rebríčka sa počíta len prvá súťažná hra dňa na každej úrovni, ďalšie hry sú tréning. Prezývky vymýšľa hra sama, takže sú vždy slušné a anonymné.</p>
                 </details>
                 <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
                     <summary class="font-semibold cursor-pointer">Menia sa otázky?</summary>
@@ -514,23 +539,24 @@
                 </details>
                 <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
                     <summary class="font-semibold cursor-pointer">Aké údaje sa ukladajú?</summary>
-                    <p class="text-gray-700 mt-2">Len prezývka, nepovinne mesto, úroveň, počet bodov, čas hry a dátum. Prezývka s mestom a výsledkom sa môže zobraziť v dennom rebríčku TOP 10, preto prosím nepoužívaj celé meno a priezvisko. Žiadne e-maily ani iné osobné údaje nezbierame. Odznaky sa ukladajú len v tvojom prehliadači.</p>
+                    <p class="text-gray-700 mt-2">Žiadne osobné údaje. Do rebríčka sa uloží len anonymná prezývka, ktorú vygeneruje hra (napr. „Bystrá Sýkorka 42“), nepovinne kraj, úroveň, body, čas a dátum. Nepoužívame cookies, reklamu ani sledovanie. Odznaky a nastavenia zostávajú len v tvojom prehliadači. Viac na stránke <a href="/sukromie" class="text-primary underline">Ochrana súkromia</a>.</p>
                 </details>
             </div>
         </div>
     </section>
 
     <!-- Doučovatelia po stranách (len notebook/počítač) -->
-    <aside id="tutors-left" class="tutor-col" aria-label="Doučovatelia"></aside>
-    <aside id="tutors-right" class="tutor-col" aria-label="Doučovatelia"></aside>
+    <aside id="tutors-left" hidden class="tutor-col" aria-label="Doučovatelia"></aside>
+    <aside id="tutors-right" hidden class="tutor-col" aria-label="Doučovatelia"></aside>
 
     <footer class="w-full text-center p-4 text-sm text-gray-500 flex flex-col items-center justify-center gap-2">
-        <p><a href="/pridat-doucovatela" class="font-bold text-primary hover:underline">🎓 Ste doučovateľ? Pridajte svoje logo na Misia9.sk</a></p>
-        <section id="tutors-bottom" class="tutors-bottom w-full max-w-5xl mx-auto py-2" aria-label="Doučovatelia">
+        <p id="tutors-footer-link" class="hidden"><a href="/pridat-doucovatela" class="font-bold text-primary hover:underline">🎓 Ste doučovateľ? Pridajte svoje logo na Misia9.sk</a></p>
+        <section id="tutors-bottom" hidden class="tutors-bottom w-full max-w-5xl mx-auto py-2" aria-label="Doučovatelia">
             <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Doučovatelia <span class="normal-case font-semibold tracking-normal text-gray-400">· reklama</span></p>
             <div id="tutors-bottom-row" class="row"></div>
         </section>
         <p>&copy; 2026 Sýkorkina misia · Misia9.sk – vzdelávaj sa hrou</p>
+        <p><a href="/sukromie" class="hover:underline">Ochrana súkromia a podmienky</a> · bez reklamy, cookies a sledovania</p>
         <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-gray-200/50">
             <span class="text-lg" aria-hidden="true">📊</span>
             <span class="font-bold text-gray-500">Počet návštev:</span>
@@ -578,64 +604,21 @@
 
     <!-- Herný skript -->
     <script>
-        // ===== Kontrola prezývky a mesta: vulgarizmy a nezmyselné slová =====
-        // (rovnaký kód je v hre aj na serveri v functions/api/results.js)
-        const NickFilter = (() => {
-          // korene vulgárnych a urážlivých slov (bez diakritiky, malými písmenami)
-          const VULGAR = [
-            "kurv", "kurev", "kurw", "kurva", "pica", "picu", "picus", "picov", "picin", "picka", "pizd", "kunda",
-            "kokot", "kkt", "debil", "kreten", "idiot", "imbecil", "blbec", "chuj", "hovn", "hovad", "srac", "zasr", "posr",
-            "jeb", "mrd", "zmrd", "sukat", "sukam", "suka", "prdel", "hajzl", "hajzel", "chcan", "buzerant", "buzna",
-            "cigan", "negr", "nigg", "teplos", "teplous", "fuck", "shit", "bitch", "dick", "cock", "pussy", "cunt",
-            "asshole", "porn", "sex", "penis", "vagin", "nazi", "hitler", "heil", "kkk", "fck", "fuk"
-          ];
-          // bežné slová a názvy, ktoré náhodou obsahujú niektorý z koreňov (Hviezdička, Opica, Smrdáky…)
-          const ALLOW = ["hviezdick", "opic", "apic", "smrdak", "picass", "kokos", "sukn"];
-          // typické skúšobné a „prázdne“ prezývky
-          const TEST = new Set([
-            "test", "testik", "tester", "testovanie", "testy", "skuska", "skusam", "skusobna", "skusobny", "skuskova",
-            "asdf", "asd", "qwe", "qwer", "qwerty", "qwertz", "yxcv", "abc", "abcd", "abcde", "xxx", "xyz", "xy", "aaa",
-            "nic", "nikto", "neviem", "anonym", "anonim", "nobody", "noname", "admin", "user", "hrac", "prezyvka", "meno",
-            "nick", "nickname", "lol", "haha", "hihi", "hehe", "blabla", "bla", "dsa", "sdf", "ok", "okok", "null",
-            "undefined", "nan", "jj", "kk", "hh", "aa", "ss", "dd", "ff", "gg"
-          ]);
-          const ROWS = ["qwertzuiop", "qwertyuiop", "asdfghjkl", "yxcvbnm", "zxcvbnm", "1234567890", "abcdefghijklmnopqrstuvwxyz"];
-          const LEET = { "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b", "@": "a", "$": "s", "!": "i" };
-
-          const plain = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-          const deleet = s => s.replace(/[0134578@$!]/g, ch => LEET[ch]);
-          const lettersOnly = s => s.replace(/[^a-z]/g, "");
-          const collapse = s => s.replace(/(.)\1+/g, "$1");
-
-          function check(raw, kind = "nick") {
-            const p = plain(raw);
-            const letters = lettersOnly(p);
-            const leet = lettersOnly(deleet(p));
-            // 1) vulgarizmy (aj s medzerami, bodkami, číslami namiesto písmen či zdvojenými písmenami)
-            const unallow = v => ALLOW.reduce((acc, w) => acc.split(w).join("_"), v);
-            for (const v of [letters, leet, collapse(letters), collapse(leet)].map(unallow)) {
-              if (VULGAR.some(w => v.includes(w))) return { ok: false, reason: "vulgar" };
-            }
-            if (kind === "city" && !letters) return { ok: true };
-            // 2) nezmyselné slová
-            if (letters.length < 2) return { ok: false, reason: "nonsense" };
-            const base = p.replace(/[^a-z0-9]/g, "").replace(/\d+$/, "");
-            if (TEST.has(base) || TEST.has(letters) || TEST.has(collapse(letters))) return { ok: false, reason: "nonsense" };
-            if (/(.)\1{3,}/.test(p.replace(/\s/g, ""))) return { ok: false, reason: "nonsense" };          // aaaa, 1111
-            if (/^(.{1,3})\1{2,}$/.test(letters)) return { ok: false, reason: "nonsense" };                 // hahaha, ababab
-            const compact = p.replace(/[^a-z0-9]/g, "");
-            for (let i = 0; i + 4 <= compact.length; i++) {                                                  // asdf, qwer, 1234
-              const g = compact.slice(i, i + 4), r = g.split("").reverse().join("");
-              if (ROWS.some(row => row.includes(g) || row.includes(r))) return { ok: false, reason: "nonsense" };
-            }
-            for (const word of p.split(/[^a-z]+/).filter(Boolean)) {                                        // xkcdfg, bcdf
-              if (/[^aeiouyrl]{5,}/.test(word)) return { ok: false, reason: "nonsense" };
-              if (word.length >= 4 && !/[aeiouy]/.test(word.replace(/[rl]/g, "a"))) return { ok: false, reason: "nonsense" };
-            }
-            return { ok: true };
-          }
-          return { check };
-        })();
+        // ===== Anonymné prezývky (rovnaké zoznamy sú aj na serveri vo functions/_shared/pseudonym.js) =====
+        const PSEUDO = {
+            adj: [["Rýchly", "Rýchla"], ["Múdry", "Múdra"], ["Odvážny", "Odvážna"], ["Veselý", "Veselá"], ["Bystrý", "Bystrá"],
+                  ["Šikovný", "Šikovná"], ["Usilovný", "Usilovná"], ["Zvedavý", "Zvedavá"], ["Statočný", "Statočná"], ["Hravý", "Hravá"],
+                  ["Pozorný", "Pozorná"], ["Zlatý", "Zlatá"], ["Hviezdny", "Hviezdna"], ["Bleskový", "Blesková"], ["Slnečný", "Slnečná"],
+                  ["Usmiaty", "Usmiata"], ["Tichý", "Tichá"], ["Pravopisný", "Pravopisná"]],
+            m: ["Ježko", "Zajko", "Vrabček", "Bobor", "Medvedík", "Kamzík", "Rys", "Delfín", "Mravček", "Jelenček", "Sokol", "Tučniak", "Psík", "Lev", "Orol"],
+            f: ["Sýkorka", "Líška", "Veverička", "Sova", "Lienka", "Včielka", "Žabka", "Rybka", "Myška", "Mačička", "Lastovička", "Srnka", "Korytnačka", "Panda", "Žirafa"]
+        };
+        function randomPseudonym() {
+            const pick = a => a[Math.floor(Math.random() * a.length)];
+            const fem = Math.random() < 0.5;
+            const adj = pick(PSEUDO.adj)[fem ? 1 : 0];
+            return `${adj} ${pick(fem ? PSEUDO.f : PSEUDO.m)} ${1 + Math.floor(Math.random() * 99)}`;
+        }
 
         // ===== Otázky dňa: z každej témy 3 vety, každý deň o polnoci (SK čas) nové =====
         const LEVELS = { easy: { name: 'Ľahšia', icon: '🌱', grade: '3. – 5. ročník' }, hard: { name: 'Ťažšia', icon: '🔥', grade: '6. – 9. ročník' } };
@@ -793,7 +776,6 @@
         const tree = $('tree'), ground = $('ground'), finalCard = $('final-card'), hint = $('hint');
 
         function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-        const cleanText = (v, max) => v.normalize('NFC').replace(/[^\p{L}\p{N} ._\-]/gu, '').replace(/\s+/g, ' ').trim().slice(0, max);
 
         // ===== Ukazovateľ postupu =====
         const segWrap = $('segments');
@@ -1087,6 +1069,9 @@
             finalCard.classList.remove('hidden');
             $('restart-btn').focus({ preventScroll: true });
 
+            // zdieľanie
+            lastResult = { score, ms: elapsedMs, level, day: gameDay, mode, name: mode === 'ranked' ? playerName : '', rank: null };
+
             // chyby a odznaky
             renderMistakes();
             $('vysledok').classList.remove('hidden');
@@ -1108,13 +1093,14 @@
                 box.innerHTML = '';
                 if (!fresh.length) { box.classList.add('hidden'); return; }
                 box.classList.remove('hidden');
-                const t = document.createElement('p'); t.className = 'font-heading font-black text-lg text-amber-700 mb-2'; t.textContent = fresh.length === 1 ? '🎖️ Získal(a) si nový odznak!' : `🎖️ Získal(a) si ${fresh.length} nové odznaky!`;
+                const t = document.createElement('p'); t.className = 'font-heading font-black text-lg text-amber-700 mb-2'; t.textContent = fresh.length === 1 ? '🎖️ Získal(a) si nový odznak!' : fresh.length <= 4 ? `🎖️ Získal(a) si ${fresh.length} nové odznaky!` : `🎖️ Získal(a) si ${fresh.length} nových odznakov!`;
                 const row = document.createElement('div'); row.className = 'flex flex-wrap gap-2';
                 fresh.forEach(id => { const b = BADGES.find(x => x.id === id); const s = document.createElement('span'); s.className = 'bg-white rounded-full px-3 py-1 font-bold shadow-sm'; s.textContent = `${b.icon} ${b.name}`; row.appendChild(s); });
                 box.append(t, row);
             };
             showFresh();
             if (fresh.length) setTimeout(() => Sound.badge(), 1200);
+            prepareShare();
             $('final-extra').textContent = (fresh.length ? `🎖️ Nové odznaky: ${fresh.length} · ` : '') + (mistakes.length ? `📋 Chyby (${mistakes.length}) s vysvetlením ↓` : '📋 Výsledok misie ↓');
 
             if (mode !== 'ranked') return;
@@ -1128,6 +1114,7 @@
                     if (d.rank === 1) extra.push('winner');
                     const more = award(extra);
                     if (more.length) { fresh = fresh.concat(more); showFresh(); Sound.badge(); }
+                    if (d.rank && d.personalBest) { lastResult.rank = d.rank; prepareShare(); }
                     setLbTab(level);
                     renderLeaderboard(d.top, playerName);
                 })
@@ -1145,7 +1132,7 @@
             startModal.classList.remove('hidden');
             startBirdEngine();
             gameArea.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-            $('nick').focus({ preventScroll: true });
+            $('start-btn').focus({ preventScroll: true });
         }
 
         // ===== Konfety =====
@@ -1170,6 +1157,10 @@
         nextBtn.addEventListener('click', nextStep);
         $('next-round-btn').addEventListener('click', nextRound);
         $('restart-btn').addEventListener('click', restart);
+        $('final-share').addEventListener('click', () => {
+            if (navigator.share) doShare('native');
+            else $('share-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
         document.querySelectorAll('.lvl-btn').forEach(b => b.addEventListener('click', () => setLevel(b.dataset.level)));
         document.querySelectorAll('.lb-tab').forEach(b => b.addEventListener('click', () => loadLeaderboard(b.dataset.level)));
         const soundBtn = $('sound-btn');
@@ -1177,7 +1168,13 @@
         soundBtn.addEventListener('click', () => { Sound.toggle(); paintSound(); });
         paintSound();
 
-        try { $('nick').value = localStorage.getItem('misia9_nick') || ''; $('city').value = localStorage.getItem('misia9_city') || ''; } catch (e) {}
+        // prezývka zostáva rovnaká aj na ďalšie dni (kým ju hráč neprehodí kockou)
+        let pseudo = store.get('misia9_pseudo', '');
+        if (!pseudo) { pseudo = randomPseudonym(); store.set('misia9_pseudo', pseudo); }
+        $('pseudo').textContent = pseudo;
+        $('kraj').value = store.get('misia9_kraj', '');
+        $('reroll').addEventListener('click', () => { pseudo = randomPseudonym(); store.set('misia9_pseudo', pseudo); $('pseudo').textContent = pseudo; Sound.unlock(); Sound.caught(); });
+        $('kraj').addEventListener('change', () => store.set('misia9_kraj', $('kraj').value));
         function nickError(msg) {
             $('nick-help').textContent = msg;
             $('nick-help').className = 'text-xs text-red-600 font-semibold mb-3';
@@ -1197,32 +1194,117 @@
         }
         $('start-form').addEventListener('submit', e => {
             e.preventDefault();
-            const training = playedRankedToday(level);
-            const nick = cleanText($('nick').value, 40);
-            const city = cleanText($('city').value, 30);
-            if (!training) {
-                if (nick.length < 2 || nick.length > 20) { nickError('Napíš prezývku s 2 až 20 znakmi (písmená, číslice, medzera, bodka, pomlčka).'); $('nick').focus(); return; }
-                const cn = NickFilter.check(nick);
-                if (!cn.ok) {
-                    nickError(cn.reason === 'vulgar'
-                        ? 'Táto prezývka sa nedá použiť. Vymysli si prosím slušnú prezývku. 🙂'
-                        : 'Vymysli si skutočnú prezývku, napríklad Sýkorka7 alebo Rýchly Jano. Ak si chceš hru len vyskúšať, klikni na „Najprv si to vyskúšam“.');
-                    $('nick').focus(); return;
-                }
-                if (city) {
-                    const cc = NickFilter.check(city, 'city');
-                    if (!cc.ok) { nickError('Napíš skutočný názov mesta alebo obce, prípadne nechaj políčko prázdne.'); $('city').focus(); return; }
-                }
-            }
-            playerName = nick; playerCity = city;
-            try { localStorage.setItem('misia9_nick', nick); localStorage.setItem('misia9_city', city); } catch (err) {}
-            beginGame(training);
+            playerName = pseudo; playerCity = $('kraj').value;
+            beginGame(playedRankedToday(level));
         });
         $('try-btn').addEventListener('click', () => { beginGame(true); });
-        ['nick', 'city'].forEach(id => $(id).addEventListener('input', () => {
-            $('nick-help').textContent = 'Mesto je nepovinné. Do rebríčka sa počíta len prvá dnešná hra – prezývka a mesto sa v ňom zobrazia.';
-            $('nick-help').className = 'text-xs text-gray-500 mb-3';
-        }));
+
+        // ===== Zdieľanie výsledku (obrázok + odkaz s výzvou) =====
+        let lastResult = null;   // { score, ms, level, day, mode, name, rank }
+        const SITE = 'https://misia9.sk/';
+        function challengeUrl(r) {
+            return `${SITE}?vyzva=${r.score}-${Math.round(r.ms / 1000)}-${r.level}-${r.day}`;
+        }
+        function shareText(r) {
+            const lv = r.level === 'hard' ? 'ťažšej' : 'ľahšej';
+            const rank = r.rank ? ` a som ${r.rank}. v dnešnom rebríčku` : '';
+            return `🐦 V Sýkorkinej misii na ${lv} úrovni mám ${r.score} z 27 bodov za ${fmtTime(r.ms)}${rank}! Prekonáš ma? Zahraj si dnešné otázky:`;
+        }
+        function loadImg(src) { return new Promise((ok, bad) => { const i = new Image(); i.onload = () => ok(i); i.onerror = bad; i.src = src; }); }
+        function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+        async function makeShareImage(r) {
+            const S = 1080, c = document.createElement('canvas'); c.width = S; c.height = S;
+            const x = c.getContext('2d');
+            const font = (w, px) => `${w} ${px}px Nunito, "Segoe UI", Arial, sans-serif`;
+            const g = x.createLinearGradient(0, 0, S, S); g.addColorStop(0, '#dbeafe'); g.addColorStop(1, '#fef3c7');
+            x.fillStyle = g; x.fillRect(0, 0, S, S);
+            // strom vpravo dole
+            x.fillStyle = '#8B5A2B'; x.fillRect(830, 640, 46, 440);
+            x.strokeStyle = '#8B5A2B'; x.lineWidth = 16; x.lineCap = 'round'; x.beginPath(); x.moveTo(840, 740); x.quadraticCurveTo(780, 722, 700, 726); x.stroke();
+            [[853, 520, 175, '#22c55e'], [745, 580, 105, '#16a34a'], [965, 575, 115, '#16a34a'], [853, 405, 125, '#4ade80'], [770, 455, 80, '#4ade80'], [945, 450, 88, '#22c55e']].forEach(([cx, cy, rr, col]) => { x.fillStyle = col; x.beginPath(); x.arc(cx, cy, rr, 0, Math.PI * 2); x.fill(); });
+            [[790, 520], [920, 600], [880, 400]].forEach(([cx, cy]) => { x.fillStyle = '#ef4444'; x.beginPath(); x.arc(cx, cy, 15, 0, Math.PI * 2); x.fill(); });
+            // sýkorka sedí na konári (rovnaká kresba ako v hre, bez mávania krídlami)
+            try {
+                const svg = document.querySelector('#bird svg').cloneNode(true);
+                svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg'); svg.setAttribute('width', '200'); svg.setAttribute('height', '160');
+                const u = URL.createObjectURL(new Blob([svg.outerHTML], { type: 'image/svg+xml' }));
+                const bird = await loadImg(u); x.drawImage(bird, 690, 590, 175, 140); URL.revokeObjectURL(u);
+            } catch (e) {}
+            // hlavička
+            x.fillStyle = '#3B82F6'; x.font = font(900, 62); x.textBaseline = 'alphabetic'; x.fillText('Misia9', 80, 135);
+            const mw = x.measureText('Misia9').width; x.fillStyle = '#F59E0B'; x.fillText('.sk', 80 + mw, 135);
+            x.fillStyle = '#1F2937'; x.font = font(900, 50); x.fillText('Sýkorkina misia', 80, 205);
+            // karta s výsledkom
+            x.fillStyle = 'rgba(255,255,255,.92)'; roundRect(x, 70, 250, 600, 560, 44); x.fill();
+            x.fillStyle = '#6b7280'; x.font = font(700, 34);
+            x.fillText(r.mode === 'ranked' ? (r.name || 'Môj výsledok') : 'Tréning', 115, 320);
+            x.fillStyle = '#1F2937'; x.font = font(900, 190); x.fillText(String(r.score), 105, 520);
+            const sw = x.measureText(String(r.score)).width; x.fillStyle = '#9ca3af'; x.font = font(900, 80); x.fillText('/ 27', 125 + sw, 520);
+            x.fillStyle = '#1F2937'; x.font = font(800, 40); x.fillText(`⏱ ${fmtTime(r.ms)}`, 115, 600);
+            x.fillStyle = '#374151'; x.font = font(700, 32);
+            x.fillText(`${r.level === 'hard' ? '🔥 Ťažšia' : '🌱 Ľahšia'} úroveň · ${fmtDay(r.day)}`, 115, 660);
+            if (r.rank) { x.fillStyle = '#b45309'; x.font = font(900, 33); x.fillText(`🏆 ${r.rank}. miesto v dnešnom rebríčku`, 115, 730, 530); }
+            else { const ic = BADGES.filter(b => earned[b.id]).map(b => b.icon).slice(0, 8).join(' '); if (ic) { x.font = font(400, 44); x.fillText(ic, 115, 735); } }
+            // výzva
+            x.fillStyle = '#3B82F6'; roundRect(x, 70, 870, 940, 130, 36); x.fill();
+            x.fillStyle = '#ffffff'; x.font = font(900, 50); x.textAlign = 'center'; x.fillText('Prekonáš ma? Zahraj si na misia9.sk', 540, 952);
+            x.textAlign = 'left';
+            return new Promise(ok => c.toBlob(b => ok(b), 'image/png'));
+        }
+        function shareMsg(t) { const m = $('share-msg'); m.textContent = t; clearTimeout(shareMsg.t); shareMsg.t = setTimeout(() => { m.textContent = ''; }, 6000); }
+        async function copyText(t) {
+            try { await navigator.clipboard.writeText(t); return true; }
+            catch (e) { const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (x) {} ta.remove(); return ok; }
+        }
+        async function doShare(kind) {
+            if (!lastResult) return;
+            const url = challengeUrl(lastResult), text = shareText(lastResult), full = `${text} ${url}`;
+            if (kind === 'native') {
+                try {
+                    const blob = await makeShareImage(lastResult);
+                    const file = new File([blob], 'sykorkina-misia.png', { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], title: 'Sýkorkina misia', text: full });
+                    else if (navigator.share) await navigator.share({ title: 'Sýkorkina misia', text, url });
+                    else { await copyText(full); shareMsg('Text s odkazom je skopírovaný – vlož ho, kam chceš. 📋'); }
+                } catch (e) { if (e && e.name !== 'AbortError') { await copyText(full); shareMsg('Text s odkazom je skopírovaný. 📋'); } }
+                return;
+            }
+            if (kind === 'fb') { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'noopener,width=640,height=560'); return; }
+            if (kind === 'wa') { window.open(`https://wa.me/?text=${encodeURIComponent(full)}`, '_blank', 'noopener'); return; }
+            if (kind === 'mail') { location.href = `mailto:?subject=${encodeURIComponent('Môj výsledok v Sýkorkinej misii 🐦')}&body=${encodeURIComponent(full)}`; return; }
+            if (kind === 'edupage' || kind === 'copy') {
+                const ok = await copyText(full);
+                shareMsg(ok ? (kind === 'edupage' ? 'Skopírované! Otvor EduPage, napíš správu alebo príspevok a text vlož (podrž prst → Vložiť). 📋' : 'Text s odkazom je skopírovaný. 📋') : 'Kopírovanie sa nepodarilo – označ text v prehliadači ručne.');
+                return;
+            }
+            if (kind === 'img') {
+                const blob = await makeShareImage(lastResult);
+                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'sykorkina-misia-vysledok.png';
+                document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+                shareMsg('Obrázok sa stiahol – na Instagrame ho pridaj ako príspevok alebo príbeh a napíš misia9.sk. 📸');
+            }
+        }
+        async function prepareShare() {
+            $('share-box').classList.remove('hidden');
+            $('share-native').classList.toggle('hidden', !navigator.share);
+            try { const blob = await makeShareImage(lastResult); const u = URL.createObjectURL(blob); const im = $('share-preview'); if (im.dataset.u) URL.revokeObjectURL(im.dataset.u); im.src = u; im.dataset.u = u; } catch (e) {}
+        }
+        document.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', () => doShare(b.dataset.share)));
+
+        // ===== Výzva od kamaráta (?vyzva=skóre-sekundy-úroveň-deň) =====
+        (function readChallenge() {
+            const m = /^(\d{1,2})-(\d{1,5})-(easy|hard)-(\d{4}-\d{2}-\d{2})$/.exec(new URLSearchParams(location.search).get('vyzva') || '');
+            if (!m) return;
+            const sc = Math.min(27, Number(m[1])), sec = Number(m[2]), lv = m[3], d = m[4];
+            const today = dayKey(), box = $('challenge-note');
+            box.classList.remove('hidden');
+            if (d === today) {
+                box.textContent = `🏁 Výzva: kamarát dnes získal ${sc} / 27 za ${fmtTime(sec * 1000)} (${lv === 'hard' ? 'ťažšia' : 'ľahšia'} úroveň). Prekonáš to?`;
+                level = lv; store.set('misia9_level', lv);
+            } else {
+                box.textContent = `🏁 Kamarát ťa vyzýva! Mal ${sc} / 27 bodov – dnes sú nové otázky, skús ho prekonať.`;
+            }
+        })();
 
         // ===== Doučovatelia po stranách (len na širokej obrazovke) =====
         const SLOTS = 3;   // miest na jednej strane (spolu 6)
@@ -1270,7 +1352,13 @@
         function loadTutors() {
             if (tutorsLoaded) return;
             tutorsLoaded = true;
-            fetch('/api/tutors').then(r => r.ok ? r.json() : { tutors: [] }).then(d => renderTutors(d.tutors || [])).catch(() => renderTutors([]));
+            // doučovatelia sa ukážu len keď sú v Cloudflare zapnutí (TUTORS_ENABLED = 1)
+            fetch('/api/tutors').then(r => r.ok ? r.json() : {}).then(d => {
+                if (!d.enabled) return;
+                ['tutors-left', 'tutors-right', 'tutors-bottom'].forEach(id => $(id).hidden = false);
+                $('tutors-footer-link').classList.remove('hidden');
+                renderTutors(d.tutors || []);
+            }).catch(() => {});
         }
         if (wideQuery.addEventListener) wideQuery.addEventListener('change', loadTutors);
 

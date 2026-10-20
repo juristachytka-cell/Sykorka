@@ -108,7 +108,7 @@
 
         <div class="card">
             <div class="toolbar">
-                <input id="filter" type="search" placeholder="Hľadať prezývku alebo mesto…" aria-label="Hľadať prezývku alebo mesto">
+                <input id="filter" type="search" placeholder="Hľadať prezývku alebo kraj…" aria-label="Hľadať prezývku alebo kraj">
                 <select id="lvl" aria-label="Úroveň"><option value="">Všetky úrovne</option><option value="easy">🌱 Ľahšia</option><option value="hard">🔥 Ťažšia</option></select>
             </div>
             <div class="table-wrap">
@@ -117,7 +117,7 @@
                         <tr>
                             <th data-sort="date" class="sorted">Dátum a čas</th>
                             <th data-sort="name">Prezývka</th>
-                            <th data-sort="city">Mesto</th>
+                            <th data-sort="city">Kraj</th>
                             <th data-sort="level">Úroveň</th>
                             <th data-sort="score" class="right">Body</th>
                             <th data-sort="timeMs" class="right">Čas hry</th>
@@ -135,7 +135,7 @@
         <div id="tab-tutors" class="hidden">
             <div class="card">
                 <h2 style="margin-top:0">Miesta po stranách hry</h2>
-                <p class="muted" style="margin-top:0">Logá sa zobrazujú len na širokých obrazovkách (notebook, počítač). Na každej strane sú 3 miesta. Prihlášku nájdu doučovatelia na <a href="/pridat-doucovatela" target="_blank">misia9.sk/pridat-doucovatela</a>.</p>
+                <p class="muted" style="margin-top:0"><b>Vypínač:</b> na webe sa doučovatelia zobrazia až po nastavení premennej <code>TUTORS_ENABLED</code> = <code>1</code> v Cloudflare (Settings → Variables and Secrets). Dovtedy ich tu môžeš len pripravovať. Logá sa zobrazujú len na širokých obrazovkách (notebook, počítač). Na každej strane sú 3 miesta. Prihlášku nájdu doučovatelia na <a href="/pridat-doucovatela" target="_blank">misia9.sk/pridat-doucovatela</a>.</p>
                 <div class="slots">
                     <div><b>Ľavá strana</b><div id="slots-left"></div></div>
                     <div><b>Pravá strana</b><div id="slots-right"></div></div>
@@ -343,7 +343,7 @@
 
     function downloadCsv() {
         const esc = v => `"${String(v).replace(/"/g, '""')}"`;
-        const lines = [['Dátum', 'Prezývka', 'Mesto', 'Úroveň', 'Body', 'Čas (m:ss)', 'Čas (sekundy)'].map(esc).join(';')];
+        const lines = [['Dátum', 'Prezývka', 'Kraj', 'Úroveň', 'Body', 'Čas (m:ss)', 'Čas (sekundy)'].map(esc).join(';')];
         for (const r of data) lines.push([fmtDate(r.date), r.name, r.city || '', LV_TXT[r.level] || '', r.score, fmtTime(r.timeMs), Math.round(r.timeMs / 1000)].map(esc).join(';'));
         const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
         const a = document.createElement('a');
