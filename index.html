@@ -128,6 +128,11 @@
             },
             {
               "@type": "Question",
+              "name": "Môžem si hru najprv vyskúšať?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Áno. Tlačidlo Najprv si to vyskúšam spustí tréning bez prezývky s inými otázkami, než sú v dnešnej súťaži. Do denného rebríčka sa počíta len prvá súťažná hra dňa na každej úrovni." }
+            },
+            {
+              "@type": "Question",
               "name": "Menia sa otázky?",
               "acceptedAnswer": { "@type": "Answer", "text": "Áno. Hra má 306 viet v dvoch úrovniach a každý deň o polnoci z nich vyberie 27 nových. Každý deň začína aj nový rebríček TOP 10." }
             },
@@ -250,6 +255,7 @@
                 <div class="font-heading font-black text-gray-800 text-lg leading-tight">
                     <span id="round-label">Kolo 1 / 9</span>
                     <span class="text-primary" id="round-title">· Vybrané slová I</span>
+                    <span id="mode-chip" class="hidden align-middle ml-1 text-xs font-bold bg-purple-100 text-purple-700 rounded-full px-2 py-0.5">🧪 Tréning – mimo rebríčka</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="font-heading font-black text-gray-700 tabular-nums bg-white rounded-full px-3 py-0.5 shadow-sm" title="Čas"><span aria-hidden="true">⏱️</span> <span id="timer">0:00</span></span>
@@ -328,6 +334,7 @@
                         <button type="button" class="lvl-btn" data-level="easy" role="radio" aria-checked="true">🌱 Ľahšia<small>3. – 5. ročník</small></button>
                         <button type="button" class="lvl-btn" data-level="hard" role="radio" aria-checked="false">🔥 Ťažšia<small>6. – 9. ročník</small></button>
                     </div>
+                    <p id="ranked-note" class="hidden text-xs font-semibold text-purple-700 bg-purple-50 rounded-xl px-3 py-2 mb-3">✅ Dnešnú súťažnú hru na tejto úrovni už máš za sebou. Ďalšie hry sú tréning s inými otázkami – nová súťaž začína o polnoci.</p>
                     <form id="start-form" novalidate>
                         <div class="flex gap-2 mb-1">
                             <label for="nick" class="sr-only">Tvoja prezývka</label>
@@ -337,8 +344,9 @@
                             <input id="city" name="city" type="text" maxlength="30" autocomplete="address-level2" placeholder="Mesto"
                                    class="min-w-0 flex-[2] px-3 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/20 text-sm font-semibold text-center">
                         </div>
-                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Mesto je nepovinné. Prezývka a mesto sa zobrazia v rebríčku, preto nepíš celé meno.</p>
+                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Mesto je nepovinné. Do rebríčka sa počíta len prvá dnešná hra – prezývka a mesto sa v ňom zobrazia.</p>
                         <button id="start-btn" type="submit" class="w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
+                        <button id="try-btn" type="button" class="w-full mt-2 text-sm font-bold text-purple-700 hover:underline">🧪 Najprv si to vyskúšam (bez prezývky, mimo rebríčka)</button>
                     </form>
                 </div>
             </div>
@@ -457,6 +465,10 @@
                     <p class="text-gray-700 mt-2">Celá misia má 9 kôl po 3 otázky a trvá približne 10 minút. Po každej odpovedi sa zobrazí vysvetlenie pravidla a na konci prehľad všetkých chýb.</p>
                 </details>
                 <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Môžem si hru najprv vyskúšať?</summary>
+                    <p class="text-gray-700 mt-2">Áno. Tlačidlo „Najprv si to vyskúšam“ spustí tréning bez prezývky s inými otázkami, než sú v dnešnej súťaži. Do denného rebríčka sa počíta len prvá súťažná hra dňa na každej úrovni, ďalšie hry sú tréning. Nevhodné a nezmyselné prezývky hra neprijme.</p>
+                </details>
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
                     <summary class="font-semibold cursor-pointer">Menia sa otázky?</summary>
                     <p class="text-gray-700 mt-2">Áno. Hra má 306 viet v dvoch úrovniach a každý deň o polnoci z nich vyberie 27 nových. Každý deň začína aj nový rebríček TOP 10.</p>
                 </details>
@@ -517,6 +529,65 @@
 
     <!-- Herný skript -->
     <script>
+        // ===== Kontrola prezývky a mesta: vulgarizmy a nezmyselné slová =====
+        // (rovnaký kód je v hre aj na serveri v functions/api/results.js)
+        const NickFilter = (() => {
+          // korene vulgárnych a urážlivých slov (bez diakritiky, malými písmenami)
+          const VULGAR = [
+            "kurv", "kurev", "kurw", "kurva", "pica", "picu", "picus", "picov", "picin", "picka", "pizd", "kunda",
+            "kokot", "kkt", "debil", "kreten", "idiot", "imbecil", "blbec", "chuj", "hovn", "hovad", "srac", "zasr", "posr",
+            "jeb", "mrd", "zmrd", "sukat", "sukam", "suka", "prdel", "hajzl", "hajzel", "chcan", "buzerant", "buzna",
+            "cigan", "negr", "nigg", "teplos", "teplous", "fuck", "shit", "bitch", "dick", "cock", "pussy", "cunt",
+            "asshole", "porn", "sex", "penis", "vagin", "nazi", "hitler", "heil", "kkk", "fck", "fuk"
+          ];
+          // bežné slová a názvy, ktoré náhodou obsahujú niektorý z koreňov (Hviezdička, Opica, Smrdáky…)
+          const ALLOW = ["hviezdick", "opic", "apic", "smrdak", "picass", "kokos", "sukn"];
+          // typické skúšobné a „prázdne“ prezývky
+          const TEST = new Set([
+            "test", "testik", "tester", "testovanie", "testy", "skuska", "skusam", "skusobna", "skusobny", "skuskova",
+            "asdf", "asd", "qwe", "qwer", "qwerty", "qwertz", "yxcv", "abc", "abcd", "abcde", "xxx", "xyz", "xy", "aaa",
+            "nic", "nikto", "neviem", "anonym", "anonim", "nobody", "noname", "admin", "user", "hrac", "prezyvka", "meno",
+            "nick", "nickname", "lol", "haha", "hihi", "hehe", "blabla", "bla", "dsa", "sdf", "ok", "okok", "null",
+            "undefined", "nan", "jj", "kk", "hh", "aa", "ss", "dd", "ff", "gg"
+          ]);
+          const ROWS = ["qwertzuiop", "qwertyuiop", "asdfghjkl", "yxcvbnm", "zxcvbnm", "1234567890", "abcdefghijklmnopqrstuvwxyz"];
+          const LEET = { "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b", "@": "a", "$": "s", "!": "i" };
+
+          const plain = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+          const deleet = s => s.replace(/[0134578@$!]/g, ch => LEET[ch]);
+          const lettersOnly = s => s.replace(/[^a-z]/g, "");
+          const collapse = s => s.replace(/(.)\1+/g, "$1");
+
+          function check(raw, kind = "nick") {
+            const p = plain(raw);
+            const letters = lettersOnly(p);
+            const leet = lettersOnly(deleet(p));
+            // 1) vulgarizmy (aj s medzerami, bodkami, číslami namiesto písmen či zdvojenými písmenami)
+            const unallow = v => ALLOW.reduce((acc, w) => acc.split(w).join("_"), v);
+            for (const v of [letters, leet, collapse(letters), collapse(leet)].map(unallow)) {
+              if (VULGAR.some(w => v.includes(w))) return { ok: false, reason: "vulgar" };
+            }
+            if (kind === "city" && !letters) return { ok: true };
+            // 2) nezmyselné slová
+            if (letters.length < 2) return { ok: false, reason: "nonsense" };
+            const base = p.replace(/[^a-z0-9]/g, "").replace(/\d+$/, "");
+            if (TEST.has(base) || TEST.has(letters) || TEST.has(collapse(letters))) return { ok: false, reason: "nonsense" };
+            if (/(.)\1{3,}/.test(p.replace(/\s/g, ""))) return { ok: false, reason: "nonsense" };          // aaaa, 1111
+            if (/^(.{1,3})\1{2,}$/.test(letters)) return { ok: false, reason: "nonsense" };                 // hahaha, ababab
+            const compact = p.replace(/[^a-z0-9]/g, "");
+            for (let i = 0; i + 4 <= compact.length; i++) {                                                  // asdf, qwer, 1234
+              const g = compact.slice(i, i + 4), r = g.split("").reverse().join("");
+              if (ROWS.some(row => row.includes(g) || row.includes(r))) return { ok: false, reason: "nonsense" };
+            }
+            for (const word of p.split(/[^a-z]+/).filter(Boolean)) {                                        // xkcdfg, bcdf
+              if (/[^aeiouyrl]{5,}/.test(word)) return { ok: false, reason: "nonsense" };
+              if (word.length >= 4 && !/[aeiouy]/.test(word.replace(/[rl]/g, "a"))) return { ok: false, reason: "nonsense" };
+            }
+            return { ok: true };
+          }
+          return { check };
+        })();
+
         // ===== Otázky dňa: z každej témy 3 vety, každý deň o polnoci (SK čas) nové =====
         const LEVELS = { easy: { name: 'Ľahšia', icon: '🌱', grade: '3. – 5. ročník' }, hard: { name: 'Ťažšia', icon: '🔥', grade: '6. – 9. ročník' } };
         const PROMPTS = ['Nájdi chybu vo vete:', 'Kde je chyba vo vete:', 'V ktorom slove je chyba:', 'Kde sa skrýva chyba:'];
@@ -532,7 +603,7 @@
         }
         // Každá téma má pevne zamiešané poradie viet a každý deň sa posunie o 3 ďalšie.
         // Tak sa vety v 5 po sebe idúcich dňoch neopakujú a za 17 dní sa vystriedajú všetky.
-        function buildRounds(level, day) {
+        function buildRounds(level, day, training = false) {
             const [y, m, d] = day.split('-').map(Number);
             const dayNum = Math.round(Date.UTC(y, m - 1, d) / 86400000);
             return window.QUESTION_BANK[level].map((topic, ti) => {
@@ -540,7 +611,9 @@
                 const perm = topic.q.map((_, i) => i);
                 for (let i = perm.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
                 const n = perm.length, start = ((dayNum * 3) % n + n) % n;
-                const idx = [0, 1, 2].map(k => perm[(start + k) % n]);
+                const todays = [0, 1, 2].map(k => perm[(start + k) % n]);
+                // tréning: 3 náhodné vety z tejto témy, ktoré dnes NIE sú v súťažnej hre
+                const idx = training ? shuffle(perm.filter(i => !todays.includes(i))).slice(0, 3) : todays;
                 return {
                     title: topic.t,
                     questions: idx.map((k, j) => {
@@ -653,6 +726,15 @@
         let birdInterval = null, isGamePaused = true, currentQuestion = null, answered = false, finished = false, started = false;
         let playerName = '', playerCity = '', startTime = 0, elapsedMs = 0, timerInterval = null, resultPromise = null;
         let lbLevel = level;
+        let mode = 'ranked';             // 'ranked' = súťažná hra dňa, 'training' = tréning mimo rebríčka
+        const rankedKey = (day, l) => `${day}|${l}`;
+        const playedRankedToday = l => !!store.get('misia9_ranked', {})[rankedKey(dayKey(), l)];
+        function markRanked(day, l) {
+            const all = store.get('misia9_ranked', {});
+            all[rankedKey(day, l)] = true;
+            const keep = {}; Object.keys(all).sort().slice(-20).forEach(k => keep[k] = true);
+            store.set('misia9_ranked', keep);
+        }
 
         const $ = id => document.getElementById(id);
         const bird = $('bird'), flip = bird.querySelector('.flip'), gameArea = $('game-area');
@@ -661,7 +743,7 @@
         const roundModal = $('round-modal'), startModal = $('start-modal');
         const tree = $('tree'), ground = $('ground'), finalCard = $('final-card'), hint = $('hint');
 
-        const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+        function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
         const cleanText = (v, max) => v.normalize('NFC').replace(/[^\p{L}\p{N} ._\-]/gu, '').replace(/\s+/g, ' ').trim().slice(0, max);
 
         // ===== Ukazovateľ postupu =====
@@ -670,6 +752,7 @@
         function renderProgress() {
             $('round-label').textContent = `Kolo ${Math.min(roundIdx + 1, rounds.length)} / ${rounds.length}`;
             $('round-title').textContent = `· ${rounds[Math.min(roundIdx, rounds.length - 1)].title}`;
+            $('mode-chip').classList.toggle('hidden', !(started && mode === 'training'));
             [...segWrap.children].forEach((s, i) => { s.className = 'seg' + (i < roundIdx || finished ? ' done' : i === roundIdx ? ' current' : ''); });
             [...$('dots').children].forEach((d, i) => { d.className = 'dot' + (results[i] === true ? ' ok' : results[i] === false ? ' bad' : (i === qIdx && !finished ? ' current' : '')); });
             scoreDisplay.textContent = score;
@@ -709,6 +792,10 @@
         function setLevel(l) {
             level = l; store.set('misia9_level', l);
             document.querySelectorAll('.lvl-btn').forEach(b => b.setAttribute('aria-checked', String(b.dataset.level === l)));
+            const done = playedRankedToday(l);
+            $('ranked-note').classList.toggle('hidden', !done);
+            $('start-btn').textContent = done ? 'Trénovať 🧪' : 'Začať misiu 🚀';
+            $('try-btn').classList.toggle('hidden', done);
             if (!started || finished) { gameDay = dayKey(); rounds = buildRounds(level, gameDay); roundIdx = 0; qIdx = 0; results = []; renderProgress(); }
         }
 
@@ -878,7 +965,7 @@
 
         function finishMission() {
             finished = true; stopBirdEngine(); stopTimer();
-            resultPromise = submitResult();
+            resultPromise = mode === 'ranked' ? submitResult() : null;
             hint.classList.add('hidden');
             renderProgress();
             ground.classList.add('show');
@@ -941,10 +1028,13 @@
                 : pct >= 0.8 ? 'Skvelý výsledok! Slovenčinu máš v malíčku. 🌟'
                 : pct >= 0.5 ? 'Dobrá práca! Ešte trochu tréningu a budeš majster. 👍'
                 : 'Misia splnená! Skús to znova a uvidíš, že to pôjde lepšie. 💪';
-            $('final-name').textContent = playerName ? `${playerName} · ` : '';
             $('final-time').textContent = fmtTime(elapsedMs);
-            $('final-level').textContent = `${LEVELS[level].icon} ${LEVELS[level].name} úroveň · otázky dňa ${fmtDay(gameDay)}`;
-            $('final-rank').textContent = 'Ukladám výsledok do rebríčka…';
+            $('final-level').textContent = mode === 'ranked'
+                ? `${LEVELS[level].icon} ${LEVELS[level].name} úroveň · súťažné otázky dňa ${fmtDay(gameDay)}`
+                : `${LEVELS[level].icon} ${LEVELS[level].name} úroveň · 🧪 tréning`;
+            $('final-rank').textContent = mode === 'ranked' ? 'Ukladám výsledok do rebríčka…'
+                : (playedRankedToday(level) ? '🧪 Tréning sa nepočíta do rebríčka. Nová súťažná hra začína o polnoci.' : '🧪 Tréning sa nepočíta do rebríčka. Súťažnú hru máš dnes ešte pred sebou!');
+            $('final-name').textContent = mode === 'ranked' && playerName ? `${playerName} · ` : '';
             finalCard.classList.remove('hidden');
             $('restart-btn').focus({ preventScroll: true });
 
@@ -978,6 +1068,7 @@
             if (fresh.length) setTimeout(() => Sound.badge(), 1200);
             $('final-extra').textContent = (fresh.length ? `🎖️ Nové odznaky: ${fresh.length} · ` : '') + (mistakes.length ? `📋 Chyby (${mistakes.length}) s vysvetlením ↓` : '📋 Výsledok misie ↓');
 
+            if (mode !== 'ranked') return;
             (resultPromise || Promise.reject(new Error('Výsledok sa neodoslal')))
                 .then(d => {
                     $('final-rank').textContent = d.rank
@@ -991,7 +1082,7 @@
                     setLbTab(level);
                     renderLeaderboard(d.top, playerName);
                 })
-                .catch(() => { $('final-rank').textContent = 'Výsledok sa nepodarilo uložiť (rebríček je dostupný len na misia9.sk).'; });
+                .catch(err => { $('final-rank').textContent = err && err.message && !/HTTP|fetch|Failed/i.test(err.message) ? `Výsledok sa neuložil: ${err.message}` : 'Výsledok sa nepodarilo uložiť (rebríček je dostupný len na misia9.sk).'; });
         }
 
         function restart() {
@@ -999,7 +1090,7 @@
             tree.classList.remove('grow'); ground.classList.remove('show');
             bird.classList.remove('landed', 'long-flight');
             bird.setAttribute('aria-label', 'Chytiť sýkorku'); bird.title = 'Klikni na mňa pre novú úlohu!';
-            score = 0; roundIdx = 0; qIdx = 0; results = []; finished = false; started = false; resultPromise = null;
+            score = 0; roundIdx = 0; qIdx = 0; results = []; finished = false; started = false; resultPromise = null; mode = 'ranked';
             $('timer').textContent = '0:00';
             setLevel(level);
             startModal.classList.remove('hidden');
@@ -1038,28 +1129,51 @@
         paintSound();
 
         try { $('nick').value = localStorage.getItem('misia9_nick') || ''; $('city').value = localStorage.getItem('misia9_city') || ''; } catch (e) {}
-        $('start-form').addEventListener('submit', e => {
-            e.preventDefault();
-            const nick = cleanText($('nick').value, 40);
-            if (nick.length < 2 || nick.length > 20) {
-                $('nick-help').textContent = 'Napíš prezývku s 2 až 20 znakmi (písmená, číslice, medzera, bodka, pomlčka).';
-                $('nick-help').className = 'text-xs text-red-600 font-semibold mb-3';
-                $('nick').focus();
-                return;
-            }
-            playerName = nick;
-            playerCity = cleanText($('city').value, 30);
-            try { localStorage.setItem('misia9_nick', nick); localStorage.setItem('misia9_city', playerCity); } catch (e) {}
+        function nickError(msg) {
+            $('nick-help').textContent = msg;
+            $('nick-help').className = 'text-xs text-red-600 font-semibold mb-3';
+        }
+        function beginGame(asTraining) {
             Sound.unlock();
-            // otázky podľa dnešného dňa (ak sa medzitým zmenil dátum, zoberú sa nové)
-            gameDay = dayKey(); rounds = buildRounds(level, gameDay);
+            gameDay = dayKey();
+            mode = asTraining ? 'training' : 'ranked';
+            rounds = buildRounds(level, gameDay, asTraining);
+            if (!asTraining) markRanked(gameDay, level);   // súťažná je len prvá začatá hra dňa
             score = 0; roundIdx = 0; perfectRounds = 0; streak = 0; bestStreak = 0; mistakes = [];
             started = true;
             $('vysledok').classList.add('hidden');
             startModal.classList.add('hidden');
             startTimer();
             startRound();
+        }
+        $('start-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const training = playedRankedToday(level);
+            const nick = cleanText($('nick').value, 40);
+            const city = cleanText($('city').value, 30);
+            if (!training) {
+                if (nick.length < 2 || nick.length > 20) { nickError('Napíš prezývku s 2 až 20 znakmi (písmená, číslice, medzera, bodka, pomlčka).'); $('nick').focus(); return; }
+                const cn = NickFilter.check(nick);
+                if (!cn.ok) {
+                    nickError(cn.reason === 'vulgar'
+                        ? 'Táto prezývka sa nedá použiť. Vymysli si prosím slušnú prezývku. 🙂'
+                        : 'Vymysli si skutočnú prezývku, napríklad Sýkorka7 alebo Rýchly Jano. Ak si chceš hru len vyskúšať, klikni na „Najprv si to vyskúšam“.');
+                    $('nick').focus(); return;
+                }
+                if (city) {
+                    const cc = NickFilter.check(city, 'city');
+                    if (!cc.ok) { nickError('Napíš skutočný názov mesta alebo obce, prípadne nechaj políčko prázdne.'); $('city').focus(); return; }
+                }
+            }
+            playerName = nick; playerCity = city;
+            try { localStorage.setItem('misia9_nick', nick); localStorage.setItem('misia9_city', city); } catch (err) {}
+            beginGame(training);
         });
+        $('try-btn').addEventListener('click', () => { beginGame(true); });
+        ['nick', 'city'].forEach(id => $(id).addEventListener('input', () => {
+            $('nick-help').textContent = 'Mesto je nepovinné. Do rebríčka sa počíta len prvá dnešná hra – prezývka a mesto sa v ňom zobrazia.';
+            $('nick-help').className = 'text-xs text-gray-500 mb-3';
+        }));
 
         window.addEventListener('load', () => {
             bird.style.left = `${(gameArea.clientWidth / 2) - 42}px`;

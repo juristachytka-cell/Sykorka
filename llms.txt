@@ -41,3 +41,4 @@ Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťa�
 - Počet otázok: 306 (2 úrovne × 9 tém × 17 viet), denne sa hrá 27
 - Formát: interaktívny kvíz / hra, typ úlohy: nájdi pravopisnú alebo gramatickú chybu vo vete (výber z 3 slov)
 - Novinky každý deň: nové otázky a nový rebríček o polnoci
+- Do rebríčka sa počíta prvá súťažná hra dňa; tréning s inými otázkami je možný bez prezývky
