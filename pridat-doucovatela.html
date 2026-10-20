@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pridať doučovateľa | Sýkorkina misia – Misia9.sk</title>
+    <meta name="description" content="Ste súkromný doučovateľ alebo doučovateľka? Pridajte svoje logo a odkaz na web na stránku Sýkorkina misia, kde žiaci precvičujú slovenčinu.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://misia9.sk/pridat-doucovatela">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#3B82F6">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#FBBF24', accent: '#10B981', dark: '#1F2937' }, fontFamily: { heading: ['Nunito', 'sans-serif'], sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body { background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%); min-height: 100vh; }
+        .field { width: 100%; padding: .75rem 1rem; border-radius: .75rem; border: 2px solid #e5e7eb; font-weight: 600; background: #fff; }
+        .field:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 4px rgba(59,130,246,.2); }
+        .field.bad { border-color: #ef4444; }
+        .tile { width: 136px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.08); text-align: center; }
+        .tile img, .tile .ph { width: 124px; height: 62px; object-fit: contain; display: block; margin: 0 auto; border-radius: 6px; }
+        .tile .ph { background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 8px, #e5e7eb 8px, #e5e7eb 16px); }
+        .tile .hidden { display: none; }
+        .tile .nm { font-size: 11px; font-weight: 700; color: #374151; margin-top: 4px; line-height: 1.2; word-break: break-word; }
+    </style>
+</head>
+<body class="text-dark font-sans">
+    <header class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3 no-underline">
+            <span class="text-4xl" aria-hidden="true">🐦</span>
+            <span class="font-heading text-2xl font-black text-primary">Misia9<span class="text-secondary">.sk</span></span>
+        </a>
+        <a href="/" class="text-sm font-bold text-primary hover:underline">← Späť na hru</a>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 pb-10">
+        <section class="bg-white/80 rounded-3xl shadow-sm border border-white p-5 md:p-8 mb-5">
+            <h1 class="font-heading text-2xl md:text-3xl font-black text-gray-800 mb-2">Ste doučovateľ? Ukážte sa žiakom a rodičom 🎓</h1>
+            <p class="text-gray-700 mb-4">Sýkorkinu misiu hrajú žiaci, ktorí si precvičujú slovenčinu – a často aj ich rodičia. Súkromní doučovatelia môžu mať po stranách hry svoje <b>klikateľné logo s odkazom na vlastný web</b>.</p>
+            <ul class="grid sm:grid-cols-2 gap-2 text-sm text-gray-700">
+                <li class="bg-blue-50 rounded-xl px-4 py-2">💻 Logo sa zobrazuje na notebookoch a počítačoch (po stranách hry).</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2">🔢 Miest je len 8 – 4 vľavo a 4 vpravo.</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2">✅ Každú prihlášku osobne schvaľuje správca stránky.</li>
+                <li class="bg-blue-50 rounded-xl px-4 py-2">🧾 Potrebujete IČO (živnostenské oprávnenie) a vlastnú webovú stránku.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white/80 rounded-3xl shadow-sm border border-white p-5 md:p-8">
+            <h2 class="font-heading text-xl font-black text-gray-800 mb-4">Prihláška</h2>
+            <form id="form" novalidate class="grid md:grid-cols-[1fr_auto] gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <label for="name" class="block font-bold text-gray-700 mb-1">Názov (zobrazí sa pod logom)</label>
+                        <input id="name" class="field" maxlength="60" placeholder="napr. Doučovanie Mirka" required>
+                    </div>
+                    <div>
+                        <label for="url" class="block font-bold text-gray-700 mb-1">Webová stránka</label>
+                        <input id="url" class="field" type="url" maxlength="200" placeholder="https://mojedoucovanie.sk" required>
+                    </div>
+                    <div>
+                        <label for="ico" class="block font-bold text-gray-700 mb-1">IČO</label>
+                        <input id="ico" class="field" inputmode="numeric" maxlength="10" placeholder="8 číslic" required>
+                        <p class="text-xs text-gray-500 mt-1">Slúži na overenie v živnostenskom registri. Nezverejňuje sa.</p>
+                    </div>
+                    <div>
+                        <label for="email" class="block font-bold text-gray-700 mb-1">Kontaktný e-mail</label>
+                        <input id="email" class="field" type="email" maxlength="160" placeholder="vas@email.sk" required>
+                        <p class="text-xs text-gray-500 mt-1">Len pre správcu stránky. Nezverejňuje sa.</p>
+                    </div>
+                    <div>
+                        <label for="logo" class="block font-bold text-gray-700 mb-1">Logo</label>
+                        <input id="logo" type="file" accept="image/png,image/jpeg,image/webp" class="block w-full text-sm file:mr-3 file:px-4 file:py-2 file:rounded-lg file:border-0 file:bg-primary file:text-white file:font-bold">
+                        <p class="text-xs text-gray-500 mt-1">PNG, JPG alebo WebP. Logo automaticky upravíme na <b>240 × 120 px</b> (pomer 2 : 1) s bielym pozadím – najlepšie vyzerá vodorovné logo.</p>
+                    </div>
+                    <!-- pasca na roboty: ľudia toto pole nevidia -->
+                    <div class="hidden" aria-hidden="true"><label>Web <input id="website" tabindex="-1" autocomplete="off"></label></div>
+                    <label class="flex gap-3 items-start text-sm text-gray-700">
+                        <input id="consent" type="checkbox" class="mt-1 w-5 h-5 shrink-0">
+                        <span>Potvrdzujem, že som súkromný doučovateľ/ka s platným živnostenským oprávnením, logo a názov sú moje (mám k nim práva) a súhlasím so zverejnením názvu, loga a odkazu na stránke misia9.sk. IČO a e-mail slúžia len na overenie a komunikáciu so správcom stránky.</span>
+                    </label>
+                    <p id="msg" class="font-semibold min-h-[1.5rem]" aria-live="polite"></p>
+                    <button id="send" type="submit" class="w-full md:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Odoslať prihlášku</button>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-700 mb-2">Takto bude logo vyzerať:</p>
+                    <div class="bg-gradient-to-br from-blue-50 to-amber-50 rounded-2xl p-4 inline-block">
+                        <div class="tile">
+                            <img id="preview" alt="Náhľad loga" class="hidden">
+                            <div id="ph" class="ph"></div>
+                            <div id="pv-name" class="nm">Názov doučovateľa</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="done" class="hidden text-center py-6">
+                <div class="text-5xl mb-2">🎉</div>
+                <h2 class="font-heading text-2xl font-black text-gray-800 mb-2">Ďakujeme, prihláška je odoslaná!</h2>
+                <p class="text-gray-700 mb-4">Správca stránky ju skontroluje (vrátane IČO v živnostenskom registri). Po schválení sa vaše logo objaví po stranách hry.</p>
+                <a href="/" class="inline-block px-6 py-3 rounded-xl bg-primary text-white font-bold">Späť na hru 🐦</a>
+            </div>
+        </section>
+        <p class="text-xs text-gray-500 mt-4 text-center">Správca môže prihlášku zamietnuť alebo logo neskôr odstrániť, napríklad pri nevhodnom obsahu alebo neplatnom IČO.</p>
+    </main>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        let logoData = '';
+
+        // IČO: 8 číslic, posledná je kontrolná (modulo 11)
+        function icoOk(raw) {
+            const d = raw.replace(/\s/g, '');
+            if (!/^\d{6,8}$/.test(d)) return false;
+            const ico = d.padStart(8, '0');
+            let sum = 0;
+            for (let i = 0; i < 7; i++) sum += Number(ico[i]) * (8 - i);
+            const r = sum % 11, check = r === 0 ? 1 : r === 1 ? 0 : 11 - r;
+            return check === Number(ico[7]);
+        }
+
+        // logo -> 240 × 120 px, biele pozadie, do 150 kB
+        function canvasToDataUrl(canvas) {
+            let url = canvas.toDataURL('image/webp', 0.92);
+            if (!url.startsWith('data:image/webp')) url = canvas.toDataURL('image/png');
+            for (let q = 0.9; url.length * 0.75 > 145 * 1024 && q > 0.4; q -= 0.1) url = canvas.toDataURL('image/jpeg', q);
+            return url;
+        }
+        $('logo').addEventListener('change', () => {
+            const f = $('logo').files[0];
+            logoData = '';
+            if (!f) return;
+            if (f.size > 8 * 1024 * 1024) { msg('Obrázok je príliš veľký (max. 8 MB).', true); return; }
+            const img = new Image();
+            img.onload = () => {
+                const W = 240, H = 120, c = document.createElement('canvas');
+                c.width = W; c.height = H;
+                const ctx = c.getContext('2d');
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+                const pad = 8, s = Math.min((W - 2 * pad) / img.width, (H - 2 * pad) / img.height);
+                const w = img.width * s, h = img.height * s;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+                logoData = canvasToDataUrl(c);
+                $('preview').src = logoData; $('preview').classList.remove('hidden'); $('ph').classList.add('hidden');
+                URL.revokeObjectURL(img.src);
+                msg('');
+            };
+            img.onerror = () => msg('Tento obrázok sa nepodarilo otvoriť. Skús PNG alebo JPG.', true);
+            img.src = URL.createObjectURL(f);
+        });
+        $('name').addEventListener('input', () => { $('pv-name').textContent = $('name').value.trim() || 'Názov doučovateľa'; });
+        $('ico').addEventListener('input', () => { const v = $('ico').value.trim(); $('ico').classList.toggle('bad', v.length >= 8 && !icoOk(v)); });
+
+        function msg(t, bad) { $('msg').textContent = t; $('msg').className = 'font-semibold min-h-[1.5rem] ' + (bad ? 'text-red-600' : 'text-green-700'); }
+
+        $('form').addEventListener('submit', async e => {
+            e.preventDefault();
+            const name = $('name').value.trim(), url = $('url').value.trim(), ico = $('ico').value.trim(), email = $('email').value.trim();
+            if (name.length < 3) return msg('Napíš názov (aspoň 3 znaky).', true);
+            if (!/\./.test(url)) return msg('Napíš adresu svojej webovej stránky.', true);
+            if (!icoOk(ico)) return msg('IČO nie je platné. Skontroluj prosím všetkých 8 číslic.', true);
+            if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) return msg('Napíš platný kontaktný e-mail.', true);
+            if (!logoData) return msg('Pridaj prosím logo.', true);
+            if (!$('consent').checked) return msg('Potvrď prosím súhlas s podmienkami.', true);
+            $('send').disabled = true; msg('Odosielam…');
+            try {
+                const r = await fetch('/api/tutors', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, url, ico, email, logo: logoData, consent: true, website: $('website').value }) });
+                const d = await r.json().catch(() => ({}));
+                if (!r.ok) throw new Error(d.error || 'Prihlášku sa nepodarilo odoslať.');
+                $('form').classList.add('hidden'); $('done').classList.remove('hidden');
+            } catch (err) { msg(err.message, true); $('send').disabled = false; }
+        });
+    </script>
+</body>
+</html>

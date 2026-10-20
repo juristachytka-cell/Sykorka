@@ -43,6 +43,28 @@
         .right { text-align: right; }
         .empty { text-align: center; color: var(--muted); padding: 24px; }
         .hidden { display: none !important; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .tabs button { background: #fff; color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+        .tabs button[aria-selected="true"] { background: var(--primary); color: #fff; }
+        .pill { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: #f59e0b; color: #fff; font-size: .75rem; line-height: 20px; margin-left: 4px; }
+        .slots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .slot { background: var(--soft); border-radius: 10px; padding: 8px 10px; font-size: .9rem; margin-bottom: 6px; }
+        .slot.free { color: var(--muted); font-style: italic; }
+        .tcard { display: grid; grid-template-columns: 140px 1fr; gap: 16px; border: 2px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+        .tcard.pending { border-color: #fbbf24; background: #fffbeb; }
+        .tcard.approved { border-color: #a7f3d0; }
+        .tcard.hidden-st { opacity: .7; }
+        .tcard img { width: 124px; height: 62px; object-fit: contain; background: #fff; border-radius: 8px; border: 1px solid var(--line); padding: 4px; }
+        .tcard h3 { margin: 0 0 4px; font-size: 1.05rem; }
+        .tcard .meta { font-size: .88rem; color: var(--muted); margin: 2px 0; word-break: break-all; }
+        .tcard .meta a { color: var(--primary); }
+        .status { display: inline-block; font-size: .75rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
+        .status.pending { background: #fef3c7; color: #92400e; } .status.approved { background: #d1fae5; color: #065f46; } .status.hidden { background: #e5e7eb; color: #374151; }
+        .tactions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+        .tactions select { padding: 8px 10px; border: 2px solid var(--line); border-radius: 10px; font-size: .95rem; background: #fff; }
+        button.ok { background: var(--accent); }
+        button.danger { background: #fee2e2; color: var(--danger); }
+        @media (max-width: 600px) { .tcard { grid-template-columns: 1fr; } .slots { grid-template-columns: 1fr; } }
         .muted { color: var(--muted); font-size: .9rem; }
     </style>
 </head>
@@ -70,6 +92,12 @@
             </div>
         </header>
 
+        <nav class="tabs" role="tablist">
+            <button type="button" data-tab="results" role="tab" aria-selected="true">📊 Výsledky hráčov</button>
+            <button type="button" data-tab="tutors" role="tab" aria-selected="false">🎓 Doučovatelia<span id="pending-count" class="pill hidden"></span></button>
+        </nav>
+
+        <div id="tab-results">
         <div class="stats">
             <div class="stat"><b id="st-count">0</b><span>odohratých hier</span></div>
             <div class="stat"><b id="st-players">0</b><span>rôznych prezývok</span></div>
@@ -102,6 +130,24 @@
             <p id="app-err" class="err"></p>
         </div>
         <p class="muted">Tip: nevhodnú prezývku zmažeš tlačidlom „Zmazať“ – zmizne aj z verejného rebríčka.</p>
+        </div>
+
+        <div id="tab-tutors" class="hidden">
+            <div class="card">
+                <h2 style="margin-top:0">Miesta po stranách hry</h2>
+                <p class="muted" style="margin-top:0">Logá sa zobrazujú len na širokých obrazovkách (notebook, počítač). Na každej strane sú 4 miesta. Prihlášku nájdu doučovatelia na <a href="/pridat-doucovatela" target="_blank">misia9.sk/pridat-doucovatela</a>.</p>
+                <div class="slots">
+                    <div><b>Ľavá strana</b><div id="slots-left"></div></div>
+                    <div><b>Pravá strana</b><div id="slots-right"></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <h2 style="margin-top:0">Prihlášky</h2>
+                <p class="muted" style="margin-top:0">Pred schválením over IČO v registri: <a href="https://www.zrsr.sk/" target="_blank" rel="noopener">Živnostenský register (zrsr.sk)</a> alebo <a href="https://rpo.statistics.sk/" target="_blank" rel="noopener">Register právnických osôb (rpo.statistics.sk)</a>. Skontroluj aj, či web naozaj patrí doučovateľovi.</p>
+                <div id="tutor-list"><p class="empty">Načítavam…</p></div>
+                <p id="tutor-err" class="err"></p>
+            </div>
+        </div>
     </section>
 </div>
 
@@ -125,6 +171,100 @@
         return d;
     }
 
+    // ===== Doučovatelia =====
+    let tutors = [], SLOTS = 4;
+    const SIDE = { left: 'ľavá', right: 'pravá' };
+    const ST = { pending: 'čaká na schválenie', approved: 'schválený', hidden: 'skrytý' };
+    async function tApi(method, query = '', body) {
+        const headers = pw ? { Authorization: 'Bearer ' + pw } : {};
+        if (body) headers['Content-Type'] = 'application/json';
+        const r = await fetch('/api/admin/tutors' + query, { method, headers, credentials: 'same-origin', cache: 'no-store', body: body ? JSON.stringify(body) : undefined });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(d.error || 'Chyba ' + r.status);
+        return d;
+    }
+    async function loadTutors() {
+        try { const d = await tApi('GET'); tutors = d.tutors || []; SLOTS = d.slots || 4; renderTutorsAdmin(); }
+        catch (e) { $('tutor-err').textContent = 'Doučovateľov sa nepodarilo načítať: ' + e.message; }
+    }
+    const logoCache = {};
+    async function logoUrl(t) {
+        const k = t.id + (t.updated || '');
+        if (logoCache[k]) return logoCache[k];
+        const headers = pw ? { Authorization: 'Bearer ' + pw } : {};
+        const r = await fetch('/api/tutors/logo?id=' + t.id, { headers, credentials: 'same-origin', cache: 'no-store' });
+        if (!r.ok) return '';
+        return (logoCache[k] = URL.createObjectURL(await r.blob()));
+    }
+    function el(tag, attrs = {}, text) { const e = document.createElement(tag); Object.assign(e, attrs); if (text != null) e.textContent = text; return e; }
+    function renderTutorsAdmin() {
+        const pending = tutors.filter(t => t.status === 'pending').length;
+        $('pending-count').textContent = pending; $('pending-count').classList.toggle('hidden', !pending);
+        for (const side of ['left', 'right']) {
+            const box = $('slots-' + side); box.innerHTML = '';
+            for (let i = 1; i <= SLOTS; i++) {
+                const t = tutors.find(x => x.status === 'approved' && x.side === side && x.order === i);
+                box.appendChild(el('div', { className: 'slot' + (t ? '' : ' free') }, `${i}. ${t ? t.name : 'voľné'}`));
+            }
+        }
+        const list = $('tutor-list'); list.innerHTML = '';
+        if (!tutors.length) { list.appendChild(el('p', { className: 'empty' }, 'Zatiaľ žiadne prihlášky.')); return; }
+        const rank = { pending: 0, approved: 1, hidden: 2 };
+        [...tutors].sort((a, b) => rank[a.status] - rank[b.status] || (a.side + a.order).localeCompare(b.side + b.order) || b.created.localeCompare(a.created)).forEach(t => {
+            const card = el('div', { className: 'tcard ' + (t.status === 'hidden' ? 'hidden-st' : t.status) });
+            const img = el('img', { alt: t.name }); logoUrl(t).then(u => { if (u) img.src = u; });
+            const info = el('div');
+            const h = el('h3', {}, t.name); h.appendChild(el('span', { className: 'status ' + t.status }, ST[t.status] + (t.status === 'approved' ? ` · ${SIDE[t.side]} ${t.order}.` : '')));
+            const web = el('p', { className: 'meta' }, 'Web: '); web.appendChild(el('a', { href: t.url, target: '_blank', rel: 'noopener' }, t.url));
+            const ico = el('p', { className: 'meta' }, `IČO: ${t.ico} `);
+            const copy = el('button', { className: 'secondary', type: 'button', style: 'padding:2px 8px;font-size:.8rem' }, 'Kopírovať');
+            copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(t.ico); copy.textContent = 'Skopírované ✓'; };
+            ico.appendChild(copy);
+            const mail = el('p', { className: 'meta' }, 'E-mail: '); mail.appendChild(el('a', { href: 'mailto:' + t.email }, t.email));
+            const date = el('p', { className: 'meta' }, 'Prihláška: ' + fmtDate(t.created));
+            const acts = el('div', { className: 'tactions' });
+            const sideSel = el('select', { title: 'Strana' });
+            ['left', 'right'].forEach(v => sideSel.appendChild(el('option', { value: v, selected: t.side === v }, SIDE[v] + ' strana')));
+            const ordSel = el('select', { title: 'Poradie' });
+            for (let i = 1; i <= SLOTS; i++) ordSel.appendChild(el('option', { value: i, selected: t.order === i }, i + '. miesto'));
+            // pri novej prihláške predvyber prvé voľné miesto
+            if (t.status !== 'approved') {
+                outer: for (let i = 1; i <= SLOTS; i++) for (const sd of ['left', 'right']) if (!tutors.some(x => x.status === 'approved' && x.side === sd && x.order === i)) { sideSel.value = sd; ordSel.value = i; break outer; }
+            }
+            const act = async (action) => {
+                $('tutor-err').textContent = '';
+                try { const d = await tApi('POST', '', { id: t.id, action, side: sideSel.value, order: Number(ordSel.value) }); tutors = d.tutors; renderTutorsAdmin(); }
+                catch (e) { $('tutor-err').textContent = e.message; }
+            };
+            acts.append(sideSel, ordSel);
+            if (t.status === 'approved') {
+                const save = el('button', { type: 'button' }, 'Presunúť'); save.onclick = () => act('update');
+                const hide = el('button', { type: 'button', className: 'secondary' }, 'Skryť'); hide.onclick = () => act('hide');
+                acts.append(save, hide);
+            } else {
+                const ok = el('button', { type: 'button', className: 'ok' }, '✓ Schváliť a zobraziť'); ok.onclick = () => act('approve');
+                acts.append(ok);
+            }
+            const del = el('button', { type: 'button', className: 'danger' }, 'Zmazať');
+            del.onclick = async () => {
+                if (!confirm(`Naozaj zmazať prihlášku „${t.name}“ aj s logom? Nedá sa to vrátiť.`)) return;
+                try { await tApi('DELETE', '?id=' + encodeURIComponent(t.id)); tutors = tutors.filter(x => x.id !== t.id); renderTutorsAdmin(); }
+                catch (e) { $('tutor-err').textContent = e.message; }
+            };
+            acts.append(del);
+            info.append(h, web, ico, mail, date, acts);
+            card.append(img, info);
+            list.appendChild(card);
+        });
+    }
+    document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
+        document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+        $('tab-results').classList.toggle('hidden', b.dataset.tab !== 'results');
+        $('tab-tutors').classList.toggle('hidden', b.dataset.tab !== 'tutors');
+        $('csv').classList.toggle('hidden', b.dataset.tab !== 'results');
+        if (b.dataset.tab === 'tutors') loadTutors();
+    });
+
     async function load() {
         $('app-err').textContent = '';
         try {
@@ -135,6 +275,7 @@
             $('login').classList.add('hidden');
             $('app').classList.remove('hidden');
             render();
+            loadTutors();
         } catch (e) {
             if (e.status === 401 || e.status === 403 || e.status === 500) {
                 $('app').classList.add('hidden');

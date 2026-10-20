@@ -219,6 +219,25 @@
         .badge-desc { font-size: .72rem; color: #6b7280; margin-top: .15rem; }
         @keyframes badgePop { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 
+        /* Doučovatelia po stranách – len na širokej obrazovke (notebook, počítač) */
+        .tutor-col { display: none; }
+        @media (min-width: 1320px) {
+            .tutor-col { display: flex; position: fixed; top: 50%; transform: translateY(-50%); width: 136px; flex-direction: column; gap: 10px; z-index: 15; }
+            #tutors-left { left: 12px; } #tutors-right { right: 12px; }
+        }
+        .tutor-col .col-label { font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #6b7280; text-align: center; }
+        .tutor-col .col-label span { font-weight: 600; text-transform: none; letter-spacing: 0; color: #9ca3af; }
+        .tutor { display: block; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.08); text-align: center; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+        .tutor:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+        .tutor img { width: 124px; height: 62px; object-fit: contain; display: block; margin: 0 auto; border-radius: 6px; }
+        .tutor .nm { font-size: 11px; font-weight: 700; color: #374151; margin-top: 4px; line-height: 1.2; word-break: break-word; }
+        /* na mobile, tablete a menšom notebooku: karty dole nad copyrightom */
+        .tutors-bottom { display: block; }
+        @media (min-width: 1320px) { .tutors-bottom { display: none; } }
+        .tutors-bottom .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .tutors-bottom .tutor { width: 136px; }
+        .tutor.promo { background: rgba(255,255,255,.6); border: 2px dashed #93c5fd; box-shadow: none; padding: 10px 6px; color: #2563eb; font-size: 12px; font-weight: 800; line-height: 1.3; }
+
         @media (prefers-reduced-motion: reduce) {
             #bird .bob, #bird .wing, .hint-pulse { animation: none; }
         }
@@ -480,7 +499,16 @@
         </div>
     </section>
 
+    <!-- Doučovatelia po stranách (len notebook/počítač) -->
+    <aside id="tutors-left" class="tutor-col" aria-label="Doučovatelia"></aside>
+    <aside id="tutors-right" class="tutor-col" aria-label="Doučovatelia"></aside>
+
     <footer class="w-full text-center p-4 text-sm text-gray-500 flex flex-col items-center justify-center gap-2">
+        <p><a href="/pridat-doucovatela" class="font-bold text-primary hover:underline">🎓 Ste doučovateľ? Pridajte svoje logo na Misia9.sk</a></p>
+        <section id="tutors-bottom" class="tutors-bottom w-full max-w-5xl mx-auto py-2" aria-label="Doučovatelia">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Doučovatelia <span class="normal-case font-semibold tracking-normal text-gray-400">· reklama</span></p>
+            <div id="tutors-bottom-row" class="row"></div>
+        </section>
         <p>&copy; 2026 Sýkorkina misia · Misia9.sk – vzdelávaj sa hrou</p>
         <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-gray-200/50">
             <span class="text-lg" aria-hidden="true">📊</span>
@@ -1175,7 +1203,54 @@
             $('nick-help').className = 'text-xs text-gray-500 mb-3';
         }));
 
+        // ===== Doučovatelia po stranách (len na širokej obrazovke) =====
+        const SLOTS = 4;
+        const wideQuery = window.matchMedia('(min-width: 1320px)');
+        let tutorsLoaded = false;
+        function tutorTile(t) {
+            const a = document.createElement('a');
+            a.className = 'tutor'; a.href = t.url; a.target = '_blank'; a.rel = 'sponsored noopener';
+            a.title = `${t.name} – otvorí sa v novom okne`;
+            const img = document.createElement('img'); img.src = `/api/tutors/logo?id=${encodeURIComponent(t.id)}&v=${encodeURIComponent(t.v || '')}`; img.alt = t.name; img.loading = 'lazy'; img.width = 124; img.height = 62;
+            const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = t.name;
+            a.append(img, nm);
+            return a;
+        }
+        function renderTutors(list) {
+            // dole (mobil, tablet): všetky schválené, striedavo ľavá 1, pravá 1, ľavá 2…
+            const row = $('tutors-bottom-row');
+            row.innerHTML = '';
+            const both = list.filter(t => t.order <= SLOTS).sort((a, b) => a.order - b.order || (a.side === 'left' ? -1 : 1));
+            both.forEach(t => row.appendChild(tutorTile(t)));
+            if (both.length < SLOTS * 2) {
+                const promo = document.createElement('a'); promo.className = 'tutor promo'; promo.href = '/pridat-doucovatela';
+                promo.textContent = 'Ste doučovateľ? Tu môže byť vaše logo →';
+                row.appendChild(promo);
+            }
+            // po stranách (široká obrazovka)
+            for (const side of ['left', 'right']) {
+                const col = $(`tutors-${side}`);
+                col.innerHTML = '';
+                const label = document.createElement('div'); label.className = 'col-label'; label.innerHTML = 'Doučovatelia<br><span>reklama</span>';
+                col.appendChild(label);
+                const items = list.filter(t => t.side === side).sort((a, b) => a.order - b.order).slice(0, SLOTS);
+                items.forEach(t => col.appendChild(tutorTile(t)));
+                if (items.length < SLOTS) {
+                    const promo = document.createElement('a'); promo.className = 'tutor promo'; promo.href = '/pridat-doucovatela';
+                    promo.textContent = 'Ste doučovateľ? Tu môže byť vaše logo →';
+                    col.appendChild(promo);
+                }
+            }
+        }
+        function loadTutors() {
+            if (tutorsLoaded) return;
+            tutorsLoaded = true;
+            fetch('/api/tutors').then(r => r.ok ? r.json() : { tutors: [] }).then(d => renderTutors(d.tutors || [])).catch(() => renderTutors([]));
+        }
+        if (wideQuery.addEventListener) wideQuery.addEventListener('change', loadTutors);
+
         window.addEventListener('load', () => {
+            loadTutors();
             bird.style.left = `${(gameArea.clientWidth / 2) - 42}px`;
             bird.style.top = `${(gameArea.clientHeight / 2) - 34}px`;
             setLevel(level);

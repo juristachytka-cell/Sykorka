@@ -14,6 +14,12 @@
     </image:image>
   </url>
   <url>
+    <loc>https://misia9.sk/pridat-doucovatela</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://misia9.sk/llms.txt</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
