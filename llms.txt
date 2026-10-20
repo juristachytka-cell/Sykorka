@@ -2,19 +2,19 @@
 
 > Bezplatná online vzdelávacia hra v slovenčine na precvičovanie pravopisu a gramatiky slovenského jazyka. Hráč chytá poletujúcu sýkorku a v každej vete hľadá slovo s chybou. Hra má 9 kôl po 3 otázky (spolu 27 otázok), po každej odpovedi ukáže vysvetlenie pravidla a na konci si sýkorka sadne na strom. Beží priamo v prehliadači, bez registrácie, bez reklám a bez sťahovania.
 
-Pre koho: žiaci základných škôl (približne 3. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu, aj ako doplnok k príprave na Testovanie 9.
+Pre koho: žiaci základných škôl (približne 6. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu, aj ako doplnok k príprave na Testovanie 9.
 
 ## Čo hra precvičuje (9 kôl)
 
-1. Vybrané slová I – vysoký, syn, myš
-2. Vybrané slová II – motýľ, bylina, jazyk
-3. Tvrdé a mäkké spoluhlásky – žiak, chytiť, pesničky (di, ti, ni, li bez mäkčeňa)
-4. Minulý čas v množnom čísle – vždy koncovka -li (chytali, spievali, učili)
-5. Veľké písmená – dni v týždni, príslovky (slovensky), vlastné mená (Devín)
-6. Predložky s/so a z/zo – z domu, so susedom, z konára
-7. Číslovky – siedmi trpaslíci, dvaja žiaci, radová číslovka s bodkou (5. trieda)
-8. Zhoda v rode a čísle – dievča čítalo, jedno jablko, malí chlapci
-9. Finále: dĺžeň, vokáň a rytmický zákon – krásne, píšu, pôjdeme
+1. Vybrané slová a homonymá – pobyt, vír × výr, rozbiť (biť × byť)
+2. Vybrané slová a príbuzné slová – mýliť sa, lysý, sykol
+3. Predpony s-/so- a z-/zo- – zísť sa, schudnúť, zniesť
+4. Skloňovanie podstatných mien – kľúče (vzor stroj), rukami, so spolužiakmi
+5. Prídavné mená – pávie perá (vzor páví), cudzí, najrýchlejší
+6. Tvary slovies – pomôžte, rozumejú, chcú
+7. Veľké písmená – Vianoce, Gerlachovský štít, maďarské mesto
+8. Číslovky – obidvaja chlapci, 2. septembra, dvestopäťdesiat
+9. Finále: rytmický zákon, ä a spodobovanie – vrátia, mäso, lavička
 
 ## Odkazy
 
