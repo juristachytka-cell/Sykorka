@@ -241,6 +241,24 @@
         .tutor.free:hover { border-color: #3b82f6; background: #fff; }
         .tutor.promo { background: rgba(255,255,255,.6); border: 2px dashed #93c5fd; box-shadow: none; padding: 10px 6px; color: #2563eb; font-size: 12px; font-weight: 800; line-height: 1.3; }
 
+        /* okná vždy v rámci skutočne viditeľnej časti obrazovky (aj s lištou prehliadača na mobile) */
+        #q-box, #r-box { max-height: 95vh; max-height: calc(100dvh - 24px); }
+        #next-btn { position: sticky; bottom: 0; box-shadow: 0 -8px 16px rgba(255,255,255,.95), 0 4px 10px rgba(59,130,246,.3); }
+        @media (max-width: 640px), (max-height: 720px) {
+            #question-modal, #round-modal { padding: 8px; }
+            #q-box, #r-box { padding: 14px 16px 16px; border-top-width: 6px; border-radius: 1.25rem; max-height: calc(100dvh - 16px); }
+            #q-head { display: none; }
+            #q-chip { margin-bottom: 2px; }
+            #question-text { font-size: 1rem; line-height: 1.45; margin-bottom: 12px; padding: 8px 12px; }
+            #options-container { gap: 8px; }
+            #options-container .opt-btn { padding: 10px 14px; font-size: 1rem; border-radius: .75rem; }
+            #feedback { margin-top: 12px; padding: 10px 12px; border-radius: 1rem; }
+            #feedback-title { font-size: 1rem; margin-bottom: 2px; }
+            #feedback-text { font-size: .9rem; line-height: 1.4; }
+            #next-btn { margin-top: 12px; padding-top: 12px; padding-bottom: 12px; }
+            #r-box .text-5xl { font-size: 2.25rem; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             #bird .bob, #bird .wing, .hint-pulse { animation: none; }
         }
@@ -522,11 +540,11 @@
 
     <!-- Okno s otázkou -->
     <div id="question-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog" aria-labelledby="q-heading">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative border-t-8 border-secondary modal-enter max-h-[95vh] overflow-y-auto">
+        <div id="q-box" class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative border-t-8 border-secondary modal-enter overflow-y-auto">
             <div class="text-center mb-3">
                 <span id="q-chip" class="inline-block bg-secondary/20 text-amber-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Kolo 1 · Otázka 1 / 3</span>
             </div>
-            <div class="flex items-center justify-center gap-3 mb-5">
+            <div id="q-head" class="flex items-center justify-center gap-3 mb-5">
                 <span class="text-3xl" aria-hidden="true">🎯</span>
                 <h3 id="q-heading" class="font-heading text-2xl font-black text-gray-800">Sýkorka ťa testuje!</h3>
             </div>
@@ -542,7 +560,7 @@
 
     <!-- Okno po skončení kola -->
     <div id="round-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog" aria-labelledby="round-heading">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 text-center border-t-8 border-accent modal-enter">
+        <div id="r-box" class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 text-center border-t-8 border-accent modal-enter overflow-y-auto">
             <div class="text-5xl mb-2" aria-hidden="true">🎉</div>
             <h3 id="round-heading" class="font-heading text-2xl md:text-3xl font-black text-gray-800 mb-2">Kolo 1 je za tebou!</h3>
             <p id="round-result" class="text-gray-600 mb-1"></p>
