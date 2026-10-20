@@ -4,7 +4,8 @@ Statický web + jedna Cloudflare Pages Function (počítadlo návštev v KV).
 
 ## Súbory
 ```
-index.html            hra: 9 kôl × 3 otázky, hláška po kole, finále – sýkorka si sadne na strom
+index.html            hra: 9 kôl × 3 otázky, 2 úrovne, zvuky, chyby s vysvetlením, odznaky, finále na strome
+otazky.js             zásoba 306 otázok (2 úrovne × 9 tém × 17 viet)
 functions/api/counter.js   počítadlo návštev (GET /api/counter)
 functions/api/results.js   výsledky hráčov: prezývka, body, čas + verejný rebríček TOP 10 (/api/results)
 functions/api/admin/results.js   všetky výsledky + mazanie, len pre správcu (heslo, voliteľne Cloudflare Access)
@@ -29,14 +30,21 @@ _headers              hlavičky pre Cloudflare (bezpečnosť, cache, typy súbor
 4. Po nasadení: Google Search Console a Bing Webmaster Tools → pridaj misia9.sk → odošli `https://misia9.sk/sitemap.xml`.
 5. Skontroluj zdieľanie: https://developers.facebook.com/tools/debug/ a štruktúrované dáta: https://search.google.com/test/rich-results
 
-## Úprava otázok
-Otázky sú v `index.html` v poli `rounds`. Ak ich zmeníš, uprav aj `llms-full.txt` a dátum `lastmod` v `sitemap.xml`.
 
-## Výsledky a rebríček
-- Hráč zadá prezývku (2–20 znakov), čas sa meria od „Začať misiu“ po poslednú odpoveď.
-- Verejný rebríček TOP 10: viac bodov vyhráva, pri rovnosti rýchlejší čas; každá prezývka len raz (najlepší výsledok).
-- Na /vysledky vidíš všetky hry, štatistiky, hľadanie, export do CSV (Excel) a mazanie nevhodných prezývok.
-- Bezplatný Cloudflare KV zvládne cca 1 000 zápisov denne (počítadlo + výsledky spolu). Pri veľkej návštevnosti (stovky hier denne) zváž plán Workers Paid (5 USD/mesiac).
+## Otázky, rebríček a odznaky
+- **Otázky dňa:** každý deň o polnoci (slovenský čas) hra vyberie z každej témy 3 vety – pre všetkých hráčov rovnaké.
+  Vety sa striedajú v kruhu: 5 dní po sebe sa žiadna neopakuje, za 17 dní sa vystriedajú všetky.
+- **Úrovne:** 🌱 Ľahšia (3. – 5. ročník) a 🔥 Ťažšia (6. – 9. ročník), každá má vlastný rebríček.
+- **Denný rebríček TOP 10:** viac bodov vyhráva, pri rovnosti rýchlejší čas; každá prezývka len raz. O polnoci začína nový.
+- **Mesto** je nepovinné a zobrazí sa pri prezývke v rebríčku.
+- **Odznaky** (12 druhov) sa ukladajú v prehliadači hráča, nie na serveri.
+- **Zvuky** (čvirikanie) sa generujú v prehliadači, dajú sa vypnúť tlačidlom 🔊 v hlavičke.
+- Na /vysledky vidíš všetky hry (aj mesto a úroveň), štatistiky, filter, export do CSV a mazanie nevhodných prezývok.
+- Bezplatný Cloudflare KV zvládne cca 1 000 zápisov denne (počítadlo + výsledky spolu). Pri stovkách hier denne zváž plán Workers Paid (5 USD/mesiac).
+
+## Úprava otázok
+Otázky sú v súbore `otazky.js`. Každá veta má tvar `["veta s chybou", "chybné slovo", ["správne slovo", "správne slovo"], "vysvetlenie"]`.
+Obe ponúknuté správne slová musia byť vo vete. V každej téme nech ostane rovnaký počet viet (teraz 17).
 
 ## Voliteľne: prihlásenie cez Cloudflare Access namiesto hesla
 (Zero Trust môže pri registrácii vyžadovať platobnú kartu aj pri pláne Free. Heslo funguje bez toho.)

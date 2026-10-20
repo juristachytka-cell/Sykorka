@@ -1,129 +1,169 @@
-# Sýkorkina misia (Misia9.sk): všetky otázky
+# Sýkorkina misia (Misia9.sk): ukážky otázok
 
-> Úplný obsah hry Sýkorkina misia (https://misia9.sk/). 9 kôl × 3 otázky = 27 viet s jednou pravopisnou alebo gramatickou chybou. Pri každej vete je chybné slovo, správny tvar a vysvetlenie pravidla. Obsah je v slovenčine a je určený na precvičovanie pravopisu pre žiakov základných škôl.
+> Ukážky z hry Sýkorkina misia (https://misia9.sk/). Hra má 306 viet s jednou pravopisnou alebo gramatickou chybou v dvoch úrovniach; každý deň o polnoci vyberie 27 nových. Nižšie sú dve ukážky z každej témy – chybné slovo a vysvetlenie pravidla.
 
-## Kolo 1: Vybrané slová a homonymá
+## Ľahšia úroveň (3. – 5. ročník)
 
-1. Veta s chybou: „Počas pobitu v Tatrách sme videli kamzíky aj jelene.“
-   - Chybné slovo: pobitu
-   - Vysvetlenie: Správne je 'pobytu' – slovo pobyt je príbuzné s vybraným slovom byť (bývať), preto sa píše s tvrdým y. Slovo 'kamzíky' je správne – po k sa vždy píše y.
+### 1. Vybrané slová po B, M, P
 
-2. Veta s chybou: „Pod mostom sa na rieke vytvoril nebezpečný výr.“
-   - Chybné slovo: výr
-   - Vysvetlenie: Správne je 'vír' – krútiaca sa voda. Slovo 'výr' s tvrdým ý je sova a patrí medzi vybrané slová po V.
+- Veta s chybou: „Mačka naháňala po dvore malú miš a potom si ľahla na slnko.“
+  - Chybné slovo: miš
+  - Vysvetlenie: Správne je 'myš' – vybrané slovo po M sa píše s tvrdým y.
+- Veta s chybou: „Pred obedom si vždy umi ruky mydlom.“
+  - Chybné slovo: umi
+  - Vysvetlenie: Správne je 'umy' – sloveso umyť (myť) patrí medzi vybrané slová po M, preto aj v rozkaze píšeme y.
 
-3. Veta s chybou: „Mama sa pýtala, kto rozbyl jej obľúbenú vázu.“
-   - Chybné slovo: rozbyl
-   - Vysvetlenie: Správne je 'rozbil' – sloveso je odvodené od slova biť (udierať), nie od byť (existovať), preto sa píše s mäkkým i. Slovo 'pýtala' je vybrané slovo po P a je správne.
+### 2. Vybrané slová po L, R, S, V, Z
 
-## Kolo 2: Vybrané slová a príbuzné slová
+- Veta s chybou: „Sýkorka si postavila hniezdo na visokom strome pri potoku.“
+  - Chybné slovo: visokom
+  - Vysvetlenie: Správne je 'vysokom' – slovo vysoký je vybrané slovo po V, preto sa píše s tvrdým y.
+- Veta s chybou: „Dedko rozprával vnukovi, ako jeho sin kedysi chodil loviť ryby k rieke.“
+  - Chybné slovo: sin
+  - Vysvetlenie: Správne je 'syn' – ide o vybrané slovo po S, píše sa s tvrdým y.
 
-4. Veta s chybou: „Ak sa nemílim, vlak odchádza o ôsmej.“
-   - Chybné slovo: nemílim
-   - Vysvetlenie: Správne je 'nemýlim' – sloveso mýliť sa patrí medzi vybrané slová po M, preto sa píše s tvrdým ý.
+### 3. Tvrdé a mäkké spoluhlásky
 
-5. Veta s chybou: „Dedko je už úplne lísy, preto v zime nosí čiapku.“
-   - Chybné slovo: lísy
-   - Vysvetlenie: Správne je 'lysý' – slovo lysý (bez vlasov) patrí medzi vybrané slová po L, preto sa píše s tvrdým y.
+- Veta s chybou: „Malý žyak sa v triede vždy hlásil ako prvý.“
+  - Chybné slovo: žyak
+  - Vysvetlenie: Správne je 'žiak' – po mäkkej spoluhláske ž sa vždy píše mäkké i, y sa tam nikdy nepíše.
+- Veta s chybou: „Mladý vtáčik sa celé ráno snažil chitiť prvú muchu.“
+  - Chybné slovo: chitiť
+  - Vysvetlenie: Správne je 'chytiť' – po tvrdej spoluhláske ch sa v domácich slovách píše vždy y, nikdy i.
 
-6. Veta s chybou: „Had na nás zo skaly výstražne sikol.“
-   - Chybné slovo: sikol
-   - Vysvetlenie: Správne je 'sykol' – slovesá sykať a syknúť patria medzi vybrané slová po S, preto sa píšu s tvrdým y.
+### 4. Minulý čas v množnom čísle
 
-## Kolo 3: Predpony s-/so- a z-/zo-
+- Veta s chybou: „Chlapci išli v lete k rieke a chytaly tam ryby.“
+  - Chybné slovo: chytaly
+  - Vysvetlenie: Správne je 'chytali' – v minulom čase sa v množnom čísle (bez ohľadu na rod) vždy píše mäkké i, nie y.
+- Veta s chybou: „Na strome sedeli dve sýkorky a spievaly si.“
+  - Chybné slovo: spievaly
+  - Vysvetlenie: Správne je 'spievali' – sloveso v minulom čase s podmetom v množnom čísle vždy končí na -li, bez ohľadu na rod.
 
-7. Veta s chybou: „Po vyučovaní sa celá trieda sišla pred školou.“
-   - Chybné slovo: sišla
-   - Vysvetlenie: Správne je 'zišla' – predpona z-/zo- sa píše pred samohláskami a znelými spoluhláskami (zísť sa, zbehnúť, zložiť). Predpona s-/so- sa píše len pred neznelými spoluhláskami (spadnúť, stiahnuť).
+### 5. Veľké písmená
 
-8. Veta s chybou: „Cez leto som zchudol takmer tri kilá.“
-   - Chybné slovo: zchudol
-   - Vysvetlenie: Správne je 'schudol' – pred neznelou spoluhláskou ch sa píše predpona s-, rovnako ako v slovách spadnúť, stiahnuť či sčítať.
+- Veta s chybou: „Budúci Pondelok sa chystáme na výlet do lesa pozorovať vtáky.“
+  - Chybné slovo: Pondelok
+  - Vysvetlenie: Správne je 'pondelok' s malým p – názvy dní v týždni sa v slovenčine píšu s malým začiatočným písmenom.
+- Veta s chybou: „Môj kamarát je Nemec, ale doma rozpráva aj Slovensky.“
+  - Chybné slovo: Slovensky
+  - Vysvetlenie: Správne je 'slovensky' s malým s – príslovka vyjadrujúca spôsob reči sa píše s malým písmenom, veľké patrí len podstatnému menu Nemec.
 
-9. Veta s chybou: „Hasiči museli mačku sniesť zo stromu.“
-   - Chybné slovo: sniesť
-   - Vysvetlenie: Správne je 'zniesť' – pred zvučnou spoluhláskou n sa píše predpona z-, rovnako ako v slovách zmiznúť, zložiť, zlúčiť.
+### 6. Predložky s/so a z/zo
 
-## Kolo 4: Skloňovanie podstatných mien
+- Veta s chybou: „Dievčatko vybehlo s domu priamo na záhradu plnú kvetov.“
+  - Chybné slovo: s
+  - Vysvetlenie: Správne je 'z domu' – predložka z/zo vyjadruje pohyb von z niečoho a viaže sa s 2. pádom, kým s/so sa používa pri spoločenstve, napríklad 's kamarátom'.
+- Veta s chybou: „Ocko sa zo susedom dlho rozprával o futbale.“
+  - Chybné slovo: zo
+  - Vysvetlenie: Správne je 'so susedom' – predložka s/so vyjadruje spoločenstvo (s kým?) a viaže sa so 7. pádom. Pred slovom, ktoré sa začína na s, má tvar 'so'.
 
-10. Veta s chybou: „Mama nevedela nájsť kľúči od auta.“
-   - Chybné slovo: kľúči
-   - Vysvetlenie: Správne je 'kľúče' – podstatné meno kľúč sa skloňuje podľa vzoru stroj: tie kľúče, bez kľúčov (ako stroje, nože).
+### 7. Číslovky
 
-11. Veta s chybou: „Dieťa si zakrylo oči rukamy.“
-   - Chybné slovo: rukamy
-   - Vysvetlenie: Správne je 'rukami' – podstatné mená ženského rodu majú v 7. páde množného čísla koncovku -ami s mäkkým i (ženami, rukami).
+- Veta s chybou: „Siedmy trpaslíci sa vrátili z bane domov.“
+  - Chybné slovo: Siedmy
+  - Vysvetlenie: Správne je 'Siedmi trpaslíci' – základná číslovka sedem má pri podstatných menách mužského rodu, ktoré označujú osoby, tvar siedmi (ako piati, šiesti) a píše sa s mäkkým i.
+- Veta s chybou: „Do našej triedy prišli dva noví žiaci.“
+  - Chybné slovo: dva
+  - Vysvetlenie: Správne je 'dvaja' – pri podstatných menách mužského rodu, ktoré označujú osoby, používame tvary dvaja, traja, štyria.
 
-12. Veta s chybou: „S novými spolužiakmy sa rýchlo skamarátil.“
-   - Chybné slovo: spolužiakmy
-   - Vysvetlenie: Správne je 'spolužiakmi' – podstatné mená mužského rodu životného majú v 7. páde množného čísla koncovku -mi (s chlapmi, so spolužiakmi). Tvar 'novými' je správny – prídavné meno podľa vzoru pekný.
+### 8. Zhoda v rode a čísle
 
-## Kolo 5: Prídavné mená
+- Veta s chybou: „Malé dievča rýchlo čítal zaujímavú knihu o zvieratách.“
+  - Chybné slovo: čítal
+  - Vysvetlenie: Správne je 'čítalo' – podmet 'dievča' je v strednom rode jednotného čísla, preto sloveso v minulom čase musí mať príponu -lo.
+- Veta s chybou: „Pod stromom ležalo jeden červené jablko, ktoré v noci spadlo.“
+  - Chybné slovo: jeden
+  - Vysvetlenie: Správne je 'jedno' – číslovka sa zhoduje v rode s podstatným menom 'jablko', ktoré je stredného rodu.
 
-13. Veta s chybou: „Na zámku sme obdivovali krásne pávy perá.“
-   - Chybné slovo: pávy
-   - Vysvetlenie: Správne je 'pávie perá' – privlastňovacie prídavné meno od slova páv sa skloňuje podľa vzoru páví (páví chvost, pávie pero, pávie perá).
+### 9. Dĺžeň, vokáň, ä a rytmický zákon
 
-14. Veta s chybou: „Na chodbe stál nejaký cudzý pán.“
-   - Chybné slovo: cudzý
-   - Vysvetlenie: Správne je 'cudzí' – mäkké prídavné mená podľa vzoru cudzí majú vždy mäkké i/í (cudzí, cudzia, cudzie). Slovo 'nejaký' je správne – po k sa píše ý.
+- Veta s chybou: „Sýkorka mala na brušku krásné žlté pierka.“
+  - Chybné slovo: krásné
+  - Vysvetlenie: Správne je 'krásne' – podľa rytmického zákona nemôžu v slove nasledovať dve dlhé slabiky za sebou. Po dlhej slabike 'krá' preto nasleduje krátke -e.
+- Veta s chybou: „Deti v škole píšú ťažký diktát.“
+  - Chybné slovo: píšú
+  - Vysvetlenie: Správne je 'píšu' – podľa rytmického zákona po dlhej slabike 'pí' nasleduje krátka koncovka -u.
 
-15. Veta s chybou: „Do finále postúpili iba najrýchlejšý bežci.“
-   - Chybné slovo: najrýchlejšý
-   - Vysvetlenie: Správne je 'najrýchlejší' – prídavné mená v 2. a 3. stupni sa skloňujú podľa vzoru cudzí, preto majú vždy mäkké í (rýchlejší, najrýchlejší).
+## Ťažšia úroveň (6. – 9. ročník)
 
-## Kolo 6: Tvary slovies
+### 1. Vybrané slová a homonymá
 
-16. Veta s chybou: „Prosím vás, pomožte mi s tou ťažkou taškou.“
-   - Chybné slovo: pomožte
-   - Vysvetlenie: Správne je 'pomôžte' – rozkazovací spôsob slovesa pomôcť má tvary s ô: pomôž, pomôžme, pomôžte.
+- Veta s chybou: „Počas pobitu v Tatrách sme videli kamzíky aj jelene.“
+  - Chybné slovo: pobitu
+  - Vysvetlenie: Správne je 'pobytu' – slovo pobyt je príbuzné s vybraným slovom byť (bývať), preto sa píše s tvrdým y. Slovo 'kamzíky' je správne – po k sa vždy píše y.
+- Veta s chybou: „Pod mostom sa na rieke vytvoril nebezpečný výr.“
+  - Chybné slovo: výr
+  - Vysvetlenie: Správne je 'vír' – krútiaca sa voda. Slovo 'výr' s tvrdým ý je sova a patrí medzi vybrané slová po V.
 
-17. Veta s chybou: „Žiaci tejto úlohe vôbec nerozumia.“
-   - Chybné slovo: nerozumia
-   - Vysvetlenie: Správne je 'nerozumejú' – sloveso rozumieť má v 3. osobe množného čísla tvar (oni) rozumejú.
+### 2. Vybrané slová a príbuzné slová
 
-18. Veta s chybou: „Deti chcia ísť po škole na ihrisko.“
-   - Chybné slovo: chcia
-   - Vysvetlenie: Správne je 'chcú' – sloveso chcieť má tvary chcem, chceš, chce, chceme, chcete, chcú.
+- Veta s chybou: „Ak sa nemílim, vlak odchádza o ôsmej.“
+  - Chybné slovo: nemílim
+  - Vysvetlenie: Správne je 'nemýlim' – sloveso mýliť sa patrí medzi vybrané slová po M, preto sa píše s tvrdým ý.
+- Veta s chybou: „Dedko je už úplne lísy, preto v zime nosí čiapku.“
+  - Chybné slovo: lísy
+  - Vysvetlenie: Správne je 'lysý' – slovo lysý (bez vlasov) patrí medzi vybrané slová po L, preto sa píše s tvrdým y.
 
-## Kolo 7: Veľké písmená
+### 3. Predpony s-/so- a z-/zo-
 
-19. Veta s chybou: „Na vianoce cestujeme za starými rodičmi.“
-   - Chybné slovo: vianoce
-   - Vysvetlenie: Správne je 'Vianoce' – názvy sviatkov sa píšu s veľkým začiatočným písmenom (Vianoce, Veľká noc).
+- Veta s chybou: „Po vyučovaní sa celá trieda sišla pred školou.“
+  - Chybné slovo: sišla
+  - Vysvetlenie: Správne je 'zišla' – predpona z-/zo- sa píše pred samohláskami a znelými spoluhláskami (zísť sa, zbehnúť, zložiť). Predpona s-/so- sa píše len pred neznelými spoluhláskami (spadnúť, stiahnuť).
+- Veta s chybou: „Cez leto som zchudol takmer tri kilá.“
+  - Chybné slovo: zchudol
+  - Vysvetlenie: Správne je 'schudol' – pred neznelou spoluhláskou ch sa píše predpona s-, rovnako ako v slovách spadnúť, stiahnuť či sčítať.
 
-20. Veta s chybou: „Najvyšší vrch Slovenska je Gerlachovský Štít.“
-   - Chybné slovo: Štít
-   - Vysvetlenie: Správne je 'Gerlachovský štít' – vo viacslovných zemepisných názvoch sa veľkým písmenom píše len prvé slovo a slová, ktoré sú samy vlastnými menami (Gerlachovský štít, Štrbské pleso).
+### 4. Skloňovanie podstatných mien
 
-21. Veta s chybou: „Leto sme strávili pri Balatone a v Maďarskom meste Siófok.“
-   - Chybné slovo: Maďarskom
-   - Vysvetlenie: Správne je 'v maďarskom meste' – prídavné mená utvorené od názvov krajín sa píšu s malým písmenom, ak nie sú súčasťou vlastného mena.
+- Veta s chybou: „Mama nevedela nájsť kľúči od auta.“
+  - Chybné slovo: kľúči
+  - Vysvetlenie: Správne je 'kľúče' – podstatné meno kľúč sa skloňuje podľa vzoru stroj: tie kľúče, bez kľúčov (ako stroje, nože).
+- Veta s chybou: „Dieťa si zakrylo oči rukamy.“
+  - Chybné slovo: rukamy
+  - Vysvetlenie: Správne je 'rukami' – podstatné mená ženského rodu majú v 7. páde množného čísla koncovku -ami s mäkkým i (ženami, rukami).
 
-## Kolo 8: Číslovky
+### 5. Prídavné mená
 
-22. Veta s chybou: „Obidva chlapci prišli neskoro.“
-   - Chybné slovo: Obidva
-   - Vysvetlenie: Správne je 'Obidvaja chlapci' – pri podstatných menách mužského rodu, ktoré označujú osoby, používame tvar obaja alebo obidvaja (ako dvaja, traja).
+- Veta s chybou: „Na zámku sme obdivovali krásne pávy perá.“
+  - Chybné slovo: pávy
+  - Vysvetlenie: Správne je 'pávie perá' – privlastňovacie prídavné meno od slova páv sa skloňuje podľa vzoru páví (páví chvost, pávie pero, pávie perá).
+- Veta s chybou: „Na chodbe stál nejaký cudzý pán.“
+  - Chybné slovo: cudzý
+  - Vysvetlenie: Správne je 'cudzí' – mäkké prídavné mená podľa vzoru cudzí majú vždy mäkké i/í (cudzí, cudzia, cudzie). Slovo 'nejaký' je správne – po k sa píše ý.
 
-23. Veta s chybou: „Školský rok sa začína 2 septembra.“
-   - Chybné slovo: 2
-   - Vysvetlenie: Správne je '2. septembra' – deň v dátume je radová číslovka, a keď ju píšeme číslicou, vždy za ňou dávame bodku.
+### 6. Tvary slovies
 
-24. Veta s chybou: „Kniha mala dve sto päťdesiat strán.“
-   - Chybné slovo: dve sto päťdesiat
-   - Vysvetlenie: Správne je 'dvestopäťdesiat' – základné číslovky do 999 999 píšeme spolu ako jedno slovo.
+- Veta s chybou: „Prosím vás, pomožte mi s tou ťažkou taškou.“
+  - Chybné slovo: pomožte
+  - Vysvetlenie: Správne je 'pomôžte' – rozkazovací spôsob slovesa pomôcť má tvary s ô: pomôž, pomôžme, pomôžte.
+- Veta s chybou: „Žiaci tejto úlohe vôbec nerozumia.“
+  - Chybné slovo: nerozumia
+  - Vysvetlenie: Správne je 'nerozumejú' – sloveso rozumieť má v 3. osobe množného čísla tvar (oni) rozumejú.
 
-## Kolo 9: Finále: rytmický zákon, ä a spodobovanie
+### 7. Veľké písmená
 
-25. Veta s chybou: „Rodičia sa vrátía z dovolenky až v nedeľu.“
-   - Chybné slovo: vrátía
-   - Vysvetlenie: Správne je 'vrátia' – v 3. osobe množného čísla majú slovesá koncovku -ia (chvália, vrátia). Je to jedna z výnimiek z rytmického zákona, preto tam ďalší dĺžeň nepíšeme.
+- Veta s chybou: „Na vianoce cestujeme za starými rodičmi.“
+  - Chybné slovo: vianoce
+  - Vysvetlenie: Správne je 'Vianoce' – názvy sviatkov sa píšu s veľkým začiatočným písmenom (Vianoce, Veľká noc).
+- Veta s chybou: „Najvyšší vrch Slovenska je Gerlachovský Štít.“
+  - Chybné slovo: Štít
+  - Vysvetlenie: Správne je 'Gerlachovský štít' – vo viacslovných zemepisných názvoch sa veľkým písmenom píše len prvé slovo a slová, ktoré sú samy vlastnými menami (Gerlachovský štít, Štrbské pleso).
 
-26. Veta s chybou: „Na desiatu som si dal pečivo s mesom.“
-   - Chybné slovo: mesom
-   - Vysvetlenie: Správne je 'mäsom' – v slove mäso a v slovách od neho odvodených sa píše ä (široké e).
+### 8. Číslovky
 
-27. Veta s chybou: „Pred domom stojí stará drevená lafička.“
-   - Chybné slovo: lafička
-   - Vysvetlenie: Správne je 'lavička' – hoci vyslovujeme [lafička], píšeme v podľa základného slova lavica. Pri spodobovaní sa riadime pravopisom príbuzných slov.
+- Veta s chybou: „Obidva chlapci prišli neskoro.“
+  - Chybné slovo: Obidva
+  - Vysvetlenie: Správne je 'Obidvaja chlapci' – pri podstatných menách mužského rodu, ktoré označujú osoby, používame tvar obaja alebo obidvaja (ako dvaja, traja).
+- Veta s chybou: „Školský rok sa začína 2 septembra.“
+  - Chybné slovo: 2
+  - Vysvetlenie: Správne je '2. septembra' – deň v dátume je radová číslovka, a keď ju píšeme číslicou, vždy za ňou dávame bodku.
+
+### 9. Rytmický zákon, ä a spodobovanie
+
+- Veta s chybou: „Rodičia sa vrátía z dovolenky až v nedeľu.“
+  - Chybné slovo: vrátía
+  - Vysvetlenie: Správne je 'vrátia' – v 3. osobe množného čísla majú slovesá koncovku -ia (chvália, vrátia). Je to jedna z výnimiek z rytmického zákona, preto tam ďalší dĺžeň nepíšeme.
+- Veta s chybou: „Na desiatu som si dal pečivo s mesom.“
+  - Chybné slovo: mesom
+  - Vysvetlenie: Správne je 'mäsom' – v slove mäso a v slovách od neho odvodených sa píše ä (široké e).

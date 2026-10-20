@@ -31,6 +31,8 @@
         .stat span { color: var(--muted); font-size: .85rem; }
         .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
         .toolbar input { flex: 1; min-width: 180px; }
+        .toolbar select { padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; font-size: 1rem; background: #fff; }
+        td.city { color: var(--muted); white-space: normal; }
         .table-wrap { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
         th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
@@ -78,7 +80,8 @@
 
         <div class="card">
             <div class="toolbar">
-                <input id="filter" type="search" placeholder="Hľadať prezývku…" aria-label="Hľadať prezývku">
+                <input id="filter" type="search" placeholder="Hľadať prezývku alebo mesto…" aria-label="Hľadať prezývku alebo mesto">
+                <select id="lvl" aria-label="Úroveň"><option value="">Všetky úrovne</option><option value="easy">🌱 Ľahšia</option><option value="hard">🔥 Ťažšia</option></select>
             </div>
             <div class="table-wrap">
                 <table>
@@ -86,12 +89,14 @@
                         <tr>
                             <th data-sort="date" class="sorted">Dátum a čas</th>
                             <th data-sort="name">Prezývka</th>
+                            <th data-sort="city">Mesto</th>
+                            <th data-sort="level">Úroveň</th>
                             <th data-sort="score" class="right">Body</th>
                             <th data-sort="timeMs" class="right">Čas hry</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody id="rows"><tr><td colspan="5" class="empty">Načítavam…</td></tr></tbody>
+                    <tbody id="rows"><tr><td colspan="7" class="empty">Načítavam…</td></tr></tbody>
                 </table>
             </div>
             <p id="app-err" class="err"></p>
@@ -103,6 +108,7 @@
 <script>
     const $ = id => document.getElementById(id);
     let data = [];
+    const LV = { easy: '🌱 Ľahšia', hard: '🔥 Ťažšia' }, LV_TXT = { easy: 'Ľahšia', hard: 'Ťažšia' };
     let pw = '', method = '';
     try { pw = sessionStorage.getItem('misia9_admin') || ''; } catch (e) {}
     let sortKey = 'date', sortAsc = false;
@@ -153,10 +159,11 @@
 
     function render() {
         const q = $('filter').value.trim().toLowerCase();
-        const rows = data.filter(r => !q || r.name.toLowerCase().includes(q));
+        const lv = $('lvl').value;
+        const rows = data.filter(r => (!q || r.name.toLowerCase().includes(q) || (r.city || '').toLowerCase().includes(q)) && (!lv || r.level === lv));
         rows.sort((a, b) => {
             let x = a[sortKey], y = b[sortKey];
-            if (sortKey === 'name') { x = x.toLowerCase(); y = y.toLowerCase(); }
+            if (sortKey === 'name' || sortKey === 'city' || sortKey === 'level') { x = (x || '').toLowerCase(); y = (y || '').toLowerCase(); }
             return (x < y ? -1 : x > y ? 1 : 0) * (sortAsc ? 1 : -1);
         });
 
@@ -174,10 +181,10 @@
 
         const tb = $('rows');
         tb.innerHTML = '';
-        if (!rows.length) { tb.innerHTML = `<tr><td colspan="5" class="empty">${data.length ? 'Nič sa nenašlo.' : 'Zatiaľ nikto nedohral hru.'}</td></tr>`; return; }
+        if (!rows.length) { tb.innerHTML = `<tr><td colspan="7" class="empty">${data.length ? 'Nič sa nenašlo.' : 'Zatiaľ nikto nedohral hru.'}</td></tr>`; return; }
         for (const r of rows) {
             const tr = document.createElement('tr');
-            const cells = [[fmtDate(r.date), ''], [r.name, 'name'], [`${r.score} / 27`, 'right'], [fmtTime(r.timeMs), 'right']];
+            const cells = [[fmtDate(r.date), ''], [r.name, 'name'], [r.city || '–', 'city'], [LV[r.level] || '–', ''], [`${r.score} / 27`, 'right'], [fmtTime(r.timeMs), 'right']];
             for (const [text, cls] of cells) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); }
             const td = document.createElement('td'); td.className = 'right';
             const b = document.createElement('button'); b.className = 'del'; b.textContent = 'Zmazať';
@@ -195,8 +202,8 @@
 
     function downloadCsv() {
         const esc = v => `"${String(v).replace(/"/g, '""')}"`;
-        const lines = [['Dátum', 'Prezývka', 'Body', 'Čas (m:ss)', 'Čas (sekundy)'].map(esc).join(';')];
-        for (const r of data) lines.push([fmtDate(r.date), r.name, r.score, fmtTime(r.timeMs), Math.round(r.timeMs / 1000)].map(esc).join(';'));
+        const lines = [['Dátum', 'Prezývka', 'Mesto', 'Úroveň', 'Body', 'Čas (m:ss)', 'Čas (sekundy)'].map(esc).join(';')];
+        for (const r of data) lines.push([fmtDate(r.date), r.name, r.city || '', LV_TXT[r.level] || '', r.score, fmtTime(r.timeMs), Math.round(r.timeMs / 1000)].map(esc).join(';'));
         const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
@@ -218,8 +225,9 @@
     $('refresh').onclick = load;
     $('csv').onclick = downloadCsv;
     $('filter').oninput = render;
+    $('lvl').onchange = render;
     document.querySelectorAll('th[data-sort]').forEach(th => th.onclick = () => {
-        if (sortKey === th.dataset.sort) sortAsc = !sortAsc; else { sortKey = th.dataset.sort; sortAsc = sortKey === 'name'; }
+        if (sortKey === th.dataset.sort) sortAsc = !sortAsc; else { sortKey = th.dataset.sort; sortAsc = ['name', 'city', 'level'].includes(sortKey); }
         render();
     });
 

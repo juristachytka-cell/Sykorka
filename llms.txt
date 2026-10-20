@@ -1,30 +1,43 @@
 # Sýkorkina misia (Misia9.sk)
 
-> Bezplatná online vzdelávacia hra v slovenčine na precvičovanie pravopisu a gramatiky slovenského jazyka. Hráč chytá poletujúcu sýkorku a v každej vete hľadá slovo s chybou. Hra má 9 kôl po 3 otázky (spolu 27 otázok), po každej odpovedi ukáže vysvetlenie pravidla a na konci si sýkorka sadne na strom. Beží priamo v prehliadači, bez registrácie, bez reklám a bez sťahovania.
+> Bezplatná online vzdelávacia hra v slovenčine na precvičovanie pravopisu a gramatiky slovenského jazyka. Hráč chytá poletujúcu sýkorku a v každej vete hľadá slovo s chybou. Hra má 306 viet v dvoch úrovniach a každý deň o polnoci (slovenský čas) z nich vyberie 27 nových – 9 kôl po 3 otázky. Po každej odpovedi ukáže vysvetlenie pravidla, na konci prehľad chýb, denný rebríček TOP 10 a odznaky. Beží priamo v prehliadači, bez registrácie, bez reklám a bez sťahovania.
 
-Pre koho: žiaci základných škôl (približne 6. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu, aj ako doplnok k príprave na Testovanie 9.
+Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťažšia 6. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu, aj ako doplnok k príprave na Testovanie 9.
 
-## Čo hra precvičuje (9 kôl)
+## Ľahšia úroveň (9 tém po 17 viet)
 
-1. Vybrané slová a homonymá – pobyt, vír × výr, rozbiť (biť × byť)
-2. Vybrané slová a príbuzné slová – mýliť sa, lysý, sykol
-3. Predpony s-/so- a z-/zo- – zísť sa, schudnúť, zniesť
-4. Skloňovanie podstatných mien – kľúče (vzor stroj), rukami, so spolužiakmi
-5. Prídavné mená – pávie perá (vzor páví), cudzí, najrýchlejší
-6. Tvary slovies – pomôžte, rozumejú, chcú
-7. Veľké písmená – Vianoce, Gerlachovský štít, maďarské mesto
-8. Číslovky – obidvaja chlapci, 2. septembra, dvestopäťdesiat
-9. Finále: rytmický zákon, ä a spodobovanie – vrátia, mäso, lavička
+1. Vybrané slová po B, M, P – myš, byt, bystrý, pýtať sa
+2. Vybrané slová po L, R, S, V, Z – vysoký, syn, lyže, rýchlo, nazývať
+3. Tvrdé a mäkké spoluhlásky – žiak, chytiť, pesničky, týždeň
+4. Minulý čas v množnom čísle – vždy -li (chytali, spievali)
+5. Veľké písmená – dni, mesiace, mestá, rieky, sviatky
+6. Predložky s/so a z/zo – z domu, so susedom, s kamarátom
+7. Číslovky – dvaja chlapci, dve sestry, 5. trieda
+8. Zhoda v rode a čísle – dievča čítalo, jedno jablko
+9. Dĺžeň, vokáň, ä a rytmický zákon – krásne, kôň, päť, mlieko
+
+## Ťažšia úroveň (9 tém po 17 viet)
+
+1. Vybrané slová a homonymá – vír × výr, biť × byť, bidlo × bydlo, viť × vyť
+2. Vybrané slová a príbuzné slová – mýliť sa, lysý, zvyk, Myjava
+3. Predpony s-/so- a z-/zo- – zísť sa, schudnúť, zniesť, sfúknuť
+4. Skloňovanie podstatných mien – kľúče, rukami, kostiach, jahôd
+5. Prídavné mená – pávie perá, cudzí, mladšia, mamina
+6. Tvary slovies – pomôžte, rozumejú, chcú, stoja, choďte
+7. Veľké písmená – Gerlachovský štít, Slovenská republika, Stará Ľubovňa
+8. Číslovky – obidvaja, dvoje dvere, trojnásobný, o pol ôsmej
+9. Rytmický zákon, ä a spodobovanie – vrátia, básní, lavička, hádka
 
 ## Odkazy
 
 - [Hra Sýkorkina misia](https://misia9.sk/): spustenie hry priamo v prehliadači
-- [Všetky otázky s vysvetleniami](https://misia9.sk/llms-full.txt): úplný zoznam 27 viet, správnych tvarov a pravidiel
+- [Ukážky otázok s vysvetleniami](https://misia9.sk/llms-full.txt): vybrané vety z každej témy a pravidlá
 
 ## Fakty
 
 - Jazyk: slovenčina (sk)
 - Cena: zadarmo
-- Registrácia: nie je potrebná
-- Formát: interaktívny kvíz / hra, jedna HTML stránka
-- Typ úlohy: nájdi pravopisnú alebo gramatickú chybu vo vete (výber z 3 slov)
+- Registrácia: nie je potrebná (stačí prezývka, mesto je nepovinné)
+- Počet otázok: 306 (2 úrovne × 9 tém × 17 viet), denne sa hrá 27
+- Formát: interaktívny kvíz / hra, typ úlohy: nájdi pravopisnú alebo gramatickú chybu vo vete (výber z 3 slov)
+- Novinky každý deň: nové otázky a nový rebríček o polnoci
