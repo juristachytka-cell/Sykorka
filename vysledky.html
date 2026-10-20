@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výsledky hráčov | Sýkorkina misia</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <style>
+        :root { --bg: #f5f7fb; --card: #fff; --text: #1f2937; --muted: #6b7280; --line: #e5e7eb; --primary: #3B82F6; --accent: #10B981; --danger: #ef4444; --soft: #eff6ff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+        .wrap { max-width: 1000px; margin: 0 auto; padding: 24px 16px 48px; }
+        header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+        h1 { margin: 0; font-size: 1.5rem; }
+        h1 a { color: inherit; text-decoration: none; }
+        .card { background: var(--card); border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); padding: 20px; margin-bottom: 16px; }
+        .login { max-width: 380px; margin: 60px auto; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; }
+        input { width: 100%; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; font-size: 1rem; }
+        input:focus { outline: none; border-color: var(--primary); }
+        button, .btn { cursor: pointer; border: 0; border-radius: 10px; padding: 10px 16px; font-weight: 700; font-size: .95rem; background: var(--primary); color: #fff; }
+        button.secondary { background: var(--soft); color: var(--primary); }
+        button.del { background: transparent; color: var(--danger); padding: 4px 8px; font-size: .85rem; }
+        button.del:hover { background: #fee2e2; }
+        .err { color: var(--danger); font-weight: 600; min-height: 1.2em; margin: 8px 0 0; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+        .stat { background: var(--card); border-radius: 14px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+        .stat b { display: block; font-size: 1.6rem; }
+        .stat span { color: var(--muted); font-size: .85rem; }
+        .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .toolbar input { flex: 1; min-width: 180px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+        td.name { white-space: normal; word-break: break-all; font-weight: 600; }
+        th { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); cursor: pointer; user-select: none; }
+        th.sorted::after { content: " ▾"; }
+        th.sorted.asc::after { content: " ▴"; }
+        .right { text-align: right; }
+        .empty { text-align: center; color: var(--muted); padding: 24px; }
+        .hidden { display: none !important; }
+        .muted { color: var(--muted); font-size: .9rem; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <section id="login" class="card login">
+        <h1>🔒 Výsledky hráčov</h1>
+        <p id="login-msg" class="muted">Overujem prístup…</p>
+        <form id="login-form" class="hidden">
+            <label for="pw">Heslo</label>
+            <input id="pw" type="password" autocomplete="current-password" required>
+            <p id="login-err" class="err"></p>
+            <button type="submit" style="width:100%">Prihlásiť sa</button>
+        </form>
+        <a id="login-again" class="btn hidden" href="/vysledky" style="display:inline-block;text-decoration:none">Prihlásiť sa znova</a>
+    </section>
+
+    <section id="app" class="hidden">
+        <header>
+            <div><h1>🐦 <a href="/">Sýkorkina misia</a> – výsledky</h1><span id="who" class="muted"></span></div>
+            <div style="display:flex;gap:8px">
+                <button id="refresh" class="secondary">Obnoviť</button>
+                <button id="csv">Stiahnuť CSV</button>
+                <button id="logout" class="secondary">Odhlásiť</button>
+            </div>
+        </header>
+
+        <div class="stats">
+            <div class="stat"><b id="st-count">0</b><span>odohratých hier</span></div>
+            <div class="stat"><b id="st-players">0</b><span>rôznych prezývok</span></div>
+            <div class="stat"><b id="st-score">–</b><span>priemerné skóre</span></div>
+            <div class="stat"><b id="st-time">–</b><span>priemerný čas</span></div>
+            <div class="stat"><b id="st-today">0</b><span>hier dnes</span></div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <input id="filter" type="search" placeholder="Hľadať prezývku…" aria-label="Hľadať prezývku">
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-sort="date" class="sorted">Dátum a čas</th>
+                            <th data-sort="name">Prezývka</th>
+                            <th data-sort="score" class="right">Body</th>
+                            <th data-sort="timeMs" class="right">Čas hry</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows"><tr><td colspan="5" class="empty">Načítavam…</td></tr></tbody>
+                </table>
+            </div>
+            <p id="app-err" class="err"></p>
+        </div>
+        <p class="muted">Tip: nevhodnú prezývku zmažeš tlačidlom „Zmazať“ – zmizne aj z verejného rebríčka.</p>
+    </section>
+</div>
+
+<script>
+    const $ = id => document.getElementById(id);
+    let data = [];
+    let pw = '', method = '';
+    try { pw = sessionStorage.getItem('misia9_admin') || ''; } catch (e) {}
+    let sortKey = 'date', sortAsc = false;
+
+
+    const fmtTime = ms => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+    const fmtDate = iso => new Date(iso).toLocaleString('sk-SK', { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    async function api(method, query = '') {
+        const headers = pw ? { Authorization: 'Bearer ' + pw } : {};
+        const r = await fetch('/api/admin/results' + query, { method, headers, credentials: 'same-origin', cache: 'no-store' });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok) { const e = new Error(d.error || 'Chyba ' + r.status); e.status = r.status; e.login = d.login; throw e; }
+        return d;
+    }
+
+    async function load() {
+        $('app-err').textContent = '';
+        try {
+            const d = await api('GET');
+            data = d.results || [];
+            method = d.method || '';
+            $('who').textContent = d.user ? 'Prihlásený účet: ' + d.user : '';
+            $('login').classList.add('hidden');
+            $('app').classList.remove('hidden');
+            render();
+        } catch (e) {
+            if (e.status === 401 || e.status === 403 || e.status === 500) {
+                $('app').classList.add('hidden');
+                $('login').classList.remove('hidden');
+                if (e.login === 'password') {
+                    try { sessionStorage.removeItem('misia9_admin'); } catch (x) {}
+                    $('login-msg').textContent = 'Súkromná stránka Sýkorkinej misie. Zadaj svoje heslo.';
+                    $('login-form').classList.remove('hidden');
+                    $('login-err').textContent = pw ? e.message : '';
+                    pw = '';
+                    $('pw').value = ''; $('pw').focus();
+                } else {
+                    $('login-msg').textContent = 'Táto stránka je len pre správcu webu.';
+                    $('login-err').textContent = e.message;
+                    $('login-again').classList.remove('hidden');
+                }
+            } else {
+                $('app-err').textContent = 'Nepodarilo sa načítať výsledky: ' + e.message;
+            }
+        }
+    }
+
+    function render() {
+        const q = $('filter').value.trim().toLowerCase();
+        const rows = data.filter(r => !q || r.name.toLowerCase().includes(q));
+        rows.sort((a, b) => {
+            let x = a[sortKey], y = b[sortKey];
+            if (sortKey === 'name') { x = x.toLowerCase(); y = y.toLowerCase(); }
+            return (x < y ? -1 : x > y ? 1 : 0) * (sortAsc ? 1 : -1);
+        });
+
+        const today = new Date().toDateString();
+        $('st-count').textContent = data.length;
+        $('st-players').textContent = new Set(data.map(r => r.name.toLowerCase())).size;
+        $('st-score').textContent = data.length ? (data.reduce((s, r) => s + r.score, 0) / data.length).toFixed(1) + ' / 27' : '–';
+        $('st-time').textContent = data.length ? fmtTime(data.reduce((s, r) => s + r.timeMs, 0) / data.length) : '–';
+        $('st-today').textContent = data.filter(r => new Date(r.date).toDateString() === today).length;
+
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.classList.toggle('sorted', th.dataset.sort === sortKey);
+            th.classList.toggle('asc', th.dataset.sort === sortKey && sortAsc);
+        });
+
+        const tb = $('rows');
+        tb.innerHTML = '';
+        if (!rows.length) { tb.innerHTML = `<tr><td colspan="5" class="empty">${data.length ? 'Nič sa nenašlo.' : 'Zatiaľ nikto nedohral hru.'}</td></tr>`; return; }
+        for (const r of rows) {
+            const tr = document.createElement('tr');
+            const cells = [[fmtDate(r.date), ''], [r.name, 'name'], [`${r.score} / 27`, 'right'], [fmtTime(r.timeMs), 'right']];
+            for (const [text, cls] of cells) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); }
+            const td = document.createElement('td'); td.className = 'right';
+            const b = document.createElement('button'); b.className = 'del'; b.textContent = 'Zmazať';
+            b.onclick = () => remove(r);
+            td.appendChild(b); tr.appendChild(td);
+            tb.appendChild(tr);
+        }
+    }
+
+    async function remove(r) {
+        if (!confirm(`Naozaj zmazať výsledok „${r.name}“ (${r.score} b., ${fmtTime(r.timeMs)})?`)) return;
+        try { await api('DELETE', '?key=' + encodeURIComponent(r.key)); data = data.filter(x => x.key !== r.key); render(); }
+        catch (e) { $('app-err').textContent = 'Mazanie zlyhalo: ' + e.message; }
+    }
+
+    function downloadCsv() {
+        const esc = v => `"${String(v).replace(/"/g, '""')}"`;
+        const lines = [['Dátum', 'Prezývka', 'Body', 'Čas (m:ss)', 'Čas (sekundy)'].map(esc).join(';')];
+        for (const r of data) lines.push([fmtDate(r.date), r.name, r.score, fmtTime(r.timeMs), Math.round(r.timeMs / 1000)].map(esc).join(';'));
+        const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `sykorkina-misia-vysledky-${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+
+    $('login-form').addEventListener('submit', e => {
+        e.preventDefault();
+        pw = $('pw').value;
+        try { sessionStorage.setItem('misia9_admin', pw); } catch (x) {}
+        load();
+    });
+    $('logout').onclick = () => {
+        try { sessionStorage.removeItem('misia9_admin'); } catch (x) {}
+        location.href = method === 'access' ? '/cdn-cgi/access/logout' : '/vysledky';
+    };
+    $('refresh').onclick = load;
+    $('csv').onclick = downloadCsv;
+    $('filter').oninput = render;
+    document.querySelectorAll('th[data-sort]').forEach(th => th.onclick = () => {
+        if (sortKey === th.dataset.sort) sortAsc = !sortAsc; else { sortKey = th.dataset.sort; sortAsc = sortKey === 'name'; }
+        render();
+    });
+
+    load();
+</script>
+</body>
+</html>

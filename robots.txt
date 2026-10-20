@@ -2,39 +2,48 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 # AI vyhľadávače a asistenti (výslovne povolené)
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: Claude-SearchBot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: Claude-User
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: Perplexity-User
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 User-agent: Google-Extended
 Allow: /
@@ -45,5 +54,6 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 Disallow: /api/
+Disallow: /vysledky
 
 Sitemap: https://misia9.sk/sitemap.xml

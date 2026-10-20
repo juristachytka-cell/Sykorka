@@ -122,6 +122,11 @@
               "@type": "Question",
               "name": "Ako dlho trvá jedna misia?",
               "acceptedAnswer": { "@type": "Answer", "text": "Celá misia má 9 kôl po 3 otázky a trvá približne 10 minút. Po každej odpovedi sa zobrazí vysvetlenie pravidla." }
+            },
+            {
+              "@type": "Question",
+              "name": "Aké údaje sa ukladajú?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Len prezývka, ktorú si hráč zvolí, počet bodov, čas hry a dátum. Prezývka s výsledkom sa môže zobraziť v rebríčku TOP 10. Žiadne e-maily ani iné osobné údaje sa nezbierajú." }
             }
           ]
         }
@@ -222,15 +227,18 @@
                     <span id="round-label">Kolo 1 / 9</span>
                     <span class="text-primary" id="round-title">· Vybrané slová I</span>
                 </div>
-                <div class="flex items-center gap-2" id="dots" aria-label="Otázky v kole">
-                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <div class="flex items-center gap-3">
+                    <span class="font-heading font-black text-gray-700 tabular-nums bg-white rounded-full px-3 py-0.5 shadow-sm" title="Čas"><span aria-hidden="true">⏱️</span> <span id="timer">0:00</span></span>
+                    <div class="flex items-center gap-2" id="dots" aria-label="Otázky v kole">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    </div>
                 </div>
             </div>
             <div class="flex gap-1" id="segments" aria-hidden="true"></div>
         </section>
 
         <div id="game-area" class="flex-1 w-full border-4 border-white shadow-xl relative" aria-label="Herná plocha">
-            <p id="hint" class="absolute top-3 left-0 right-0 text-center text-sm font-semibold text-gray-500 hint-pulse z-[6] pointer-events-none">Chyť sýkorku! 👆</p>
+            <p id="hint" class="hidden absolute top-3 left-0 right-0 text-center text-sm font-semibold text-gray-500 hint-pulse z-[6] pointer-events-none">Chyť sýkorku! 👆</p>
             <div id="ground"></div>
             <div id="tree" aria-hidden="true">
                 <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMax meet">
@@ -287,13 +295,38 @@
                 </div></div>
             </div>
 
+            <!-- Úvodná kartička (priamo v hracej ploche, stránka ostáva viditeľná) -->
+            <div id="start-modal" class="absolute inset-0 z-30 flex justify-center items-center p-3 pointer-events-none" role="region" aria-labelledby="start-title">
+                <div class="pointer-events-auto bg-white/95 rounded-3xl shadow-xl max-w-md w-full p-5 md:p-6 text-center border-2 border-white modal-enter">
+                    <h3 id="start-title" class="font-heading text-xl sm:text-2xl md:text-3xl font-black text-gray-800 mb-1">Pomôž sýkorke domov! 🌳</h3>
+                    <p class="text-gray-600 mb-3 text-sm md:text-base">Chytaj sýkorku, nájdi chybu vo vete a dovedieš ju až na strom.</p>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4 text-sm font-bold text-gray-700">
+                        <span class="bg-blue-50 rounded-full px-3 py-1">🎯 9 kôl</span>
+                        <span class="bg-amber-50 rounded-full px-3 py-1">✏️ 27 viet</span>
+                        <span class="bg-green-50 rounded-full px-3 py-1">⏱️ na čas</span>
+                        <span class="bg-pink-50 rounded-full px-3 py-1">🏆 TOP 10</span>
+                    </div>
+                    <form id="start-form" novalidate>
+                        <label for="nick" class="sr-only">Tvoja prezývka</label>
+                        <input id="nick" name="nick" type="text" maxlength="20" autocomplete="nickname" placeholder="Tvoja prezývka"
+                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/20 text-base md:text-lg font-semibold mb-1 text-center">
+                        <p id="nick-help" class="text-xs text-gray-500 mb-3">Prezývka sa zobrazí v rebríčku, preto nepíš celé meno.</p>
+                        <button id="start-btn" type="submit" class="w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
+                    </form>
+                </div>
+            </div>
+
             <!-- Záverečná karta -->
             <div id="final-card" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-sm bg-white rounded-3xl shadow-2xl p-4 sm:p-5 border-t-8 border-accent z-20 modal-enter">
                 <h3 class="font-heading text-2xl font-black text-gray-800 mb-1">🏁 Koniec misie!</h3>
                 <p class="text-gray-600 mb-3 hidden sm:block">Sýkorka si spokojne sadla na strom. Ďakuje ti, že si ju previedol(-la) všetkými 9 kolami!</p>
-                <p class="font-heading text-xl font-black text-primary mb-1">Skóre: <span id="final-score">0</span> / 27</p>
-                <p id="final-msg" class="text-gray-700 font-semibold mb-3 sm:mb-4 text-sm sm:text-base"></p>
-                <button id="restart-btn" class="w-full px-5 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
+                <p class="font-heading text-xl font-black text-primary mb-1"><span id="final-name"></span>Skóre: <span id="final-score">0</span> / 27 · ⏱️ <span id="final-time">0:00</span></p>
+                <p id="final-msg" class="text-gray-700 font-semibold mb-1 text-sm sm:text-base"></p>
+                <p id="final-rank" class="text-amber-700 font-bold mb-3 sm:mb-4 text-sm sm:text-base min-h-[1.25rem]"></p>
+                <div class="flex gap-2">
+                    <button id="restart-btn" class="flex-1 px-4 py-2.5 sm:py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Hrať znova 🔄</button>
+                    <a href="#rebricek" class="flex-1 text-center px-4 py-2.5 sm:py-3 rounded-xl bg-secondary hover:bg-amber-400 text-gray-900 font-bold shadow-md transition">Rebríček 🏆</a>
+                </div>
             </div>
         </div>
     </main>
@@ -301,6 +334,26 @@
     <noscript>
         <p class="max-w-3xl mx-auto px-4 text-center text-red-600 font-semibold">Sýkorkina misia potrebuje na hranie zapnutý JavaScript.</p>
     </noscript>
+
+    <!-- Rebríček TOP 10 -->
+    <section id="rebricek" class="w-full max-w-5xl mx-auto px-4 pt-6" aria-labelledby="rebricek-title">
+        <div class="bg-white/80 rounded-3xl shadow-sm border border-white p-5 md:p-8">
+            <h2 id="rebricek-title" class="font-heading text-2xl font-black text-gray-800 mb-1">🏆 Rebríček TOP 10</h2>
+            <p class="text-gray-600 text-sm mb-4">Poradie podľa počtu bodov, pri rovnosti rozhoduje kratší čas. Každá prezývka je v rebríčku len raz so svojím najlepším výsledkom.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-xs uppercase tracking-wider text-gray-500 border-b-2 border-gray-100">
+                            <th class="py-2 pr-2 w-12">#</th><th class="py-2 pr-2">Prezývka</th><th class="py-2 pr-2 text-right">Body</th><th class="py-2 text-right">Čas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lb-body">
+                        <tr><td colspan="4" class="py-4 text-center text-gray-500">Načítavam rebríček…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
     <!-- Obsah o hre (pre ľudí aj vyhľadávače) -->
     <section id="o-hre" class="w-full max-w-5xl mx-auto px-4 pt-6 pb-2" aria-labelledby="o-hre-title">
@@ -339,6 +392,10 @@
                     <summary class="font-semibold cursor-pointer">Ako dlho trvá jedna misia?</summary>
                     <p class="text-gray-700 mt-2">Celá misia má 9 kôl po 3 otázky a trvá približne 10 minút. Po každej odpovedi sa zobrazí vysvetlenie pravidla.</p>
                 </details>
+                <details class="bg-white rounded-xl px-4 py-3 border border-gray-100">
+                    <summary class="font-semibold cursor-pointer">Aké údaje sa ukladajú?</summary>
+                    <p class="text-gray-700 mt-2">Len prezývka, ktorú si zvolíš, počet bodov, čas hry a dátum. Prezývka s výsledkom sa môže zobraziť v rebríčku TOP 10, preto prosím nepoužívaj celé meno a priezvisko. Žiadne e-maily ani iné osobné údaje nezbierame.</p>
+                </details>
             </div>
         </div>
     </section>
@@ -351,22 +408,6 @@
             <span id="visit-counter" class="font-black text-primary animate-pulse">Načítavam...</span>
         </div>
     </footer>
-
-    <!-- Úvodné okno -->
-    <div id="start-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 flex justify-center items-center p-4" role="dialog" aria-modal="true" aria-labelledby="start-title">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 text-center border-t-8 border-primary modal-enter">
-            <div class="text-5xl mb-2" aria-hidden="true">🐦🌳</div>
-            <h3 id="start-title" class="font-heading text-2xl md:text-3xl font-black text-gray-800 mb-3">Sýkorkina misia</h3>
-            <p class="text-gray-600 mb-2">Sýkorka sa chce dostať domov na strom. Pomôž jej!</p>
-            <ul class="text-left text-gray-700 bg-blue-50 rounded-2xl p-4 mb-6 space-y-1 text-sm md:text-base">
-                <li>🎯 Misia má <b>9 kôl</b>, v každom sú <b>3 vety</b> s chybou.</li>
-                <li>🐦 Klikni na poletujúcu sýkorku a dostaneš úlohu.</li>
-                <li>✏️ Vyber slovo, v ktorom je chyba.</li>
-                <li>🏆 Za každú správnu odpoveď získaš bod – spolu ich je 27.</li>
-            </ul>
-            <button id="start-btn" class="w-full px-5 py-4 rounded-xl bg-primary hover:bg-blue-600 text-white text-lg font-bold shadow-md transition">Začať misiu 🚀</button>
-        </div>
-    </div>
 
     <!-- Okno s otázkou -->
     <div id="question-modal" class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 hidden flex justify-center items-center p-4" aria-modal="true" role="dialog" aria-labelledby="q-heading">
@@ -467,6 +508,7 @@
         let roundOrder = [];            // poradie otázok v aktuálnom kole
         let results = [];               // výsledky otázok v aktuálnom kole (true/false)
         let birdInterval = null, isGamePaused = true, currentQuestion = null, answered = false, finished = false;
+        let playerName = '', startTime = 0, elapsedMs = 0, timerInterval = null, resultPromise = null;
 
         const $ = id => document.getElementById(id);
         const bird = $('bird'), flip = bird.querySelector('.flip'), gameArea = $('game-area');
@@ -503,6 +545,57 @@
         function startBirdEngine() { if (finished) return; isGamePaused = false; clearInterval(birdInterval); moveBird(); birdInterval = setInterval(moveBird, 2200); }
         function stopBirdEngine() { isGamePaused = true; clearInterval(birdInterval); }
 
+        // ===== Stopky =====
+        const fmtTime = ms => { const sec = Math.floor(ms / 1000); return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`; };
+        function startTimer() {
+            startTime = Date.now(); elapsedMs = 0; $('timer').textContent = '0:00';
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => { $('timer').textContent = fmtTime(Date.now() - startTime); }, 250);
+        }
+        function stopTimer() {
+            if (!timerInterval) return;
+            clearInterval(timerInterval); timerInterval = null;
+            elapsedMs = Date.now() - startTime;
+            $('timer').textContent = fmtTime(elapsedMs);
+        }
+
+        // ===== Rebríček =====
+        function renderLeaderboard(top, highlightName) {
+            const body = $('lb-body');
+            body.innerHTML = '';
+            if (!top || !top.length) {
+                body.innerHTML = '<tr><td colspan="4" class="py-4 text-center text-gray-500">Rebríček je zatiaľ prázdny – buď prvý! 🐦</td></tr>';
+                return;
+            }
+            const medals = ['🥇', '🥈', '🥉'];
+            top.forEach((r, i) => {
+                const tr = document.createElement('tr');
+                const me = highlightName && r.name.toLowerCase() === highlightName.toLowerCase();
+                tr.className = 'border-b border-gray-100 last:border-0' + (me ? ' bg-amber-50 font-bold' : '');
+                const cells = [medals[i] || `${i + 1}.`, r.name, `${r.score} / 27`, fmtTime(r.timeMs)];
+                cells.forEach((c, j) => {
+                    const td = document.createElement('td');
+                    td.className = 'py-2 pr-2' + (j >= 2 ? ' text-right tabular-nums' : '') + (j === 1 ? ' break-all' : '');
+                    td.textContent = c;
+                    tr.appendChild(td);
+                });
+                body.appendChild(tr);
+            });
+        }
+        function loadLeaderboard() {
+            fetch('/api/results', { cache: 'no-store' })
+                .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(d => renderLeaderboard(d.top, playerName))
+                .catch(() => { $('lb-body').innerHTML = '<tr><td colspan="4" class="py-4 text-center text-gray-500">Rebríček sa teraz nepodarilo načítať.</td></tr>'; });
+        }
+        function submitResult() {
+            return fetch('/api/results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: playerName, score, timeMs: elapsedMs })
+            }).then(r => r.json().then(d => { if (!r.ok) throw new Error(d.error || 'HTTP ' + r.status); return d; }));
+        }
+
         // ===== Kolá =====
         function startRound() {
             qIdx = 0; roundCorrect = 0; results = [];
@@ -513,7 +606,7 @@
         }
 
         function catchBird() {
-            if (isGamePaused || finished) return;
+            if (isGamePaused || finished || !startModal.classList.contains('hidden')) return;
             stopBirdEngine();
             hint.classList.add('hidden');
             currentQuestion = roundOrder[qIdx];
@@ -546,8 +639,9 @@
                 else btn.classList.add('bg-gray-50', 'border-gray-200', 'opacity-60');
             });
             results[qIdx] = correct;
+            if (correct) score++, roundCorrect++;
+            if (roundIdx === rounds.length - 1 && qIdx === roundOrder.length - 1) stopTimer();
             if (correct) {
-                score++; roundCorrect++;
                 scoreDisplay.textContent = score;
                 scoreDisplay.classList.add('text-accent', 'scale-125');
                 setTimeout(() => scoreDisplay.classList.remove('text-accent', 'scale-125'), 400);
@@ -606,7 +700,8 @@
         }
 
         function finishMission() {
-            finished = true; stopBirdEngine();
+            finished = true; stopBirdEngine(); stopTimer();
+            resultPromise = submitResult();
             hint.classList.add('hidden');
             renderProgress();
             ground.classList.add('show');
@@ -646,8 +741,19 @@
                 : pct >= 0.8 ? 'Skvelý výsledok! Slovenčinu máš v malíčku. 🌟'
                 : pct >= 0.5 ? 'Dobrá práca! Ešte trochu tréningu a budeš majster. 👍'
                 : 'Misia splnená! Skús to znova a uvidíš, že to pôjde lepšie. 💪';
+            $('final-name').textContent = playerName ? `${playerName} · ` : '';
+            $('final-time').textContent = fmtTime(elapsedMs);
+            $('final-rank').textContent = 'Ukladám výsledok do rebríčka…';
             finalCard.classList.remove('hidden');
             $('restart-btn').focus({ preventScroll: true });
+            (resultPromise || Promise.reject(new Error('Výsledok sa neodoslal')))
+                .then(d => {
+                    $('final-rank').textContent = d.rank
+                        ? (d.personalBest ? `🏆 Si na ${d.rank}. mieste v rebríčku TOP 10!` : `Tvoj najlepší výsledok je na ${d.rank}. mieste v rebríčku.`)
+                        : 'Do TOP 10 to tentoraz nestačilo – skús to znova!';
+                    renderLeaderboard(d.top, playerName);
+                })
+                .catch(() => { $('final-rank').textContent = 'Výsledok sa nepodarilo uložiť (rebríček je dostupný len na misia9.sk).'; });
         }
 
         function restart() {
@@ -655,8 +761,12 @@
             tree.classList.remove('grow'); ground.classList.remove('show');
             bird.classList.remove('landed', 'long-flight');
             bird.setAttribute('aria-label', 'Chytiť sýkorku'); bird.title = 'Klikni na mňa pre novú úlohu!';
-            score = 0; roundIdx = 0; finished = false;
-            startRound();
+            score = 0; roundIdx = 0; finished = false; resultPromise = null;
+            $('timer').textContent = '0:00';
+            renderProgress();
+            startModal.classList.remove('hidden');
+            startBirdEngine();
+            $('nick').focus({ preventScroll: true });
         }
 
         // ===== Konfety =====
@@ -681,12 +791,29 @@
         nextBtn.addEventListener('click', nextStep);
         $('next-round-btn').addEventListener('click', nextRound);
         $('restart-btn').addEventListener('click', restart);
-        $('start-btn').addEventListener('click', () => { startModal.classList.add('hidden'); startRound(); });
+        try { $('nick').value = localStorage.getItem('misia9_nick') || ''; } catch (e) {}
+        $('start-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const nick = $('nick').value.normalize('NFC').replace(/[^\p{L}\p{N} ._\-]/gu, '').replace(/\s+/g, ' ').trim();
+            if (nick.length < 2 || nick.length > 20) {
+                $('nick-help').textContent = 'Napíš prezývku s 2 až 20 znakmi (písmená, číslice, medzera, bodka, pomlčka).';
+                $('nick-help').className = 'text-xs text-red-600 font-semibold mb-3';
+                $('nick').focus();
+                return;
+            }
+            playerName = nick;
+            try { localStorage.setItem('misia9_nick', nick); } catch (e) {}
+            startModal.classList.add('hidden');
+            startTimer();
+            startRound();
+        });
 
         window.addEventListener('load', () => {
             bird.style.left = `${(gameArea.clientWidth / 2) - 42}px`;
             bird.style.top = `${(gameArea.clientHeight / 2) - 34}px`;
             renderProgress();
+            loadLeaderboard();
+            startBirdEngine(); // sýkorka poletuje už za úvodnou kartičkou
         });
         window.addEventListener('resize', () => {
             if (!finished) return;
