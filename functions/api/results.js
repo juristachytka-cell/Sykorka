@@ -3,7 +3,7 @@
 //
 // Používa rovnaký KV namespace ako počítadlo (binding: COUNTER).
 //
-//   GET  /api/results?level=easy|hard   -> dnešný rebríček TOP 10 pre danú úroveň
+//   GET  /api/results?level=easy|hard|en_easy|en_hard   -> dnešný rebríček TOP 10 pre danú úroveň
 //   POST /api/results                   -> uloží výsledok { name (anonymná prezývka), city (kraj), level, day, score, timeMs }
 //
 // Rebríček je denný: o polnoci (slovenský čas) začína nový.
@@ -14,7 +14,7 @@ const TOP_SHOW = 10;
 const MAX_SCORE = 27;
 const MIN_TIME = 20 * 1000;          // rýchlejšie sa 27 otázok poctivo nedá
 const MAX_TIME = 3 * 60 * 60 * 1000; // 3 hodiny
-const LEVELS = ["easy", "hard"];
+const LEVELS = ["easy", "hard", "en_easy", "en_hard"];   // slovenčina a angličtina
 const TOP_TTL = 60 * 60 * 24 * 45;   // denné rebríčky sa samy zmažú po 45 dňoch
 
 import { isPseudonym, isKraj } from "../_shared/pseudonym.js";
