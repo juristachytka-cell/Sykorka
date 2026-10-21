@@ -22,6 +22,9 @@ apple-touch-icon.png, icon-192.png, icon-512.png, site.webmanifest   ikony pre m
 og-image.png          obrázok pri zdieľaní (Facebook, WhatsApp…) 1200×630
 robots.txt            povolené vyhľadávače aj AI roboty, odkaz na sitemap
 sitemap.xml           mapa stránky
+sw.js                 service worker – hra sa dá pridať na plochu ako aplikácia (PWA), rýchlejšie načítanie
+404.html              stránka pre neexistujúce adresy
+icon-maskable-512.png ikona aplikácie pre Android (celoplošná)
 llms.txt              krátky popis stránky pre AI asistentov (ChatGPT, Claude, Perplexity…)
 llms-full.txt         ukážky otázok z každej témy s vysvetleniami pre AI
 _headers              hlavičky pre Cloudflare (bezpečnosť, cache, typy súborov)

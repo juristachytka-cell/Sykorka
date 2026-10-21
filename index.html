@@ -242,6 +242,30 @@
         .opt-btn { display: flex; align-items: center; gap: .8rem; }
         .opt-btn .k { flex-shrink: 0; width: 1.75rem; height: 1.75rem; border-radius: .55rem; display: grid; place-items: center; font-size: .8rem; font-weight: 900; background: #fff; border: 2px solid #e5e7eb; color: #6b7280; }
         @media (hover: none) { .opt-btn .k { display: none; } }
+        @media (max-width: 640px) {
+            .subj-btn { font-size: .85rem; gap: .3rem; padding: .5rem .2rem; min-width: 0; }
+            .subj-tag { min-width: 1.6rem; height: 1.15rem; font-size: .6rem; }
+        }
+        .subj-btn > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+        /* správna veta v spätnej väzbe a v prehľade chýb */
+        .fb-correct { margin-top: .65rem; padding: .55rem .75rem; background: #fff; border: 1px solid #a7f3d0; border-radius: .85rem; font-weight: 700; color: #064e3b; line-height: 1.45; }
+        .fb-correct .lbl { display: block; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: #047857; margin-bottom: .15rem; }
+        .fb-correct mark { background: #d1fae5; color: #065f46; border-radius: .3rem; padding: 0 .15rem; }
+        .fb-correct .speak-btn { width: 1.9rem; height: 1.9rem; font-size: .9rem; }
+        /* pridanie na plochu */
+        .logo-link { display: flex; align-items: center; gap: .75rem; border-radius: 1rem; text-decoration: none; }
+        .logo-link:focus-visible { outline: 3px solid rgba(59,130,246,.5); outline-offset: 4px; }
+        .install-toast { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 60; max-width: 460px; margin: 0 auto; display: flex; align-items: center; gap: .75rem; background: #fff; border-radius: 1.2rem; padding: .7rem .7rem .7rem .8rem; box-shadow: 0 12px 34px rgba(15,23,42,.22); border: 1px solid #e5e7eb; animation: toastIn .45s cubic-bezier(.2,.9,.3,1.15); }
+        .install-toast[hidden] { display: none; }
+        .install-toast img { width: 44px; height: 44px; border-radius: .7rem; flex-shrink: 0; }
+        .install-toast .it-text { flex: 1; min-width: 0; line-height: 1.3; font-size: .85rem; color: #4b5563; }
+        .install-toast .it-text b { display: block; color: #111827; font-size: .95rem; }
+        .install-toast .it-yes { flex-shrink: 0; background: #3B82F6; color: #fff; font-weight: 800; border-radius: .8rem; padding: .55rem .9rem; }
+        .install-toast .it-yes:hover { background: #2563eb; }
+        .install-toast .it-no { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 9999px; color: #6b7280; font-weight: 800; }
+        .install-toast .it-no:hover { background: #f3f4f6; }
+        @keyframes toastIn { from { transform: translateY(120%); opacity: 0; } to { transform: none; opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { .install-toast { animation: none; } }
         .badge { background: #fff; border-radius: 1rem; padding: .75rem .5rem; text-align: center; border: 2px solid #f3f4f6; opacity: .55; filter: grayscale(1); transition: all .3s; }
         .badge.has { opacity: 1; filter: none; border-color: #fde68a; }
         .badge.new { animation: badgePop 1s ease-out 2; border-color: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,.25); }
@@ -312,10 +336,10 @@
 
     <header class="w-full max-w-5xl mx-auto p-4 pb-2 flex justify-between items-center gap-3 z-20">
         <!-- Logo -->
-        <div class="flex items-center gap-3">
+        <a href="/" id="home-link" class="logo-link" aria-label="Misia9.sk – na začiatok">
             <img src="/favicon.svg" width="44" height="44" alt="" aria-hidden="true" class="w-11 h-11">
-            <div class="font-heading text-2xl md:text-3xl font-black text-primary drop-shadow-sm">Misia9<span class="text-secondary">.sk</span></div>
-        </div>
+            <span class="font-heading text-2xl md:text-3xl font-black text-primary drop-shadow-sm">Misia9<span class="text-secondary">.sk</span></span>
+        </a>
         <div class="flex items-center gap-2">
             <button id="sound-btn" type="button" class="bg-white w-11 h-11 rounded-full shadow-md border-2 border-primary/20 text-xl flex items-center justify-center hover:scale-105 transition" aria-label="Vypnúť zvuk" title="Vypnúť zvuk">🔊</button>
             <div class="bg-white px-4 md:px-5 py-2 rounded-full shadow-md border-2 border-primary/20 flex items-center gap-2">
@@ -417,8 +441,8 @@
                     <p id="challenge-note" class="hidden text-sm font-bold text-amber-800 bg-amber-50 rounded-xl px-3 py-2 mb-3"></p>
                     <div class="subj-switch mb-2" id="subj-switch" data-subject="sk" role="radiogroup" aria-label="Predmet">
                         <span class="thumb" aria-hidden="true"></span>
-                        <button type="button" class="subj-btn" data-subject="sk" role="radio" aria-checked="true"><span class="subj-tag sk" aria-hidden="true">SK</span>Slovenčina</button>
-                        <button type="button" class="subj-btn" data-subject="en" role="radio" aria-checked="false"><span class="subj-tag en" aria-hidden="true">EN</span>Angličtina</button>
+                        <button type="button" class="subj-btn" data-subject="sk" role="radio" aria-checked="true"><span class="subj-tag sk" aria-hidden="true">SK</span><span>Slovenčina</span></button>
+                        <button type="button" class="subj-btn" data-subject="en" role="radio" aria-checked="false"><span class="subj-tag en" aria-hidden="true">EN</span><span>Angličtina</span></button>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mb-3" role="radiogroup" aria-label="Úroveň">
                         <button type="button" class="lvl-btn" data-diff="easy" role="radio" aria-checked="true">🌱 Ľahšia<small>3. – 5. ročník</small></button>
@@ -503,8 +527,8 @@
                 <div class="flex flex-wrap items-center gap-2">
                     <div class="subj-switch sm" id="lb-subj" data-subject="sk" role="group" aria-label="Predmet rebríčka">
                         <span class="thumb" aria-hidden="true"></span>
-                        <button type="button" class="subj-btn" data-subject="sk" aria-pressed="true"><span class="subj-tag sk" aria-hidden="true">SK</span>Slovenčina</button>
-                        <button type="button" class="subj-btn" data-subject="en" aria-pressed="false"><span class="subj-tag en" aria-hidden="true">EN</span>Angličtina</button>
+                        <button type="button" class="subj-btn" data-subject="sk" aria-pressed="true"><span class="subj-tag sk" aria-hidden="true">SK</span><span>Slovenčina</span></button>
+                        <button type="button" class="subj-btn" data-subject="en" aria-pressed="false"><span class="subj-tag en" aria-hidden="true">EN</span><span>Angličtina</span></button>
                     </div>
                     <div class="flex gap-2" role="tablist" aria-label="Úroveň rebríčka">
                         <button type="button" class="lb-tab" role="tab" data-diff="easy" aria-selected="true">🌱 Ľahšia</button>
@@ -637,6 +661,7 @@
             <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Doučovatelia <span class="normal-case font-semibold tracking-normal text-gray-400">· propagácia zadarmo</span></p>
             <div id="tutors-bottom-row" class="row"></div>
         </section>
+        <p id="install-footer" class="hidden"><button type="button" id="install-footer-btn" class="font-bold text-primary hover:underline">📲 Pridať hru na plochu</button></p>
         <p>&copy; 2026 Sýkorkina misia · Misia9.sk – vzdelávaj sa hrou</p>
         <p><a href="/sukromie" class="hover:underline">Ochrana súkromia a podmienky</a> · bez platenej reklamy, cookies a sledovania</p>
         <p class="text-xs text-gray-400 max-w-2xl">Sýkorkina misia je samostatný nekomerčný projekt. Nemá nič spoločné s aplikáciou Misia 9 pre deviatakov ani s jej autorom.</p>
@@ -662,9 +687,18 @@
             <div id="feedback" class="hidden mt-5 rounded-2xl p-4 text-left" aria-live="assertive">
                 <p id="feedback-title" class="font-heading font-black text-lg mb-1"></p>
                 <p id="feedback-text" class="text-gray-700"></p>
+                <div id="feedback-correct" class="fb-correct hidden"></div>
             </div>
             <button id="next-btn" class="hidden mt-5 w-full px-5 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold shadow-md transition">Pokračovať ➜</button>
         </div>
+    </div>
+
+    <!-- Pridať na plochu -->
+    <div id="install-toast" class="install-toast" hidden role="dialog" aria-labelledby="install-title">
+        <img src="/icon-192.png" width="44" height="44" alt="">
+        <div class="it-text"><b id="install-title">Sýkorka na tvojej ploche</b><span id="install-sub">Pridaj si hru na plochu – spustíš ju jedným ťuknutím.</span></div>
+        <button id="install-yes" type="button" class="it-yes">Pridať</button>
+        <button id="install-no" type="button" class="it-no" aria-label="Teraz nie">✕</button>
     </div>
 
     <!-- Okno po skončení kola -->
@@ -683,8 +717,8 @@
     </div>
 
     <!-- Zásoba otázok (1 000 viet) -->
-    <script src="otazky.js"></script>
-    <script src="otazky-en.js"></script>
+    <script src="otazky.js?v=20261021b"></script>
+    <script src="otazky-en.js?v=20261021b"></script>
 
     <!-- Herný skript -->
     <script>
@@ -765,8 +799,8 @@
                 return {
                     title: topic.t,
                     questions: idx.map((k, j) => {
-                        const [sentence, wrong, others, explanation] = topic.q[k];
-                        return { prompt: PROMPTS[(ri * 3 + j) % PROMPTS.length], sentence, options: [wrong, ...others], answer: wrong, explanation };
+                        const [sentence, wrong, others, explanation, correct] = topic.q[k];
+                        return { prompt: PROMPTS[(ri * 3 + j) % PROMPTS.length], sentence, correct: correct || '', options: [wrong, ...others], answer: wrong, explanation };
                     })
                 };
             });
@@ -819,26 +853,55 @@
             };
         })();
 
-        // ===== Čítanie anglických viet nahlas (Web Speech API priamo v prehliadači) =====
+        // ===== Čítanie správnej vety nahlas (Web Speech API priamo v prehliadači, nič sa neposiela von) =====
         const Speech = (() => {
             const synth = window.speechSynthesis;
             const ok = !!(synth && window.SpeechSynthesisUtterance);
-            let voice = null;
-            const pick = () => { const v = synth.getVoices(); voice = v.find(x => /^en-GB/i.test(x.lang)) || v.find(x => /^en(-|_)/i.test(x.lang)) || null; };
+            const voices = { en: null, sk: null };
+            const pick = () => {
+                const v = synth.getVoices();
+                voices.en = v.find(x => /^en[-_]GB/i.test(x.lang)) || v.find(x => /^en[-_]/i.test(x.lang)) || null;
+                voices.sk = v.find(x => /^sk([-_]|$)/i.test(x.lang)) || null;
+            };
             if (ok) { pick(); if (synth.addEventListener) synth.addEventListener('voiceschanged', pick); }
             return {
                 ok,
+                // angličtina: aj bez nájdeného hlasu (prehliadač použije en-GB); slovenčina len ak je slovenský hlas
+                can(lang) { return ok && (lang === 'en' || !!voices[lang]); },
                 stop() { if (ok) synth.cancel(); },
-                say(text, btn) {
+                say(text, btn, lang = 'en') {
                     if (!ok) return;
                     synth.cancel();
-                    const u = new SpeechSynthesisUtterance(text);
-                    u.lang = voice ? voice.lang : 'en-GB'; if (voice) u.voice = voice; u.rate = 0.9;
+                    const u = new SpeechSynthesisUtterance(text), v = voices[lang];
+                    u.lang = v ? v.lang : (lang === 'en' ? 'en-GB' : 'sk-SK'); if (v) u.voice = v; u.rate = lang === 'en' ? 0.9 : 0.95;
                     if (btn) { btn.classList.add('on'); u.onend = u.onerror = () => btn.classList.remove('on'); }
                     synth.speak(u);
                 }
             };
         })();
+        // celá správna veta – opravené miesto je zvýraznené, pri angličtine (a ak je hlas aj pri slovenčine) tlačidlo 🔊
+        function renderCorrect(box, wrongSentence, correct, lang) {
+            box.textContent = '';
+            if (!correct) { box.classList.add('hidden'); return; }
+            box.classList.remove('hidden');
+            const lbl = document.createElement('span'); lbl.className = 'lbl'; lbl.textContent = lang === 'en' ? '✅ Správna veta' : '✅ Správne napísaná veta';
+            const sent = document.createElement('span'); sent.lang = lang;
+            // zvýraznenie opraveného miesta: spoločné slová na začiatku a na konci viet ostanú bez farby
+            const cw = correct.split(' '), ww = wrongSentence.split(' ');
+            let p = 0; while (p < cw.length && p < ww.length && cw[p] === ww[p]) p++;
+            let q = 0; while (q < cw.length - p && q < ww.length - p && cw[cw.length - 1 - q] === ww[ww.length - 1 - q]) q++;
+            const pre = cw.slice(0, p).join(' '), mid = cw.slice(p, cw.length - q).join(' '), post = cw.slice(cw.length - q).join(' ');
+            sent.append('„' + pre + (pre && mid ? ' ' : ''));
+            if (mid) { const mk = document.createElement('mark'); mk.textContent = mid; sent.append(mk); }
+            sent.append((post && (mid || pre) ? ' ' : '') + post + '“');
+            box.append(lbl, sent);
+            if (Speech.can(lang)) {
+                const sp = document.createElement('button'); sp.type = 'button'; sp.className = 'speak-btn'; sp.textContent = '🔊';
+                sp.setAttribute('aria-label', lang === 'en' ? 'Prehrať výslovnosť správnej vety' : 'Prečítať správnu vetu nahlas'); sp.title = 'Vypočuť správnu vetu';
+                sp.addEventListener('click', () => Speech.say(correct, sp, lang));
+                box.appendChild(sp);
+            }
+        }
 
         // ===== Odznaky =====
         const BADGES = [
@@ -1053,12 +1116,6 @@
             const qp = document.createElement('span'); qp.className = 'q-prompt'; qp.textContent = currentQuestion.prompt;
             const qs = document.createElement('span'); qs.className = 'q-sent'; qs.lang = lang; qs.textContent = `„${currentQuestion.sentence}“`;
             questionText.append(qp, qs);
-            if (lang === 'en' && Speech.ok) {
-                const sp = document.createElement('button'); sp.type = 'button'; sp.className = 'speak-btn'; sp.textContent = '🔊';
-                sp.setAttribute('aria-label', 'Prečítať vetu nahlas po anglicky'); sp.title = 'Vypočuť vetu';
-                sp.addEventListener('click', () => Speech.say(currentQuestion.sentence, sp));
-                questionText.appendChild(sp);
-            }
             optionsContainer.innerHTML = '';
             feedback.classList.add('hidden'); nextBtn.classList.add('hidden');
             shuffle(currentQuestion.options).forEach((option, oi) => {
@@ -1088,7 +1145,7 @@
             });
             results[qIdx] = correct;
             if (correct) { score++; roundCorrect++; streak++; bestStreak = Math.max(bestStreak, streak); }
-            else { streak = 0; mistakes.push({ round: roundIdx + 1, title: rounds[roundIdx].title, lang: SUBJECTS[subjOf(level)].lang, sentence: currentQuestion.sentence, selected, answer: currentQuestion.answer, explanation: currentQuestion.explanation }); }
+            else { streak = 0; mistakes.push({ round: roundIdx + 1, title: rounds[roundIdx].title, lang: SUBJECTS[subjOf(level)].lang, sentence: currentQuestion.sentence, correct: currentQuestion.correct, selected, answer: currentQuestion.answer, explanation: currentQuestion.explanation }); }
             if (roundIdx === rounds.length - 1 && qIdx === roundOrder.length - 1) stopTimer();
             if (correct) {
                 Sound.correct();
@@ -1106,6 +1163,7 @@
                 $('feedback-title').className = 'font-heading font-black text-lg mb-1 text-red-600';
             }
             $('feedback-text').textContent = currentQuestion.explanation;
+            renderCorrect($('feedback-correct'), currentQuestion.sentence, currentQuestion.correct, SUBJECTS[subjOf(level)].lang);
             renderProgress();
             const last = qIdx === roundOrder.length - 1;
             nextBtn.textContent = !last ? 'Pokračovať ➜' : (roundIdx === rounds.length - 1 ? 'Dokončiť misiu 🏁' : 'Dokončiť kolo 🎉');
@@ -1206,7 +1264,9 @@
                 const a2 = document.createElement('span'); a2.className = 'text-green-700 font-bold'; a2.textContent = ` · Chyba bola v slove: ${m.answer}`;
                 ans.append(a1, a2);
                 const ex = document.createElement('p'); ex.className = 'text-gray-700 text-sm'; ex.textContent = m.explanation;
-                card.append(head, sent, ans, ex);
+                const cor = document.createElement('div'); cor.className = 'fb-correct text-sm';
+                renderCorrect(cor, m.sentence, m.correct, m.lang || 'sk');
+                card.append(head, sent, ans, ex, cor);
                 list.appendChild(card);
             });
         }
@@ -1265,6 +1325,7 @@
             showFresh();
             if (fresh.length) setTimeout(() => Sound.badge(), 1200);
             prepareShare();
+            Install.afterMission();
             $('final-extra').textContent = (fresh.length ? `🎖️ Nové odznaky: ${fresh.length} · ` : '') + (mistakes.length ? `📋 Chyby (${mistakes.length}) s vysvetlením ↓` : '📋 Výsledok misie ↓');
 
             if (mode !== 'ranked') return;
@@ -1534,6 +1595,61 @@
             }).catch(() => {});
         }
         if (wideQuery.addEventListener) wideQuery.addEventListener('change', loadTutors);
+
+        // ===== Logo = domov =====
+        $('home-link').addEventListener('click', e => {
+            e.preventDefault();
+            if (finished) restart();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== Odkaz na predmet z ikony na ploche (?predmet=sk|en) =====
+        (function readSubject() {
+            const sp = new URLSearchParams(location.search).get('predmet');
+            if (sp && SUBJECTS[sp]) { level = levelKey(sp, LEVELS[level] ? diffOf(level) : 'easy'); store.set('misia9_level', level); }
+        })();
+
+        // ===== Aplikácia na ploche (PWA) =====
+        if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+        const Install = (() => {
+            const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+            const ua = navigator.userAgent;
+            const ios = /iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+            let deferred = null;
+            const toast = $('install-toast');
+            const snoozed = () => Date.now() < store.get('misia9_install_snooze', 0);
+            const canOffer = () => !standalone && (deferred || ios);
+            function paint() {
+                $('install-footer').classList.toggle('hidden', !canOffer());
+                if (ios && !deferred) {
+                    $('install-sub').textContent = 'Ťukni na Zdieľať ⬆️ a potom na „Pridať na plochu“.';
+                    $('install-yes').hidden = true;
+                }
+            }
+            function show(force) {
+                if (!canOffer() || (!force && snoozed())) return;
+                paint(); toast.hidden = false;
+            }
+            function hide(snooze) {
+                toast.hidden = true;
+                if (snooze) store.set('misia9_install_snooze', Date.now() + 14 * 86400000);
+            }
+            window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; paint(); });
+            window.addEventListener('appinstalled', () => { deferred = null; hide(false); paint(); });
+            $('install-yes').addEventListener('click', async () => {
+                if (!deferred) { hide(true); return; }
+                hide(false);
+                deferred.prompt();
+                try { const r = await deferred.userChoice; if (r.outcome !== 'accepted') store.set('misia9_install_snooze', Date.now() + 14 * 86400000); } catch (x) {}
+                deferred = null; paint();
+            });
+            $('install-no').addEventListener('click', () => hide(true));
+            $('install-footer-btn').addEventListener('click', () => show(true));
+            // ponuka príde až vo vhodnej chvíli: po dohraní misie alebo pri opakovanej návšteve
+            const visits = store.get('misia9_visits', 0) + 1; store.set('misia9_visits', visits);
+            window.addEventListener('load', () => { paint(); if (visits >= 2) setTimeout(() => { if (!started || finished) show(false); }, 6000); });
+            return { afterMission() { setTimeout(() => show(false), 4500); }, paint };
+        })();
 
         window.addEventListener('load', () => {
             loadTutors();
