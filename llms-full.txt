@@ -1,6 +1,6 @@
 # Sýkorkina misia (Misia9.sk): ukážky otázok
 
-> Ukážky z hry Sýkorkina misia (https://misia9.sk/). Hra má 1 000 viet s jednou pravopisnou alebo gramatickou chybou v dvoch úrovniach po 15 tém; každý deň o polnoci vyberie 9 tém a 27 nových viet. Nižšie sú dve ukážky z každej témy – chybné slovo a vysvetlenie pravidla.
+> Ukážky z hry Sýkorkina misia (https://misia9.sk/). Hra má 1 000 viet zo slovenčiny (2 úrovne po 15 tém) a 600 viet z angličtiny (2 úrovne po 10 tém), v každej je jedna pravopisná alebo gramatická chyba; každý deň o polnoci vyberie 9 tém a 27 nových viet. Nižšie sú dve ukážky z každej témy – chybné slovo a vysvetlenie pravidla.
 
 ## Ľahšia úroveň (3. – 5. ročník)
 
@@ -275,3 +275,187 @@
 - Veta s chybou: „Deti sa postavili do rádu pred jedálňou.“
   - Chybné slovo: rádu
   - Vysvetlenie: Správne je 'radu' – postaviť sa do radu (zástupu) – rad s krátkym a. Rád s dĺžňom znamená s radosťou.
+
+## Angličtina – ľahšia úroveň
+
+### 1. Sloveso to be (am, is, are)
+
+- Veta s chybou: „I is ten years old.“
+  - Chybné slovo: is
+  - Vysvetlenie: Správne je 'am' – so slovom I sa spája tvar slovesa be 'am'.
+- Veta s chybou: „My sister are very funny.“
+  - Chybné slovo: are
+  - Vysvetlenie: Správne je 'is' – so slovom sister (jedna osoba) sa spája tvar slovesa be 'is'.
+
+### 2. Množné číslo podstatných mien
+
+- Veta s chybou: „I have two brother.“
+  - Chybné slovo: brother
+  - Vysvetlenie: Správne je 'brothers' – v množnom čísle pridávame k podstatnému menu -s.
+- Veta s chybou: „There are three childs in the park.“
+  - Chybné slovo: childs
+  - Vysvetlenie: Správne je 'children' – slovo child má nepravidelné množné číslo children.
+
+### 3. Členy a / an / the
+
+- Veta s chybou: „I have a apple.“
+  - Chybné slovo: a
+  - Vysvetlenie: Správne je 'an apple' – pred slovom, ktoré sa vyslovuje so samohláskou na začiatku, používame an.
+- Veta s chybou: „She is an teacher.“
+  - Chybné slovo: an
+  - Vysvetlenie: Správne je 'a teacher' – pred slovom, ktoré sa vyslovuje so spoluhláskou na začiatku, používame a.
+
+### 4. Prítomný čas: he, she, it + -s
+
+- Veta s chybou: „She play tennis every Saturday.“
+  - Chybné slovo: play
+  - Vysvetlenie: Správne je 'plays' – pri he, she, it (aj pri jednom človeku či veci) pridávame k slovesu v prítomnom čase -s alebo -es.
+- Veta s chybou: „My brother like pizza.“
+  - Chybné slovo: like
+  - Vysvetlenie: Správne je 'likes' – pri he, she, it (aj pri jednom človeku či veci) pridávame k slovesu v prítomnom čase -s alebo -es.
+
+### 5. Have got a has got
+
+- Veta s chybou: „She have got blue eyes.“
+  - Chybné slovo: have
+  - Vysvetlenie: Správne je 'has' – pri he, she, it (aj pri jednom človeku, zvierati či veci) sa používa has got.
+- Veta s chybou: „I has got a new bike.“
+  - Chybné slovo: has
+  - Vysvetlenie: Správne je 'have' – pri I, you, we, they (a v množnom čísle) sa používa have got.
+
+### 6. Zámená (I, me, my…)
+
+- Veta s chybou: „Me like ice cream.“
+  - Chybné slovo: Me
+  - Vysvetlenie: Správne je 'I' – ako podmet (kto?) používame I. Me znamená mňa, mi.
+- Veta s chybou: „Can you help I?“
+  - Chybné slovo: I
+  - Vysvetlenie: Správne je 'me' – po slovese (pomôcť komu? koho?) používame me.
+
+### 7. Predložky in, on, at
+
+- Veta s chybou: „My birthday is on May.“
+  - Chybné slovo: on
+  - Vysvetlenie: Správne je 'in' – pri mesiacoch používame in (in May).
+- Veta s chybou: „I get up in seven o'clock.“
+  - Chybné slovo: in
+  - Vysvetlenie: Správne je 'at' – pri presnom čase používame at (at seven o'clock).
+
+### 8. Can a there is / there are
+
+- Veta s chybou: „There is three books on my desk.“
+  - Chybné slovo: is
+  - Vysvetlenie: Správne je 'are' – s jednou vecou alebo nepočítateľným slovom (milk, water) sa používa there is, s viacerými vecami there are.
+- Veta s chybou: „There are a cat in the garden.“
+  - Chybné slovo: are
+  - Vysvetlenie: Správne je 'is' – s jednou vecou alebo nepočítateľným slovom (milk, water) sa používa there is, s viacerými vecami there are.
+
+### 9. Pravopis bežných slov
+
+- Veta s chybou: „My best frend is called Tom.“
+  - Chybné slovo: frend
+  - Vysvetlenie: Správne je 'friend' – takto sa toto slovo správne píše.
+- Veta s chybou: „Today is Wensday.“
+  - Chybné slovo: Wensday
+  - Vysvetlenie: Správne je 'Wednesday' – slovo sa píše Wednesday, hoci d nevyslovujeme.
+
+### 10. Veľké písmená a čísla
+
+- Veta s chybou: „My birthday is in june.“
+  - Chybné slovo: june
+  - Vysvetlenie: Správne je 'June' – názvy mesiacov sa v angličtine píšu s veľkým písmenom.
+- Veta s chybou: „We go swimming on tuesday.“
+  - Chybné slovo: tuesday
+  - Vysvetlenie: Správne je 'Tuesday' – názvy dní v týždni sa v angličtine píšu s veľkým písmenom.
+
+## Angličtina – ťažšia úroveň
+
+### 1. Minulý čas – nepravidelné slovesá
+
+- Veta s chybou: „Yesterday I goed to the cinema.“
+  - Chybné slovo: goed
+  - Vysvetlenie: Správne je 'went' – sloveso go je nepravidelné, minulý čas je went.
+- Veta s chybou: „We eated pizza last night.“
+  - Chybné slovo: eated
+  - Vysvetlenie: Správne je 'ate' – sloveso eat je nepravidelné, minulý čas je ate.
+
+### 2. Minulý čas – pravidelné slovesá
+
+- Veta s chybou: „The bus stoped at the corner.“
+  - Chybné slovo: stoped
+  - Vysvetlenie: Správne je 'stopped' – pri krátkych slovesách so samohláskou medzi dvoma spoluhláskami sa posledná spoluhláska zdvojuje (stop – stopped).
+- Veta s chybou: „We planed our holiday.“
+  - Chybné slovo: planed
+  - Vysvetlenie: Správne je 'planned' – plan – planned so zdvojeným n. Planed znamená hobľoval.
+
+### 3. Jednoduchý a priebehový prítomný čas
+
+- Veta s chybou: „Look! It rains.“
+  - Chybné slovo: rains
+  - Vysvetlenie: Správne je 'It is raining' – dej, ktorý sa deje práve teraz, vyjadrujeme priebehovým časom (am / is / are + -ing).
+- Veta s chybou: „I am going to school every day.“
+  - Chybné slovo: am going
+  - Vysvetlenie: Správne je 'I go' – pravidelný, opakovaný dej alebo všeobecnú pravdu vyjadrujeme jednoduchým prítomným časom.
+
+### 4. Predprítomný čas (present perfect)
+
+- Veta s chybou: „I have saw this film twice.“
+  - Chybné slovo: saw
+  - Vysvetlenie: Správne je 'seen' – v predprítomnom čase (have/has + 3. tvar) potrebujeme 3. tvar slovesa see, teda seen.
+- Veta s chybou: „She has went to London.“
+  - Chybné slovo: went
+  - Vysvetlenie: Správne je 'gone' – v predprítomnom čase (have/has + 3. tvar) potrebujeme 3. tvar slovesa go, teda gone.
+
+### 5. Stupňovanie prídavných mien
+
+- Veta s chybou: „My bag is more heavy than yours.“
+  - Chybné slovo: more heavy
+  - Vysvetlenie: Správne je 'heavier' – krátke prídavné mená stupňujeme pomocou -er; heavy – heavier.
+- Veta s chybou: „This is the most good pizza in town.“
+  - Chybné slovo: most good
+  - Vysvetlenie: Správne je 'best' – good sa stupňuje nepravidelne: good – better – best.
+
+### 6. Modálne slovesá a budúci čas
+
+- Veta s chybou: „You must to wear a helmet.“
+  - Chybné slovo: to
+  - Vysvetlenie: Správne je 'must wear' – po modálnych slovesách (must, should, will, might, can, could…) nasleduje sloveso v základnom tvare, bez to, -s a -ing.
+- Veta s chybou: „You should eats more fruit.“
+  - Chybné slovo: eats
+  - Vysvetlenie: Správne je 'eat' – po modálnych slovesách (must, should, will, might, can, could…) nasleduje sloveso v základnom tvare, bez to, -s a -ing.
+
+### 7. Much, many, some, any
+
+- Veta s chybou: „How much apples do you need?“
+  - Chybné slovo: much
+  - Vysvetlenie: Správne je 'many' – s počítateľnými slovami v množnom čísle (apples) používame many.
+- Veta s chybou: „How many money have you got?“
+  - Chybné slovo: many
+  - Vysvetlenie: Správne je 'much' – money je nepočítateľné, preto much.
+
+### 8. Často zamieňané slová
+
+- Veta s chybou: „Their going to the cinema.“
+  - Chybné slovo: Their
+  - Vysvetlenie: Správne je 'They're' – they're = they are (oni sú). Their znamená ich.
+- Veta s chybou: „Put the books over their.“
+  - Chybné slovo: their
+  - Vysvetlenie: Správne je 'there' – there znamená tam. Their znamená ich.
+
+### 9. Predložky vo frázach
+
+- Veta s chybou: „I'm interested on music.“
+  - Chybné slovo: on
+  - Vysvetlenie: Správne je 'in' – v angličtine sa hovorí interested in.
+- Veta s chybou: „She is good in maths.“
+  - Chybné slovo: in
+  - Vysvetlenie: Správne je 'at' – v angličtine sa hovorí good at.
+
+### 10. Pravopis
+
+- Veta s chybou: „I recieved a long letter.“
+  - Chybné slovo: recieved
+  - Vysvetlenie: Správne je 'received' – platí pravidlo: i pred e, okrem po c – receive.
+- Veta s chybou: „Wait untill I come back.“
+  - Chybné slovo: untill
+  - Vysvetlenie: Správne je 'until' – until sa píše len s jedným l (hoci till má dve).

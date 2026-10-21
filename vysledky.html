@@ -109,7 +109,7 @@
         <div class="card">
             <div class="toolbar">
                 <input id="filter" type="search" placeholder="Hľadať prezývku alebo kraj…" aria-label="Hľadať prezývku alebo kraj">
-                <select id="lvl" aria-label="Úroveň"><option value="">Všetky úrovne</option><option value="easy">🌱 Ľahšia</option><option value="hard">🔥 Ťažšia</option></select>
+                <select id="lvl" aria-label="Úroveň"><option value="">Všetky úrovne</option><option value="easy">SK 🌱 Slovenčina ľahšia</option><option value="hard">SK 🔥 Slovenčina ťažšia</option><option value="en_easy">EN 🌱 Angličtina ľahšia</option><option value="en_hard">EN 🔥 Angličtina ťažšia</option></select>
             </div>
             <div class="table-wrap">
                 <table>
@@ -154,7 +154,7 @@
 <script>
     const $ = id => document.getElementById(id);
     let data = [];
-    const LV = { easy: '🌱 Ľahšia', hard: '🔥 Ťažšia' }, LV_TXT = { easy: 'Ľahšia', hard: 'Ťažšia' };
+    const LV = { easy: 'SK 🌱 Ľahšia', hard: 'SK 🔥 Ťažšia', en_easy: 'EN 🌱 Ľahšia', en_hard: 'EN 🔥 Ťažšia' }, LV_TXT = { easy: 'Slovenčina – ľahšia', hard: 'Slovenčina – ťažšia', en_easy: 'Angličtina – ľahšia', en_hard: 'Angličtina – ťažšia' };
     let pw = '', method = '';
     try { pw = sessionStorage.getItem('misia9_admin') || ''; } catch (e) {}
     let sortKey = 'date', sortAsc = false;

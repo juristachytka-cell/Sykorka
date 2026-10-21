@@ -1,8 +1,8 @@
 # Sýkorkina misia (Misia9.sk)
 
-> Bezplatná online vzdelávacia hra v slovenčine na precvičovanie pravopisu a gramatiky slovenského jazyka. Hráč chytá poletujúcu sýkorku a v každej vete hľadá slovo s chybou. Hra má 1 000 viet v dvoch úrovniach po 15 tém. Každý deň o polnoci (slovenský čas) vyberie 9 tém a z každej 3 nové vety – 9 kôl po 3 otázky. Po každej odpovedi ukáže vysvetlenie pravidla, na konci prehľad chýb, denný rebríček TOP 10 a odznaky. Beží priamo v prehliadači, bez registrácie, bez reklám a bez sťahovania.
+> Bezplatná online vzdelávacia hra v slovenčine na precvičovanie pravopisu a gramatiky slovenského jazyka a angličtiny. Hráč chytá poletujúcu sýkorku a v každej vete hľadá slovo s chybou. Hra má 1 000 viet v dvoch úrovniach po 15 tém. Každý deň o polnoci (slovenský čas) vyberie 9 tém a z každej 3 nové vety – 9 kôl po 3 otázky. Po každej odpovedi ukáže vysvetlenie pravidla, na konci prehľad chýb, denný rebríček TOP 10 a odznaky. Beží priamo v prehliadači, bez registrácie, bez reklám a bez sťahovania.
 
-Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťažšia 6. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu, aj ako doplnok k príprave na Testovanie 9.
+Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťažšia 6. – 9. ročník), rodičia a učitelia, ktorí hľadajú rýchle a hravé opakovanie slovenského pravopisu.
 
 ## Ľahšia úroveň (15 tém, 500 viet)
 
@@ -40,6 +40,34 @@ Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťa�
 14. Podmieňovací a rozkazovací spôsob – by sme, aby ste, buďte, vezmi
 15. Homonymá a podobné slová – rad × rád, súd × sud, plot × plod
 
+## Angličtina – ľahšia úroveň (10 tém, 300 viet)
+
+1. Sloveso to be (am, is, are)
+2. Množné číslo podstatných mien – children, mice, boxes, leaves
+3. Členy a / an / the – an apple, a university, an hour
+4. Prítomný čas: he, she, it + -s – she plays, he goes, doesn't
+5. Have got a has got
+6. Zámená – I / me, he / him, my / your, its
+7. Predložky in, on, at – in May, on Monday, at seven
+8. Can a there is / there are
+9. Pravopis bežných slov – friend, Wednesday, beautiful
+10. Veľké písmená a čísla – I, Monday, English, forty, ninth
+
+## Angličtina – ťažšia úroveň (10 tém, 300 viet)
+
+1. Minulý čas – nepravidelné slovesá (went, bought, taught)
+2. Minulý čas – pravidelné slovesá a pravopis (stopped, studied)
+3. Jednoduchý a priebehový prítomný čas
+4. Predprítomný čas (present perfect), for × since
+5. Stupňovanie prídavných mien (better, the most interesting)
+6. Modálne slovesá a budúci čas (must, should, will, going to)
+7. Much, many, some, any; nepočítateľné slová (information, advice)
+8. Často zamieňané slová (their / there / they're, its / it's, to / too / two)
+9. Predložky vo frázach (interested in, good at, depend on)
+10. Pravopis (receive, until, necessary)
+
+Vysvetlenia sú po slovensky, anglickú vetu si hráč môže dať prečítať nahlas (hlas prehliadača). Každý deň sa hrá 9 z 10 tém.
+
 ## Odkazy
 
 - [Hra Sýkorkina misia](https://misia9.sk/): spustenie hry priamo v prehliadači
@@ -48,11 +76,14 @@ Pre koho: žiaci základných škôl (ľahšia úroveň 3. – 5. ročník, ťa�
 
 ## Fakty
 
+- Nezávislosť: samostatný nekomerčný projekt; nemá nič spoločné s aplikáciou Misia 9 pre deviatakov (misia9.dcbibo.sk) ani s jej autorom
 - Jazyk: slovenčina (sk)
 - Cena: zadarmo
 - Registrácia: nie je potrebná; prezývku anonymne vygeneruje hra, kraj je nepovinný
 - Súkromie: bez osobných údajov, cookies, reklamy a sledovania (https://misia9.sk/sukromie)
-- Počet otázok: 1 000 (2 úrovne × 15 tém), denne sa hrá 27 (9 tém × 3 vety)
+- Predmety: slovenčina (1 000 viet, 2 × 15 tém) a angličtina (600 viet, 2 × 10 tém)
+- Počet otázok: 1 600; denne sa v každej misii hrá 27 (9 tém × 3 vety)
+- Rebríčky: samostatný denný rebríček TOP 10 pre každý predmet a úroveň
 - Formát: interaktívny kvíz / hra, typ úlohy: nájdi pravopisnú alebo gramatickú chybu vo vete (výber z 3 slov)
 - Novinky každý deň: nové otázky a nový rebríček o polnoci
 - Do rebríčka sa počíta prvá súťažná hra dňa; tréning s inými otázkami je možný bez prezývky
